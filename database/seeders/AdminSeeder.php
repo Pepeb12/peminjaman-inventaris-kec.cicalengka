@@ -14,11 +14,13 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         // Membuat akun khusus untuk Umpeg (Admin)
-        User::create([
-            'name' => 'Admin Umpeg Cicalengka',
-            'email' => 'admin.cicalengka@gmail.com', // Ganti dengan Gmail khusus Anda
-            'password' => Hash::make('password123'), // Ganti dengan password yang diinginkan
-            'role' => 'umpeg',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin.cicalengka@gmail.com'], // Kondisi pencarian
+            [
+                'name' => 'Admin Umpeg Cicalengka',
+                'password' => Hash::make('password123'), // Ganti dengan password yang diinginkan
+                'role' => 'umpeg',
+            ]
+        );
     }
 }
