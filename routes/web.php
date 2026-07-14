@@ -30,16 +30,16 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    
+
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 
     Route::get('/forgot-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgotForm'])->name('password.request');
     Route::post('/forgot-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendOtp'])->name('password.email');
-    
+
     Route::get('/verify-otp', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'showVerifyForm'])->name('password.verify');
     Route::post('/verify-otp', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'verifyOtp'])->name('password.verify.submit');
-    
+
     Route::get('/reset-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 });
@@ -48,10 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Grup Rute Umpeg (Admin)
-    Route::middleware(\App\Http\Middleware\CheckRole::class.':umpeg')->prefix('umpeg')->name('umpeg.')->group(function () {
-        
+    Route::middleware(\App\Http\Middleware\CheckRole::class . ':umpeg')->prefix('umpeg')->name('umpeg.')->group(function () {
+
         Route::get('/dashboard', [UmpegDashboardController::class, 'index'])->name('dashboard');
-        
+
         Route::resource('barang', BarangController::class);
 
         Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
@@ -74,15 +74,15 @@ Route::middleware('auth')->group(function () {
     });
 
     // Grup Rute Peminjam
-    Route::middleware(\App\Http\Middleware\CheckRole::class.':peminjam')->prefix('peminjam')->name('peminjam.')->group(function () {
-        
+    Route::middleware(\App\Http\Middleware\CheckRole::class . ':peminjam')->prefix('peminjam')->name('peminjam.')->group(function () {
+
         Route::get('/dashboard', [PeminjamDashboardController::class, 'index'])->name('dashboard');
-        
+
         Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
-        
+
         Route::get('/pengajuan/create', [PengajuanController::class, 'create'])->name('pengajuan.create');
         Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
-        
+
         Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
         Route::get('/riwayat/{id}', [RiwayatController::class, 'show'])->name('riwayat.show');
         Route::get('/riwayat/{id}/cetak', [RiwayatController::class, 'cetakBukti'])->name('riwayat.cetak');
@@ -92,3 +92,5 @@ Route::middleware('auth')->group(function () {
         Route::post('/profil/password', [ProfilController::class, 'updatePassword'])->name('profil.password');
     });
 });
+
+
