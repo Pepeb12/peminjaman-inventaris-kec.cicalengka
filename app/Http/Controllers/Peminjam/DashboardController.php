@@ -12,8 +12,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $peminjamId = $user->peminjam?->id; 
-        
+        $peminjamId = $user->peminjam?->id;
+
         $totalPengajuan = 0;
         $menungguValidasi = 0;
         $sedangDipinjam = 0;
@@ -26,20 +26,20 @@ class DashboardController extends Controller
             $menungguValidasi = Peminjaman::where('peminjam_id', $peminjamId)->where('status', 'Menunggu Proses')->count();
             $sedangDipinjam = Peminjaman::where('peminjam_id', $peminjamId)->where('status', 'Dipinjam')->count();
             $selesai = Peminjaman::where('peminjam_id', $peminjamId)->where('status', 'Selesai')->count();
-            
+
             // Riwayat diambil terpisah (hanya 5 terakhir untuk dashboard)
             $riwayat = Peminjaman::where('peminjam_id', $peminjamId)
-                        ->orderBy('created_at', 'desc')
-                        ->take(5)->get();
-                        
+                ->orderBy('created_at', 'desc')
+                ->take(5)->get();
+
             // Peringatan pengembalian (H-1 atau sudah lewat)
             $peringatanPengembalian = Peminjaman::where('peminjam_id', $peminjamId)
-                        ->where('status', 'Dipinjam')
-                        ->whereDate('tgl_kembali', '<=', now()->addDays(1))
-                        ->orderBy('tgl_kembali', 'asc')
-                        ->get();
+                ->where('status', 'Dipinjam')
+                ->whereDate('tgl_kembali', '<=', now()->addDays(1))
+                ->orderBy('tgl_kembali', 'asc')
+                ->get();
         }
-                            
+
         return view('peminjam.dashboard', compact('totalPengajuan', 'menungguValidasi', 'sedangDipinjam', 'selesai', 'riwayat', 'peringatanPengembalian'));
     }
 }
