@@ -34,7 +34,7 @@ class ForgotPasswordController extends Controller
         $user = $peminjam->user;
         
         // Cek apakah ada request OTP dalam 1 menit terakhir
-        if ($user->otp_expires_at && Carbon::parse($user->otp_expires_at)->subMinutes(14) > now()) {
+        if ($user->otp_expires_at && Carbon::parse($user->otp_expires_at)->subMinutes(1) > now()) {
             return back()->with('error', 'Harap tunggu beberapa saat sebelum meminta OTP baru.');
         }
 
@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
         // Update tanpa validasi mass assignment jika tidak ada di fillable
         // Tapi kita bisa asumsikan fillable sudah disesuaikan atau kita update manual
         $user->otp_code = $otp;
-        $user->otp_expires_at = now()->addMinutes(15);
+        $user->otp_expires_at = now()->addMinutes(2);
         $user->save();
 
         try {
@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
                 'Authorization' => env('FONNTE_TOKEN', ''),
             ])->post('https://api.fonnte.com/send', [
                 'target' => $nomorWa,
-                'message' => "Halo *{$user->name}*,\n\nIni adalah pesan dari Sistem Peminjaman Inventaris Kecamatan Cicalengka.\n\nBerikut adalah kode OTP untuk mereset kata sandi Anda:\n\n*{$otp}*\n\nKode ini berlaku selama 15 menit. Jangan berikan kode ini kepada siapapun.",
+                'message' => "Halo *{$user->name}*,\n\nIni adalah pesan dari Sistem Peminjaman Inventaris Kecamatan Cicalengka.\n\nBerikut adalah kode OTP untuk mereset kata sandi Anda:\n\n*{$otp}*\n\nKode ini berlaku selama 2 menit. Jangan berikan kode ini kepada siapapun.",
             ]);
 
             // Mengecek jika respon dari Fonnte gagal (Fonnte mengembalikan json dengan index status boolean)
@@ -66,7 +66,7 @@ class ForgotPasswordController extends Controller
 
             // Simpan id user ke session untuk tahap selanjutnya
             session(['reset_user_id' => $user->id]);
-            return redirect()->route('password.verify')->with('success', 'Kode OTP telah dikirim ke nomor WhatsApp Anda. (Info Dev: Kode OTP Anda adalah ' . $otp . ')');
+            return redirect()->route('password.verify')->with('success', 'Kode OTP telah dikirim ke nomor WhatsApp Anda.');
         } catch (\Exception $e) {
             return back()->with('error', 'Terjadi kesalahan sistem saat mengirim OTP: ' . $e->getMessage());
         }

@@ -24,7 +24,7 @@
  </style>
 </head>
 
-<body class="bg-utama-batik bg-cover bg-center bg-no-repeat bg-fixed h-screen w-full overflow-hidden p-0 sm:p-2 lg:p-5 flex">
+<body class="bg-utama-batik bg-cover bg-center bg-no-repeat bg-fixed h-[100dvh] w-full overflow-hidden p-0 sm:p-2 lg:p-5 flex">
  
  <div class="flex flex-1 overflow-hidden bg-blue-50 relative w-full border-t border-b sm:border border-blue-200 rounded-sm">
  

@@ -19,11 +19,9 @@
     </style>
 </head>
 
-<body class="bg-utama-batik bg-cover bg-center bg-no-repeat bg-fixed h-screen w-full">
-    <div
-        class="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div
-            class="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-xl relative z-10 border border-slate-100">
+<body class="min-h-screen flex flex-col items-center justify-center relative bg-utama-batik bg-cover bg-center bg-no-repeat bg-fixed py-10">
+    <div class="z-10 w-full max-w-md px-4 sm:px-6 flex flex-col items-center">
+        <div class="w-full space-y-8 bg-white p-7 sm:p-10 rounded-2xl shadow-xl border border-slate-200">
             <div>
                 <h2 class="mt-2 text-center text-3xl font-extrabold text-slate-900 tracking-tight">
                     Verifikasi OTP
@@ -64,10 +62,14 @@
                 </div>
             </form>
 
-            <div class="text-center mt-4">
+            <div class="text-center mt-4 flex flex-col gap-3">
                 <a href="{{ route('password.request') }}"
-                    class="text-sm font-medium text-emerald-600 hover:text-emerald-500">
+                    class="text-sm font-medium text-emerald-600 hover:text-emerald-500 transition-colors">
                     Kirim ulang kode?
+                </a>
+                <a href="{{ route('login') }}"
+                    class="w-full flex justify-center py-3.5 px-4 border border-slate-300 rounded-xl shadow-sm text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 focus:outline-none transition-all">
+                    Kembali
                 </a>
             </div>
         </div>
