@@ -34,6 +34,7 @@
  </td>
  <td class="px-6 py-4">
  <div class="font-medium text-slate-800">{{ $peminjam->user->name ?? '-' }}</div>
+ <div class="text-[10px] text-slate-500 font-bold tracking-widest mt-0.5">NIK: {{ $peminjam->nik ?? '-' }}</div>
  </td>
  <td class="px-6 py-4">
  <div class="text-sm font-bold text-slate-900">{{ $peminjam->user->email ?? '-' }}</div>

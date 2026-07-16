@@ -52,15 +52,16 @@
  </td>
  <td class="px-6 py-4">
  <p class="font-medium text-slate-800">{{ $trx->peminjam->user->name ?? '-' }}</p>
+ <p class="text-[11px] text-slate-500 font-bold tracking-wider mt-0.5">NIK: {{ $trx->peminjam->nik ?? '-' }}</p>
  </td>
  <td class="px-6 py-4">
  <p class="text-[11px] text-[#064e3b] font-bold uppercase tracking-wider mt-0.5">{{ $trx->peminjam?->nama_instansi ?? $trx->peminjam?->jenis_peminjam }}</p>
  </td>
  <td class="px-6 py-4">
- <p class="text-slate-800 font-medium">{{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y')) }}</p>
+ <p class="text-slate-800 font-medium">{{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y H:i')) }}</p>
  </td>
  <td class="px-6 py-4">
- <p class="text-slate-800 font-medium">{{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y')) }}</p>
+ <p class="text-slate-800 font-medium">{{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y H:i')) }}</p>
  </td>
  <td class="px-6 py-4">
  @if($trx->surat_resmi)

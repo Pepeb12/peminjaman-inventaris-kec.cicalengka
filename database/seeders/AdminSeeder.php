@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // Membuat akun khusus untuk Umpeg (Admin)
+        // Membuat akun khusus untuk  (Admin)
         User::updateOrCreate(
             ['email' => 'admin.cicalengka@gmail.com'], // Kondisi pencarian
             [

@@ -25,13 +25,13 @@ class PengajuanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tgl_pinjam' => 'required|date_format:d/m/Y',
-            'tgl_kembali' => 'required|date_format:d/m/Y|after_or_equal:tgl_pinjam',
+            'tgl_pinjam' => 'required|date_format:d/m/Y H:i',
+            'tgl_kembali' => 'required|date_format:d/m/Y H:i|after_or_equal:tgl_pinjam',
             'kode_barang' => 'required|array',
             'kode_barang.*' => 'required|exists:barangs,kode_barang',
             'jumlah' => 'required|array',
             'jumlah.*' => 'required|integer|min:1',
-            'surat_resmi' => 'required|mimes:pdf|max:5120'
+            'surat_resmi' => 'nullable|mimes:pdf|max:5120'
         ], [
             'required' => 'isi bagian ini',
             'tgl_kembali.after_or_equal' => 'tanggal kembali harus lebih dari tanggal pinjam',
@@ -72,8 +72,8 @@ class PengajuanController extends Controller
             Peminjaman::create([
                 'id' => $trxId,
                 'peminjam_id' => $peminjamId,
-                'tgl_pinjam' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->tgl_pinjam)->format('Y-m-d'),
-                'tgl_kembali' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->tgl_kembali)->format('Y-m-d'),
+                'tgl_pinjam' => \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->tgl_pinjam)->format('Y-m-d H:i:s'),
+                'tgl_kembali' => \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->tgl_kembali)->format('Y-m-d H:i:s'),
                 'surat_resmi' => $suratPath,
                 'status' => 'Menunggu Proses'
             ]);

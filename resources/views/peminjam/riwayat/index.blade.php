@@ -29,8 +29,8 @@
  @forelse($riwayat as $trx)
  <tr class="hover:bg-white transition-colors">
  <td class="px-6 py-4 font-bold text-slate-900">{{ $trx->id }}</td>
- <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y') }}</td>
- <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y') }}</td>
+ <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
+ <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
  <td class="px-6 py-4">
  @if($trx->status == 'Menunggu Proses')
  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 uppercase tracking-widest border border-amber-200">Menunggu ACC Umum Kepegawaian</span>

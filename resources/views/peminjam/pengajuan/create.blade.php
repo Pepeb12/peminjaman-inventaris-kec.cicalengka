@@ -56,7 +56,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_pinjam" id="tgl_pinjam" value="{{ old('tgl_pinjam') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_pinjam" id="tgl_pinjam" value="{{ old('tgl_pinjam') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy HH:mm" required>
  </div>
  </div>
  <div>
@@ -65,15 +65,15 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_kembali" id="tgl_kembali" value="{{ old('tgl_kembali') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_kembali" id="tgl_kembali" value="{{ old('tgl_kembali') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy HH:mm" required>
  </div>
  </div>
  </div>
 
  <div class="mb-8">
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Upload Surat Resmi Peminjaman (PDF)</label>
+ <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Upload Surat Resmi Peminjaman (PDF) - <span class="font-normal italic text-slate-500">Opsional</span></label>
  <div class="relative">
- <input type="file" name="surat_resmi" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 border border-emerald-200 rounded-xl bg-white shadow-sm" required>
+ <input type="file" name="surat_resmi" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 border border-emerald-200 rounded-xl bg-white shadow-sm">
  </div>
  </div>
 
@@ -255,9 +255,14 @@
 
  function parseDate(str) {
      if(!str) return null;
-     const parts = str.split('/');
-     if(parts.length === 3) {
-         return new Date(parts[2], parts[1] - 1, parts[0]);
+     // str is like "dd/mm/yyyy HH:mm"
+     const parts = str.split(' ');
+     if(parts.length === 2) {
+         const dateParts = parts[0].split('/');
+         const timeParts = parts[1].split(':');
+         if(dateParts.length === 3 && timeParts.length === 2) {
+             return new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1]);
+         }
      }
      return null;
  }
@@ -279,13 +284,17 @@
 
  document.addEventListener('DOMContentLoaded', function() {
      flatpickr("#tgl_pinjam", {
-         dateFormat: "d/m/Y",
+         enableTime: true,
+         time_24hr: true,
+         dateFormat: "d/m/Y H:i",
          locale: "id",
          allowInput: true
      });
      
      flatpickr("#tgl_kembali", {
-         dateFormat: "d/m/Y",
+         enableTime: true,
+         time_24hr: true,
+         dateFormat: "d/m/Y H:i",
          locale: "id",
          allowInput: true
      });

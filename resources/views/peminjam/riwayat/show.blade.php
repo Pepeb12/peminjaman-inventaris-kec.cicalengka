@@ -35,19 +35,19 @@
 
  <div>
  <p class="text-xs text-slate-500 font-medium">Tanggal Peminjaman</p>
- <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_pinjam)->translatedFormat('j F Y') }}</p>
+ <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_pinjam)->translatedFormat('j F Y H:i') }}</p>
  </div>
  
  <div>
  <p class="text-xs text-slate-500 font-medium">Tanggal Pengembalian (Rencana)</p>
- <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y') }}</p>
+ <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y H:i') }}</p>
  </div>
  </div>
 
  @if($peminjaman->status == 'Dipinjam')
  <div class="mt-4 p-4 bg-indigo-50 border border-indigo-100 rounded-xl">
  <p class="text-[10px] font-bold text-indigo-800 uppercase tracking-widest mb-1">Waktu Tersisa</p>
- <div id="countdown-timer" class="font-mono text-lg font-extrabold text-indigo-700" data-target="{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->endOfDay()->toIso8601String() }}">
+ <div id="countdown-timer" class="font-mono text-lg font-extrabold text-indigo-700" data-target="{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->toIso8601String() }}">
  Memuat...
  </div>
  <div id="countdown-warning" class="hidden mt-2 text-xs font-bold text-rose-600 bg-rose-100 p-2 rounded-lg border border-rose-200">

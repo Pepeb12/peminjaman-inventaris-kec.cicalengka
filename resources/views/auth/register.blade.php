@@ -152,6 +152,7 @@
  <option value="Lembaga Kemasyarakatan Desa" {{ old('jenis_peminjam') == 'Lembaga Kemasyarakatan Desa' ? 'selected' : '' }}>Lembaga Kemasyarakatan Desa</option>
  <option value="Instansi Pemerintah" {{ old('jenis_peminjam') == 'Instansi Pemerintah' ? 'selected' : '' }}>Instansi Pemerintah</option>
  <option value="Organisasi" {{ old('jenis_peminjam') == 'Organisasi' ? 'selected' : '' }}>Organisasi</option>
+ <option value="Lainnya" {{ old('jenis_peminjam') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
