@@ -78,7 +78,7 @@ class LaporanController extends Controller
             "Expires"             => "0"
         ];
 
-        $columns = ['ID Transaksi', 'Tgl Pinjam', 'Tgl Kembali', 'Instansi Peminjam', 'Penanggung Jawab', 'Kontak', 'Detail Barang Dipinjam'];
+        $columns = ['ID Transaksi', 'Tgl Pinjam', 'Tgl Kembali', 'Instansi Peminjam', 'Penanggung Jawab', 'Kontak', 'Alamat', 'Detail Barang Dipinjam'];
 
         $callback = function() use($peminjamans, $columns) {
             $file = fopen('php://output', 'w');
@@ -93,11 +93,12 @@ class LaporanController extends Controller
                 
                 $row = [
                     $trx->id,
-                    \Carbon\Carbon::parse($trx->tgl_pinjam)->format('Y-m-d'),
-                    \Carbon\Carbon::parse($trx->tgl_kembali)->format('Y-m-d'),
+                    \Carbon\Carbon::parse($trx->tgl_pinjam)->format('Y-m-d H:i'),
+                    \Carbon\Carbon::parse($trx->tgl_kembali)->format('Y-m-d H:i'),
                     $trx->peminjam->nama_instansi ?? $trx->peminjam->jenis_peminjam ?? '-',
                     $trx->peminjam->user->name ?? '-',
                     $trx->peminjam->kontak_penanggung_jawab ?? '-',
+                    $trx->peminjam->user->alamat ?? '-',
                     implode(', ', $barangList)
                 ];
 

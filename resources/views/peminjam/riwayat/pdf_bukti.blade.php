@@ -89,7 +89,7 @@
  $imageData = base64_encode(file_get_contents($imagePath));
  $src = 'data:image/jpeg;base64,'.$imageData;
  @endphp
- <img src="{{ $src }}" width="80" alt="Logo">
+ <img src="{{ $src }}" width="80"  alt="Logo">
  </td>
  <td width="70%" class="header-text" style="padding-bottom: 10px; text-align: center;">
  <h2>PEMERINTAH KABUPATEN BANDUNG</h2>

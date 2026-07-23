@@ -24,7 +24,24 @@ class PengajuanController extends Controller
 
     public function store(Request $request)
     {
+        // Gabungkan input tanggal dan waktu yang terpisah dari view
+        if ($request->has('tgl_pinjam_date') && $request->has('tgl_pinjam_time')) {
+            $request->merge([
+                'tgl_pinjam' => $request->tgl_pinjam_date . ' ' . $request->tgl_pinjam_time
+            ]);
+        }
+        
+        if ($request->has('tgl_kembali_date') && $request->has('tgl_kembali_time')) {
+            $request->merge([
+                'tgl_kembali' => $request->tgl_kembali_date . ' ' . $request->tgl_kembali_time
+            ]);
+        }
+
         $request->validate([
+            'tgl_pinjam_date' => 'required|date_format:d/m/Y',
+            'tgl_pinjam_time' => 'required|date_format:H:i',
+            'tgl_kembali_date' => 'required|date_format:d/m/Y',
+            'tgl_kembali_time' => 'required|date_format:H:i',
             'tgl_pinjam' => 'required|date_format:d/m/Y H:i',
             'tgl_kembali' => 'required|date_format:d/m/Y H:i|after_or_equal:tgl_pinjam',
             'kode_barang' => 'required|array',

@@ -14,7 +14,7 @@ class PeminjamanController extends Controller
         // Load data peminjaman beserta relasi user dan detail barang
         $peminjamans = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang'])
                                  ->orderBy('created_at', 'desc')
-                                 ->get();
+                                 ->paginate(10);
                                  
         return view('umpeg.peminjaman.index', compact('peminjamans'));
     }

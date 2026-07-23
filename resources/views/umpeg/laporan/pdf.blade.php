@@ -173,7 +173,7 @@
                         $imageData = base64_encode(file_get_contents($imagePath));
                         $src = 'data:image/jpeg;base64,' . $imageData;
                      @endphp
-                    <img src="{{ $src }}" width="80" alt="Logo">
+                    <img src="{{ $src }}" width="80"  alt="Logo">
                 </td>
                 <td width="70%" class="header-text" style="padding-bottom: 10px; text-align: center;">
                     <h2>PEMERINTAH KABUPATEN BANDUNG</h2>
@@ -214,13 +214,15 @@
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td class="text-center font-bold">{{ $trx->id }}</td>
                     <td class="text-center">
-                        {{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y')) }}</td>
+                        {{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y H:i')) }}</td>
                     <td class="text-center">
-                        {{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y')) }}</td>
+                        {{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y H:i')) }}</td>
                     <td>
                         <strong>{{ $trx->peminjam->user->name ?? '-' }}</strong><br>
                         <span style="font-size: 10px; color: #333;">Instansi:
-                            {{ $trx->peminjam->nama_instansi ?? $trx->peminjam->jenis_peminjam }}</span>
+                            {{ $trx->peminjam->nama_instansi ?? $trx->peminjam->jenis_peminjam }}</span><br>
+                        <span style="font-size: 10px; color: #333;">Alamat:
+                            {{ $trx->peminjam->user->alamat ?? '-' }}</span>
                     </td>
                     <td>
                         <ul class="barang-list">

@@ -11,7 +11,7 @@ class PeminjamController extends Controller
 {
     public function index()
     {
-        $peminjams = Peminjam::with('user')->get();
+        $peminjams = Peminjam::with('user')->paginate(10);
         return view('umpeg.peminjam.index', compact('peminjams'));
     }
 

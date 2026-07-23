@@ -60,6 +60,15 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        // Cek jika NIK dan No WA sama sudah terdaftar
+        $existing = \App\Models\Peminjam::where('nik', $request->nik)
+            ->where('kontak_penanggung_jawab', $request->kontak_penanggung_jawab)
+            ->first();
+
+        if ($existing) {
+            return back()->withErrors(['nik' => 'Akun dengan NIK dan No WA ini sudah pernah didaftarkan.'])->withInput();
+        }
+
         $messages = [
             'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
             'nik.required' => 'NIK wajib diisi.',
@@ -84,6 +93,7 @@ class AuthController extends Controller
             'jenis_peminjam' => 'required|string',
             'nama_instansi' => 'nullable|string|max:255',
             'kontak_penanggung_jawab' => 'required|string|max:20',
+            'alamat' => 'required|string',
         ], $messages);
 
         // Insert ke 2 tabel menggunakan Database Transaction
@@ -95,6 +105,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => 'peminjam', // Paksa set role peminjam saat register publik
+                'alamat' => $request->alamat,
             ]);
 
             Peminjam::create([

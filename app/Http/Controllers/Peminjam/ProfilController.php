@@ -27,17 +27,21 @@ class ProfilController extends Controller
             'jenis_peminjam' => 'required|string|max:100',
             'kontak_penanggung_jawab' => 'required|string|max:20',
             'alamat' => 'nullable|string',
-            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto_profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
+            'foto_profil.required' => 'Upload foto profil bersifat wajib.',
             'foto_profil.image' => 'Berkas harus berupa gambar.',
             'foto_profil.max' => 'Ukuran foto maksimal 2MB.'
         ]);
 
         $user = Auth::user();
         
-        // Update data user (Penanggung Jawab)
+        // Update data user (Penanggung Jawab & Alamat)
         $user->name = ucwords(strtolower($request->name));
+        if ($request->has('alamat')) {
+            $user->alamat = $request->alamat;
+        }
 
         if ($request->hasFile('foto_profil')) {
             if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
@@ -54,7 +58,6 @@ class ProfilController extends Controller
                 'nama_instansi' => $request->nama_instansi,
                 'jenis_peminjam' => $request->jenis_peminjam,
                 'kontak_penanggung_jawab' => $request->kontak_penanggung_jawab,
-                'alamat' => $request->alamat,
             ]);
         }
 

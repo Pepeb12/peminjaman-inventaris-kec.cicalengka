@@ -155,6 +155,12 @@
  </tbody>
  </table>
  </div>
+ 
+ @if($peminjamans->hasPages())
+ <div class="p-4 border-t border-slate-200 bg-slate-50/50">
+ {{ $peminjamans->links() }}
+ </div>
+ @endif
 </div>
 
 <script>

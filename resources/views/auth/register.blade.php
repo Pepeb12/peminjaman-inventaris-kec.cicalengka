@@ -101,6 +101,16 @@
  </div>
  </div>
 
+ <div class="mb-4">
+ <label class="block text-slate-700 text-sm font-bold mb-1.5 tracking-wide">Alamat Lengkap</label>
+ <div class="relative">
+ <div class="absolute top-3 left-0 pl-3.5 flex items-start pointer-events-none">
+ <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+ </div>
+ <textarea name="alamat" rows="2" required oninvalid="this.setCustomValidity('Isi bagian ini')" oninput="this.setCustomValidity('')" class="block w-full pl-11 pr-3 py-2.5 bg-white border border-blue-200 rounded-lg text-slate-900 focus:outline-none focus:bg-white focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] transition-colors text-sm placeholder-slate-400 shadow-sm" placeholder="Masukkan Alamat Lengkap Sesuai KTP">{{ old('alamat') }}</textarea>
+ </div>
+ </div>
+
  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
  <div>
  <label class="block text-slate-700 text-sm font-bold mb-1.5 tracking-wide">Password</label>
@@ -181,7 +191,7 @@
  </div>
 
  <button type="submit" class="w-full bg-[#1e3a8a] hover:bg-blue-900 text-white font-bold py-3.5 rounded-lg transition-colors tracking-wider shadow-md">
- DAFTAR SEKARANG
+ DAFTAR
  </button>
 
  <div class="mt-6 text-center text-sm text-slate-600 font-medium">

@@ -68,9 +68,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::post('/laporan/cetak', [LaporanController::class, 'cetak'])->name('laporan.cetak');
         Route::get('/laporan/export-csv', [LaporanController::class, 'exportCsv'])->name('laporan.exportCsv');
-
-        Route::get('/profil', [UmpegProfilController::class, 'index'])->name('profil.index');
-        Route::post('/profil', [UmpegProfilController::class, 'update'])->name('profil.update');
     });
 
     // Grup Rute Peminjam

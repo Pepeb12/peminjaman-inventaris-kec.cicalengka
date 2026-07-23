@@ -29,7 +29,7 @@
                     Lupa Password
                 </h2>
                 <p class="mt-2 text-center text-sm text-slate-600 font-medium">
-                    Masukkan nomor whatsapp aktif yang telah didaftarkan.
+                    Masukkan nomor whatsapp aktif sesuaikan dengan nomor whatsapp di profil.
                 </p>
             </div>
 

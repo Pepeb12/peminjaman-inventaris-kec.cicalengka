@@ -24,14 +24,52 @@
  .bg-utama-batik {
  background-image: url("{{ asset('img/bg-batik kiri.png') }}");
  }
+
+ .hide-scrollbar::-webkit-scrollbar {
+ display: none;
+ }
+ .hide-scrollbar {
+ -ms-overflow-style: none;
+ scrollbar-width: none;
+ }
  </style>
 </head>
 
 <body class="min-h-screen flex flex-col items-center justify-center relative bg-utama-batik bg-cover bg-center bg-no-repeat bg-fixed py-10">
  
- <div class="z-10 w-full max-w-md px-4 sm:px-6 flex flex-col items-center">
+ <div class="z-10 w-full max-w-4xl px-4 sm:px-6 flex flex-col items-center">
  
- <div class="bg-white rounded-2xl border border-slate-200 w-full p-7 sm:p-10">
+ <div class="w-full bg-white/95 backdrop-blur-sm rounded-2xl border border-slate-200 shadow-sm flex flex-col lg:flex-row items-stretch overflow-hidden relative">
+ 
+ <!-- Container Ketentuan -->
+ <div id="ketentuanContainer" class="hidden lg:flex w-full lg:w-1/2 p-6 sm:p-8 flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/60 bg-slate-50/50">
+ <div>
+ <h3 class="text-[#1e3a8a] font-extrabold text-lg mb-4 text-center uppercase border-b-2 border-[#1e3a8a]/20 pb-2 tracking-wide">Ketentuan Peminjaman</h3>
+ <ul class="text-slate-700 text-xs sm:text-sm space-y-2.5 list-disc pl-4 font-medium text-justify">
+ <li>Peminjam diwajibkan melakukan registrasi terlebih dahulu menggunakan data yang valid.</li>
+ <li>Peminjaman inventaris barang ditujukan untuk keperluan kedinasan, kegiatan kemasyarakatan, dan organisasi resmi di wilayah Kecamatan Cicalengka.</li>
+ <li>Barang yang dipinjam harus dijaga dengan baik dan dikembalikan tepat waktu sesuai dengan jadwal yang disepakati.</li>
+ <li>Segala bentuk kerusakan atau kehilangan barang menjadi tanggung jawab penuh pihak peminjam.</li>
+ <li>Kecamatan Cicalengka berhak menolak permohonan peminjaman jika tidak memenuhi syarat.</li>
+ </ul>
+ </div>
+ 
+ <div class="mt-6 pt-5 border-t-2 border-[#1e3a8a]/10 flex flex-col items-center justify-center">
+ <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Website Ini Didukung Oleh</span>
+ <div class="flex items-center justify-center gap-4 w-full">
+ <img src="{{ asset('img/logo-bmb.png') }}" alt="Bangga Melayani Bangsa" class="h-9 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
+ <img src="{{ asset('img/logo-kab-bandung.png') }}" alt="Kabupaten Bandung" class="h-12 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
+ <img src="{{ asset('img/logo-berakhlak.png') }}" alt="BerAKHLAK" class="h-7 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
+ </div>
+ </div>
+ <div class="mt-8 text-center lg:hidden w-full">
+ <button type="button" onclick="toggleMobileView('login')" class="text-[#1e3a8a] text-sm font-bold hover:text-blue-700 hover:underline transition-colors w-full">
+ &larr; Kembali ke Form Login
+ </button>
+ </div>
+ </div>
+
+ <div id="loginContainer" class="flex w-full lg:w-1/2 p-6 sm:p-8 flex-col justify-center bg-white">
  
  <div class="flex flex-row items-center justify-center mb-8 gap-3 sm:gap-4 w-full">
  <div class="w-14 h-14 sm:w-16 sm:h-16 shrink-0 bg-white rounded-full flex items-center justify-center border-2 border-slate-200 p-1.5 overflow-hidden shadow-sm">
@@ -63,7 +101,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
  </div>
- <input type="email" name="email" class="block w-full pl-11 pr-3 py-3 bg-white border border-blue-200 rounded-lg text-slate-900 focus:outline-none focus:bg-white focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] transition-colors text-sm placeholder-slate-400" placeholder="Masukkan Gmail Aktif" required oninvalid="this.setCustomValidity('Isi bagian ini')" oninput="this.setCustomValidity('')" autofocus autocomplete="off">
+ <input type="email" name="email" class="block w-full pl-11 pr-3 py-3 bg-white border border-blue-200 rounded-lg text-slate-900 focus:outline-none focus:bg-white focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] transition-colors text-sm placeholder-slate-400" placeholder="Masukkan Gmail Terdaftar" required oninvalid="this.setCustomValidity('Isi bagian ini')" oninput="this.setCustomValidity('')" autofocus autocomplete="off">
  </div>
  </div>
 
@@ -108,6 +146,12 @@
  </div>
  </div>
  </form>
+ <div class="mt-8 text-center lg:hidden w-full">
+ <button type="button" onclick="toggleMobileView('ketentuan')" class="text-[#1e3a8a] text-sm font-bold hover:text-blue-700 hover:underline transition-colors w-full">
+ Lihat Ketentuan Peminjaman &rarr;
+ </button>
+ </div>
+ </div>
  </div>
 
  <div class="mt-6 text-center w-full">
@@ -119,6 +163,20 @@
  </div>
 
  <script>
+ function toggleMobileView(view) {
+ const ketentuan = document.getElementById('ketentuanContainer');
+ const login = document.getElementById('loginContainer');
+ if (window.innerWidth < 1024) { // Only on mobile
+ if (view === 'ketentuan') {
+ login.classList.replace('flex', 'hidden');
+ ketentuan.classList.replace('hidden', 'flex');
+ } else {
+ ketentuan.classList.replace('flex', 'hidden');
+ login.classList.replace('hidden', 'flex');
+ }
+ }
+ }
+
  function togglePassword() {
  const passwordInput = document.getElementById('password');
  const eyeOpen = document.getElementById('eye-open');
@@ -135,5 +193,51 @@
  }
  }
  </script>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
+  <div class="relative max-w-2xl max-h-[90vh] bg-white rounded-2xl p-4 sm:p-6 shadow-2xl transform transition-transform scale-95 duration-300 flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+  <button onclick="closeImageModal()" class="absolute -top-3 -right-3 bg-white text-slate-700 hover:text-red-500 rounded-full w-9 h-9 flex items-center justify-center shadow-md border border-slate-200 transition-colors z-10 focus:outline-none">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  </button>
+  <img id="modalImage" src="" alt="Modal Image" class="max-w-full max-h-[75vh] object-contain rounded-lg">
+  <p id="modalCaption" class="mt-4 text-slate-800 font-bold text-center text-base sm:text-lg hidden uppercase tracking-wide"></p>
+  </div>
+  </div>
+
+  <script>
+  function openImageModal(src, alt) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const modalCaption = document.getElementById('modalCaption');
+  
+  modalImg.src = src;
+  if (alt) {
+  modalCaption.textContent = alt;
+  modalCaption.classList.remove('hidden');
+  } else {
+  modalCaption.classList.add('hidden');
+  }
+  
+  modal.classList.remove('hidden');
+  // trigger reflow for animation
+  void modal.offsetWidth;
+  modal.classList.remove('opacity-0');
+  modal.querySelector('div').classList.remove('scale-95');
+  modal.querySelector('div').classList.add('scale-100');
+  }
+
+  function closeImageModal() {
+  const modal = document.getElementById('imageModal');
+  
+  modal.classList.add('opacity-0');
+  modal.querySelector('div').classList.remove('scale-100');
+  modal.querySelector('div').classList.add('scale-95');
+  
+  setTimeout(() => {
+  modal.classList.add('hidden');
+  }, 300);
+  }
+  </script>
 </body>
 </html>

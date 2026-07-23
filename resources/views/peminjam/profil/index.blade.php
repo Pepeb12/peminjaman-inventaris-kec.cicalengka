@@ -28,7 +28,7 @@
  @csrf
  <div class="space-y-4">
  <div class="mb-6 flex flex-col items-center sm:items-start gap-4">
- <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Foto Profil (Opsional)</label>
+ <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Foto Profil</label>
  <div class="flex items-center gap-6">
  <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-slate-100 shadow-md flex-shrink-0 bg-slate-200 flex items-center justify-center">
  @if($user->foto_profil)
@@ -38,8 +38,8 @@
  @endif
  </div>
  <div>
- <input type="file" name="foto_profil" accept="image/*" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 bg-white border border-slate-200 rounded-xl focus:outline-none transition-colors shadow-sm">
- <p class="text-[10px] text-slate-500 mt-2">Format: JPG, PNG. Maksimal 2MB.</p>
+ <input type="file" name="foto_profil" accept="image/*" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 bg-white border border-slate-200 rounded-xl focus:outline-none transition-colors shadow-sm" required>
+ <p class="text-[10px] text-rose-500 mt-2 font-bold italic">* Upload poto profil dengan jelas dan bersifat wajib.</p>
  </div>
  </div>
  </div>
@@ -47,39 +47,39 @@
  <div>
  <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Alamat Email (Gmail)</label>
  <input type="email" value="{{ $user->email }}" class="w-full bg-slate-100 border border-slate-200 text-slate-500 rounded-xl px-4 py-2.5 cursor-not-allowed shadow-sm" readonly>
- <p class="text-[10px] text-slate-500 mt-1">*Email terdaftar tidak dapat diubah.</p>
  </div>
  <div>
  <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">NIK (Nomor Induk Kependudukan)</label>
  <input type="text" value="{{ $peminjam->nik ?? '' }}" class="w-full bg-slate-100 border border-slate-200 text-slate-500 rounded-xl px-4 py-2.5 cursor-not-allowed shadow-sm" readonly>
- <p class="text-[10px] text-slate-500 mt-1">*NIK terdaftar tidak dapat diubah.</p>
  </div>
  </div>
 
  <div>
  <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Penanggung Jawab</label>
- <input type="text" name="name" value="{{ old('name', $user->name) }}" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm" required>
+ <input type="text" name="name" value="{{ old('name', $user->name) }}" class="w-full bg-slate-100 border border-slate-200 text-slate-500 rounded-xl px-4 py-2.5 cursor-not-allowed shadow-sm" readonly>
  </div>
  
  <div>
  <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Nama Instansi/Organisasi</label>
- <input type="text" name="nama_instansi" value="{{ old('nama_instansi', $peminjam->nama_instansi ?? '') }}" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm" required>
+ <input type="text" name="nama_instansi" value="{{ old('nama_instansi', $peminjam->nama_instansi ?? '') }}" class="w-full bg-slate-100 border border-slate-200 text-slate-500 rounded-xl px-4 py-2.5 cursor-not-allowed shadow-sm" readonly>
  </div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div>
- <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Jenis Entitas</label>
- <input type="text" name="jenis_peminjam" value="{{ old('jenis_peminjam', $peminjam->jenis_peminjam ?? '') }}" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm" placeholder="Contoh: Desa / Karang Taruna" required>
+ <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Jenis Peminjam</label>
+ <input type="text" name="jenis_peminjam" value="{{ old('jenis_peminjam', $peminjam->jenis_peminjam ?? '') }}" class="w-full bg-slate-100 border border-slate-200 text-slate-500 rounded-xl px-4 py-2.5 cursor-not-allowed shadow-sm" readonly>
  </div>
  <div>
  <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Nomor WhatsApp</label>
  <input type="text" name="kontak_penanggung_jawab" value="{{ old('kontak_penanggung_jawab', $peminjam->kontak_penanggung_jawab ?? '') }}" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm" required>
+ <p class="text-[10px] text-slate-500 mt-1 italic">* Ubah nomor jika nomor anda telah ganti serta pada lupa password mengikuti otp yang ada pada profil.</p>
  </div>
  </div>
 
  <div>
- <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Alamat Instansi</label>
- <textarea name="alamat" rows="3" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm">{{ old('alamat', $peminjam->alamat ?? '') }}</textarea>
+ <label class="block text-slate-700 text-xs font-bold uppercase tracking-wide mb-1.5">Alamat Peminjam</label>
+ <textarea name="alamat" rows="3" class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm" required>{{ old('alamat', $user->alamat ?? '') }}</textarea>
+ <p class="text-[10px] text-slate-500 mt-1 italic">* Ubah alamat bila melakukan perpindahan alamat.</p>
  </div>
  </div>
 

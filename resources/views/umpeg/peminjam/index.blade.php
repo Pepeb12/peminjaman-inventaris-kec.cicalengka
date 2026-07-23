@@ -17,6 +17,7 @@
  <th class="px-6 py-4">Nama Instansi</th>
  <th class="px-6 py-4">Penanggung Jawab</th>
  <th class="px-6 py-4">Email</th>
+ <th class="px-6 py-4">Alamat</th>
  <th class="px-6 py-4">Jenis Peminjam</th>
  <th class="px-6 py-4">Kontak (WA)</th>
  <th class="px-6 py-4">Total Pinjam</th>
@@ -30,7 +31,16 @@
  <div class="text-xs text-slate-500 font-medium">{{ $peminjam->id }}</div>
  </td>
  <td class="px-6 py-4">
+ <div class="flex items-center gap-3">
+ <div class="w-10 h-10 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center overflow-hidden shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageModal(this.querySelector('img') ? this.querySelector('img').src : '', 'Foto {{ $peminjam->user->name ?? 'Pengguna' }}')">
+ @if(isset($peminjam->user->foto_profil) && $peminjam->user->foto_profil)
+ <img src="{{ asset('storage/' . $peminjam->user->foto_profil) }}" class="w-full h-full object-cover">
+ @else
+ <span class="text-xs font-bold text-slate-500">{{ substr($peminjam->user->name ?? 'U', 0, 1) }}</span>
+ @endif
+ </div>
  <div class="font-bold text-slate-900">{{ $peminjam->nama_instansi ?? 'Tidak Diketahui' }}</div>
+ </div>
  </td>
  <td class="px-6 py-4">
  <div class="font-medium text-slate-800">{{ $peminjam->user->name ?? '-' }}</div>
@@ -38,6 +48,9 @@
  </td>
  <td class="px-6 py-4">
  <div class="text-sm font-bold text-slate-900">{{ $peminjam->user->email ?? '-' }}</div>
+ </td>
+ <td class="px-6 py-4">
+ <div class="text-xs text-slate-600">{{ $peminjam->user->alamat ?? '-' }}</div>
  </td>
  <td class="px-6 py-4">
  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-widest mb-1">{{ $peminjam->jenis_peminjam ?? '-' }}</div>
@@ -81,11 +94,17 @@
  </tr>
  @empty
  <tr>
- <td colspan="8" class="px-6 py-12 text-center text-slate-500 font-medium">Belum ada peminjam yang terdaftar.</td>
+ <td colspan="9" class="px-6 py-12 text-center text-slate-500 font-medium">Belum ada peminjam yang terdaftar.</td>
  </tr>
  @endforelse
  </tbody>
  </table>
  </div>
+ 
+ @if($peminjams->hasPages())
+ <div class="p-4 border-t border-slate-200 bg-slate-50/50">
+ {{ $peminjams->links() }}
+ </div>
+ @endif
 </div>
 @endsection

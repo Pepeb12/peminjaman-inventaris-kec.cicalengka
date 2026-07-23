@@ -73,9 +73,19 @@
  @endif
  </a>
 
- <a href="{{ route('umpeg.peminjam.index') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('umpeg.peminjam.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
+ <a href="{{ route('umpeg.peminjam.index') }}" class="flex items-center justify-between px-4 py-3 {{ request()->routeIs('umpeg.peminjam.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
+ <div class="flex items-center gap-3">
  <svg class="w-5 h-5 {{ request()->routeIs('umpeg.peminjam.*') ? 'text-[#1e3a8a]' : 'opacity-80' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
  Manajemen Peminjam
+ </div>
+ @php
+     $newPeminjamCount = \App\Models\Peminjam::where('status_akun', 'Menunggu')->count();
+ @endphp
+ @if($newPeminjamCount > 0)
+ <span class="bg-rose-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
+     {{ $newPeminjamCount }}
+ </span>
+ @endif
  </a>
 
  <a href="{{ route('umpeg.laporan.index') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('umpeg.laporan.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
@@ -83,10 +93,7 @@
  Cetak Laporan
  </a>
  
- <a href="{{ route('umpeg.profil.index') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('umpeg.profil.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
- <svg class="w-5 h-5 {{ request()->routeIs('umpeg.profil.*') ? 'text-[#1e3a8a]' : 'opacity-80' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
- Profil
- </a>
+
  @elseif(auth()->check() && auth()->user()->role === 'peminjam')
  <!-- MENU PEMINJAM -->
  <a href="{{ route('peminjam.dashboard') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('peminjam.dashboard') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
@@ -144,17 +151,28 @@
  <p class="text-sm font-extrabold text-slate-900 leading-none">
  {{ auth()->user()->role === 'umpeg' ? 'Umum Kepegawaian' : (auth()->user()->name ?? 'Pengguna') }}
  </p>
+ @if(auth()->user()->role === 'umpeg')
+ <p class="text-[10px] text-slate-600 font-bold mt-1">
+ NIP. 19800101 200001 2 001
+ </p>
+ @endif
  <p class="text-[10px] text-[#1e3a8a] font-bold uppercase tracking-widest mt-1">
  {{ auth()->user()->role === 'umpeg' ? 'Kecamatan Cicalengka' : 'Peminjam' }}
  </p>
  </div>
- <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-200 flex items-center justify-center text-white font-bold shadow-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onclick="window.location.href='{{ auth()->user()->role === 'umpeg' ? route('umpeg.profil.index') : route('peminjam.profil.index') }}'">
+ @if(auth()->user()->role === 'umpeg')
+ <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-200 flex items-center justify-center text-white font-bold shadow-md overflow-hidden">
+ <img src="{{ asset('img/admin.jpg') }}" class="w-full h-full object-cover" onerror="this.src='{{ asset('img/logo rapih.jpg') }}'">
+ </div>
+ @else
+ <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-200 flex items-center justify-center text-white font-bold shadow-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" onclick="window.location.href='{{ route('peminjam.profil.index') }}'">
  @if(auth()->user()->foto_profil)
  <img src="{{ asset('storage/' . auth()->user()->foto_profil) }}" class="w-full h-full object-cover">
  @else
  {{ substr(auth()->user()->name ?? 'U', 0, 1) }}
  @endif
  </div>
+ @endif
  <form action="{{ route('logout') }}" method="POST" class="ml-1 sm:border-l sm:border-slate-300 sm:pl-3">
  @csrf
  <button type="submit" class="p-2 bg-rose-100/80 text-rose-600 rounded-lg hover:bg-rose-500 hover:text-white transition-colors shadow-sm border border-rose-200" title="Keluar">
