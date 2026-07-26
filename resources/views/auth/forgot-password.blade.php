@@ -48,7 +48,7 @@
                 @csrf
                 
                 <div>
-                    <label class="block text-slate-700 text-sm font-bold mb-2 text-center">Alamat Email</label>
+                    <label class="block text-slate-700 text-sm font-bold mb-2 text-center">Alamat Gmail</label>
                     <input type="email" name="email" value="{{ old('email') }}" required class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors text-center" placeholder="Contoh: user@gmail.com">
                     @error('email') <span class="text-xs text-rose-500 mt-1 block text-center">{{ $message }}</span> @enderror
                 </div>

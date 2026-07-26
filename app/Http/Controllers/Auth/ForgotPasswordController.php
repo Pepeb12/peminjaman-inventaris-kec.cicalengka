@@ -34,9 +34,11 @@ class ForgotPasswordController extends Controller
         }
 
         // Cek apakah ada request OTP dalam 1 menit terakhir
-        if ($user->otp_expires_at && Carbon::parse($user->otp_expires_at)->subMinutes(1) > now()) {
-            return back()->with('error', 'Harap tunggu beberapa saat sebelum meminta OTP baru.');
-        }
+        // Dihapus sesuai permintaan: langsung kode terkirim dan jangan harap tunggu beberapa saat
+        // if ($user->otp_expires_at && Carbon::parse($user->otp_expires_at)->subMinutes(1) > now()) {
+        //     return back()->with('error', 'Harap tunggu beberapa saat sebelum meminta OTP baru.');
+        // }
+
 
         $otp = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
         
