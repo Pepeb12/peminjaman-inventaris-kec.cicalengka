@@ -30,7 +30,7 @@
  <tr class="hover:bg-white transition-colors">
  <td class="px-6 py-4">
  <div class="flex flex-col gap-1">
-     <div class="text-xs text-slate-700 font-bold">#{{ $peminjam->id }}</div>
+     <div class="text-xs text-slate-700 font-bold">{{ $peminjam->id }}</div>
      @if($peminjam->status_akun === 'Menunggu')
          <span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 text-[9px] font-extrabold uppercase tracking-widest border border-rose-200 shadow-sm" title="Belum ditindak">
              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
