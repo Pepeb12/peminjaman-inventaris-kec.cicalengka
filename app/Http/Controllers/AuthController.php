@@ -76,7 +76,11 @@ class AuthController extends Controller
             'nik.unique' => 'NIK telah digunakan',
             'password.confirmed' => 'Password tidak sesuai',
             'password.regex' => 'Password harus mengandung kombinasi huruf besar, huruf kecil, dan angka',
-            'email.unique' => 'Email telah digunakan'
+            'email.unique' => 'Email telah digunakan',
+            'foto_profil.required' => 'Upload pas foto anda',
+            'foto_profil.image' => 'File harus berupa gambar',
+            'foto_profil.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif',
+            'foto_profil.max' => 'Ukuran gambar maksimal 2MB'
         ];
 
         $request->validate([
@@ -94,10 +98,17 @@ class AuthController extends Controller
             'nama_instansi' => 'nullable|string|max:255',
             'kontak_penanggung_jawab' => 'required|string|max:20',
             'alamat' => 'required|string',
+            'foto_profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], $messages);
 
+        // Handle file upload
+        $fotoPath = null;
+        if ($request->hasFile('foto_profil')) {
+            $fotoPath = $request->file('foto_profil')->store('profil', 'public');
+        }
+
         // Insert ke 2 tabel menggunakan Database Transaction
-        $data = DB::transaction(function () use ($request) {
+        $data = DB::transaction(function () use ($request, $fotoPath) {
             $formattedName = ucwords(strtolower($request->name));
 
             $user = User::create([
@@ -106,6 +117,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => 'peminjam', // Paksa set role peminjam saat register publik
                 'alamat' => $request->alamat,
+                'foto_profil' => $fotoPath,
             ]);
 
             $peminjam = Peminjam::create([

@@ -62,7 +62,7 @@
  </div>
  @endif
 
- <form method="POST" action="{{ route('register') }}" autocomplete="off">
+ <form method="POST" action="{{ route('register') }}" autocomplete="off" enctype="multipart/form-data">
  @csrf
  
  <div class="relative flex items-center py-2 mb-3">
@@ -108,6 +108,13 @@
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
  </div>
  <textarea name="alamat" rows="2" required oninvalid="this.setCustomValidity('Isi bagian ini')" oninput="this.setCustomValidity('')" class="block w-full pl-11 pr-3 py-2.5 bg-white border border-blue-200 rounded-lg text-slate-900 focus:outline-none focus:bg-white focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] transition-colors text-sm placeholder-slate-400 shadow-sm" placeholder="Masukkan Alamat Lengkap Sesuai KTP">{{ old('alamat') }}</textarea>
+ </div>
+ </div>
+
+ <div class="mb-4">
+ <label class="block text-slate-700 text-sm font-bold mb-1.5 tracking-wide">Upload Pas Foto <span class="font-normal italic text-slate-500">(Ini akan menjadi foto profil peminjam)</span></label>
+ <div class="relative">
+ <input type="file" name="foto_profil" accept="image/*" required oninvalid="this.setCustomValidity('Upload pas foto anda')" oninput="this.setCustomValidity('')" class="block w-full text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e3a8a] hover:file:bg-blue-100 bg-white border border-blue-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition-colors cursor-pointer shadow-sm text-sm p-1.5">
  </div>
  </div>
 
