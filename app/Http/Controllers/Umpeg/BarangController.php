@@ -10,10 +10,28 @@ use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barangs = Barang::with('kategori')->get();
-        return view('umpeg.barang.index', compact('barangs'));
+        $search = $request->input('search');
+        $kategori_id = $request->input('kategori');
+        $query = Barang::with('kategori');
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama_barang', 'like', "%{$search}%")
+                  ->orWhere('kode_barang', 'like', "%{$search}%")
+                  ->orWhere('deskripsi', 'like', "%{$search}%");
+            });
+        }
+
+        if ($kategori_id) {
+            $query->where('kategori_id', $kategori_id);
+        }
+
+        $barangs = $query->paginate(10)->appends($request->all());
+        $kategoris = Kategori::all();
+        
+        return view('umpeg.barang.index', compact('barangs', 'search', 'kategoris', 'kategori_id'));
     }
 
     public function create()

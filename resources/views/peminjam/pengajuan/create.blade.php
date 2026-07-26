@@ -6,22 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
 
-<div class="bg-white border border-slate-200 shadow-sm p-6 sm:p-8 rounded-2xl relative overflow-hidden mb-6">
- <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
- <div>
- <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Formulir Pengajuan Peminjaman</h3>
- <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
- Silakan isi detail peminjaman dan pilih barang yang ingin dipinjam.
- </p>
- </div>
- <div class="shrink-0">
- <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors shadow-sm">
- Kembali
- </a>
- </div>
- </div>
-</div>
-
 @if(session('success'))
  <div class="bg-emerald-100 border border-emerald-300 text-emerald-800 px-4 py-3 rounded-xl mb-6 shadow-sm flex items-center gap-3">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -45,7 +29,22 @@
  </div>
 @endif
 
-<div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
+<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
+    <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="relative z-10 flex-1">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Formulir Pengajuan Peminjaman</h3>
+            <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+                Silakan isi detail peminjaman dan pilih barang yang ingin dipinjam.
+            </p>
+        </div>
+        <div class="relative z-10 shrink-0 flex gap-2 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
+            <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors shadow-sm flex-1 sm:flex-none">
+                Kembali
+            </a>
+        </div>
+    </div>
+
+ <div class="p-6 sm:p-8">
  <form action="{{ route('peminjam.pengajuan.store') }}" method="POST" enctype="multipart/form-data">
  @csrf
  
@@ -76,7 +75,7 @@
  <!-- Kembali -->
  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
  <div>
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Rencana Tanggal Kembali</label>
+ <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Tanggal Kembali</label>
  <div class="relative">
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -160,8 +159,9 @@
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
  KIRIM PENGAJUAN
  </button>
+    </div>
+    </form>
  </div>
- </form>
 </div>
 
 <script>

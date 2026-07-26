@@ -58,7 +58,7 @@
  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Website Ini Didukung Oleh</span>
  <div class="flex items-center justify-center gap-4 w-full">
  <img src="{{ asset('img/logo-bmb.png') }}" alt="Bangga Melayani Bangsa" class="h-9 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
- <img src="{{ asset('img/logo-kab-bandung.png') }}" alt="Kabupaten Bandung" class="h-12 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
+ <img src="{{ asset('img/logo-kab-bandung.png') }}" alt="Kabupaten Bandung" class="h-12 w-12 rounded-full bg-white object-cover drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
  <img src="{{ asset('img/logo-berakhlak.png') }}" alt="BerAKHLAK" class="h-7 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform cursor-pointer" onclick="openImageModal(this.src, this.alt)" onerror="this.style.display='none'">
  </div>
  </div>
@@ -86,8 +86,14 @@
  </div>
  </div>
 
+ @if(session('success'))
+ <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg mb-6 text-sm text-center font-medium">
+ {{ session('success') }}
+ </div>
+ @endif
+
  @if(session('error') || $errors->any())
- <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm text-center sm:text-left font-medium">
+ <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm text-center font-medium">
  {{ session('error') ?: $errors->first() }}
  </div>
  @endif
@@ -156,7 +162,7 @@
 
  <div class="mt-6 text-center w-full">
  <span class="inline-block bg-white px-5 py-2 rounded-full text-[12px] sm:text-[13px] text-emerald-900 font-bold tracking-wide border border-emerald-200 shadow-sm">
- Developed by Febrian Iradatul Rahman (242505024)
+ Developed by Febrian Iradatul Rahman
  </span>
  </div>
  

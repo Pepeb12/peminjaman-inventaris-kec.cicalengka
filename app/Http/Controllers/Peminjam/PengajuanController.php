@@ -116,7 +116,7 @@ class PengajuanController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success', "Pengajuan berhasil dikirim dengan ID: {$trxId}. Menunggu ACC Umpeg.");
+            return redirect()->back()->with('success', "Pengajuan berhasil dikirim dengan ID: {$trxId}. Menunggu ACC Umum Kepegawaian.");
 
         } catch (\Exception $e) {
             DB::rollBack();

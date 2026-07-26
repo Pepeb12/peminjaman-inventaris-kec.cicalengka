@@ -205,7 +205,7 @@
 
  <div class="mt-6 mb-8 text-center w-full">
  <span class="inline-block bg-white px-5 py-2 rounded-full text-[12px] sm:text-[13px] text-emerald-900 font-bold tracking-wide border border-emerald-200 shadow-sm">
- Developed by Febrian Iradatul Rahman (242505024)
+ Developed by Febrian Iradatul Rahman
  </span>
  </div>
  

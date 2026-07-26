@@ -24,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, 'id_ID.utf8', 'id_ID', 'id');
 
         if (config('app.env') === 'production') {
-            URL::forceScheme('https');
+            \Illuminate\Support\Facades\URL::forceScheme('https');
         }
+
+        \Illuminate\Pagination\Paginator::defaultView('vendor.pagination.custom');
     }
 }

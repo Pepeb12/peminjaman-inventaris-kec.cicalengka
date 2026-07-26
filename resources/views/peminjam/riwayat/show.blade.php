@@ -12,8 +12,8 @@
  </a>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
- <div class="md:col-span-1 space-y-6">
+<div class="flex flex-col md:flex-row gap-6">
+ <div class="w-full md:w-1/3 space-y-6">
  <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden">
  <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Informasi Transaksi</h3>
  
@@ -21,15 +21,15 @@
  <div>
  <p class="text-xs text-slate-500 font-medium">Status Pengajuan</p>
  @if($peminjaman->status == 'Menunggu Proses')
- <span class="inline-flex mt-1 items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 uppercase tracking-widest border border-amber-200">Menunggu ACC Umum Kepegawaian</span>
+ <span class="inline-block mt-1 text-sm font-extrabold text-amber-600 uppercase tracking-widest">Menunggu ACC Umum Kepegawaian</span>
  @elseif($peminjaman->status == 'Menunggu Cetak Bukti')
- <span class="inline-flex mt-1 items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 uppercase tracking-widest border border-sky-200">Serahkan Cetak Bukti</span>
+ <span class="inline-block mt-1 text-sm font-extrabold text-sky-600 uppercase tracking-widest">Serahkan Cetak Bukti</span>
  @elseif($peminjaman->status == 'Dipinjam')
- <span class="inline-flex mt-1 items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 uppercase tracking-widest border border-indigo-200">Sedang Dipinjam</span>
+ <span class="inline-block mt-1 text-sm font-extrabold text-indigo-600 uppercase tracking-widest">Sedang Dipinjam</span>
  @elseif($peminjaman->status == 'Selesai')
- <span class="inline-flex mt-1 items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 uppercase tracking-widest border border-emerald-200">Selesai Dikembalikan</span>
+ <span class="inline-block mt-1 text-sm font-extrabold text-emerald-600 uppercase tracking-widest">Selesai Dikembalikan</span>
  @else
- <span class="inline-flex mt-1 items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 uppercase tracking-widest border border-rose-200">Ditolak</span>
+ <span class="inline-block mt-1 text-sm font-extrabold text-rose-600 uppercase tracking-widest">Ditolak</span>
  @endif
  </div>
 
@@ -39,7 +39,7 @@
  </div>
  
  <div>
- <p class="text-xs text-slate-500 font-medium">Tanggal Pengembalian (Rencana)</p>
+ <p class="text-xs text-slate-500 font-medium">Tanggal Pengembalian</p>
  <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y H:i') }}</p>
  </div>
  </div>
@@ -91,7 +91,7 @@
  @endif
  </div>
 
- <div class="md:col-span-2">
+ <div class="w-full md:w-2/3">
  <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden h-full flex flex-col">
  <div class="p-6 border-b border-slate-200 bg-white">
  <h3 class="font-bold text-slate-800">Rincian Barang yang Dipinjam</h3>

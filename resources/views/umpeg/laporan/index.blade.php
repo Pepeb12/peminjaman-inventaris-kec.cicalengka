@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-            <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Cetak Laporan</h2>
-            <p class="text-sm text-slate-500 mt-1">Unduh laporan transaksi peminjaman dalam format PDF atau CSV.</p>
+    <div class="bg-white relative overflow-hidden flex flex-col min-h-full w-full">
+        <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="relative z-10 flex-1">
+                <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Cetak Laporan</h3>
+                <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+                    Unduh laporan transaksi peminjaman dalam format PDF atau CSV.
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden max-w-2xl">
-        <div class="p-6 border-b border-slate-200 bg-white">
+        <div class="p-6 border-b border-slate-200 bg-slate-50/50">
             <h3 class="font-bold text-slate-800 flex items-center gap-2">
                 <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

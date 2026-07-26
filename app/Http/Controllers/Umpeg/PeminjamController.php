@@ -37,4 +37,25 @@ class PeminjamController extends Controller
 
         return back()->with('success', "Pendaftaran peminjam {$peminjam->user->name} berhasil ditolak.");
     }
+
+    public function destroy(string $id)
+    {
+        try {
+            $peminjam = Peminjam::findOrFail($id);
+            $user = $peminjam->user;
+            
+            $peminjam->delete();
+            if ($user) {
+                $user->delete();
+            }
+
+            if (Peminjam::count() == 0) {
+                \Illuminate\Support\Facades\DB::statement('ALTER TABLE peminjams AUTO_INCREMENT = 1');
+            }
+
+            return back()->with('success', "Akun peminjam berhasil dihapus secara permanen.");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menghapus akun. Pastikan tidak ada data transaksi peminjaman yang masih terkait dengan akun ini.');
+        }
+    }
 }

@@ -1,25 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
- <div>
- <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Katalog Barang</h2>
- <p class="text-sm text-slate-500 mt-1">Lihat ketersediaan barang yang dapat Anda pinjam.</p>
+<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
+ <div class="p-6 sm:p-8 border-b border-slate-200">
+ <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Katalog Barang</h2>
+ <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">Lihat ketersediaan barang yang dapat Anda pinjam.</p>
  </div>
- <div class="w-full sm:w-auto">
- <form action="{{ route('peminjam.katalog.index') }}" method="GET" class="relative">
- <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama barang..." class="w-full sm:w-64 pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm">
- <div class="absolute left-3 top-2.5 text-slate-400">
+
+ <div class="p-4 sm:px-6 bg-slate-50/50 border-b border-slate-200">
+ <form action="{{ route('peminjam.katalog.index') }}" method="GET" class="flex flex-col md:flex-row gap-4 w-full">
+ <div class="relative flex-1">
+ <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama barang..." class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm">
+ <div class="absolute left-4 top-3 text-slate-400">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
  </div>
- @if(request('search'))
- <a href="{{ route('peminjam.katalog.index') }}" class="absolute right-3 top-3 text-slate-400 hover:text-rose-500">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+ </div>
+ 
+ <select name="kategori" class="w-full md:w-1/4 px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm font-medium" onchange="this.form.submit()">
+ <option value="">Semua Kategori</option>
+ @foreach($kategoris as $k)
+ <option value="{{ $k->id }}" {{ request('kategori') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+ @endforeach
+ </select>
+
+ @if(request('search') || request('kategori'))
+ <a href="{{ route('peminjam.katalog.index') }}" class="inline-flex items-center justify-center px-6 py-3 bg-rose-50 text-rose-600 border border-rose-200 rounded-xl text-sm font-bold hover:bg-rose-100 transition-colors w-full md:w-auto" title="Reset Filter">
+ <svg class="w-5 h-5 md:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+ <span class="md:hidden lg:inline">Reset</span>
  </a>
  @endif
  </form>
  </div>
-</div>
+ 
+ <div class="p-6 sm:p-8 bg-slate-50">
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
  @forelse($barangs as $barang)
@@ -92,9 +105,13 @@
  @endif
  </div>
  @endforelse
-</div>
-
-<div class="mt-6">
- {{ $barangs->links() }}
+ </div>
+ </div>
+ 
+    @if($barangs->hasPages())
+    <div class="p-4 sm:px-6 bg-white border-t border-slate-200">
+        {{ $barangs->links() }}
+    </div>
+    @endif
 </div>
 @endsection

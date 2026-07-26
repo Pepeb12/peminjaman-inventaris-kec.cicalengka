@@ -1,19 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6">
- <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Kelola Profil & Kontak</h2>
- <p class="text-sm text-slate-500 mt-1">Perbarui informasi identitas instansi dan kata sandi Anda.</p>
-</div>
-
 <div class="max-w-3xl mx-auto">
  <!-- FORM PROFIL INSTANSI -->
  <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col mb-10">
- <div class="p-6 border-b border-slate-200 flex justify-between items-center bg-white">
- <h3 class="font-bold text-slate-800 flex items-center gap-2">
- <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
- Data Instansi & Penanggung Jawab
- </h3>
+ <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+ <div class="relative z-10 flex-1">
+ <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Kelola Profil & Kontak</h3>
+ <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+ Perbarui informasi identitas instansi dan kata sandi Anda.
+ </p>
+ </div>
  </div>
  
  <div class="p-6 flex-1">

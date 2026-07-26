@@ -34,10 +34,10 @@ class AuthController extends Controller
                 $request->session()->regenerateToken();
                 
                 if ($status === 'Ditolak') {
-                    return back()->withErrors(['email' => 'Akun Anda telah ditolak oleh admin.'])->onlyInput('email');
+                    return back()->withErrors(['email' => 'Akun Anda telah ditolak oleh admin'])->onlyInput('email');
                 }
                 
-                return back()->withErrors(['email' => 'Akun Anda belum disetujui oleh admin. Harap tunggu proses verifikasi.'])->onlyInput('email');
+                return back()->withErrors(['email' => 'Akun Anda belum disetujui oleh Umum Kepegawaian, harap tunggu proses verifikasi'])->onlyInput('email');
             }
 
             $request->session()->regenerate();
@@ -50,7 +50,7 @@ class AuthController extends Controller
             return redirect()->intended('/peminjam/dashboard');
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.'])->onlyInput('email');
+        return back()->withErrors(['email' => 'Email atau password salah'])->onlyInput('email');
     }
 
     public function showRegister()
@@ -66,17 +66,17 @@ class AuthController extends Controller
             ->first();
 
         if ($existing) {
-            return back()->withErrors(['nik' => 'Akun dengan NIK dan No WA ini sudah pernah didaftarkan.'])->withInput();
+            return back()->withErrors(['nik' => 'Akun dengan NIK dan No WA ini sudah pernah didaftarkan'])->withInput();
         }
 
         $messages = [
-            'name.regex' => 'Nama hanya boleh berisi huruf dan spasi.',
-            'nik.required' => 'NIK wajib diisi.',
-            'nik.size' => 'NIK harus 16 digit.',
-            'nik.unique' => 'NIK telah digunakan.',
-            'password.confirmed' => 'Password tidak sesuai.',
-            'password.regex' => 'Password harus mengandung kombinasi huruf besar, huruf kecil, dan angka.',
-            'email.unique' => 'Email telah digunakan.'
+            'name.regex' => 'Nama hanya boleh berisi huruf dan spasi',
+            'nik.required' => 'NIK wajib diisi',
+            'nik.size' => 'NIK harus 16 digit',
+            'nik.unique' => 'NIK telah digunakan',
+            'password.confirmed' => 'Password tidak sesuai',
+            'password.regex' => 'Password harus mengandung kombinasi huruf besar, huruf kecil, dan angka',
+            'email.unique' => 'Email telah digunakan'
         ];
 
         $request->validate([
@@ -97,7 +97,7 @@ class AuthController extends Controller
         ], $messages);
 
         // Insert ke 2 tabel menggunakan Database Transaction
-        DB::transaction(function () use ($request) {
+        $data = DB::transaction(function () use ($request) {
             $formattedName = ucwords(strtolower($request->name));
 
             $user = User::create([
@@ -108,16 +108,18 @@ class AuthController extends Controller
                 'alamat' => $request->alamat,
             ]);
 
-            Peminjam::create([
+            $peminjam = Peminjam::create([
                 'user_id' => $user->id,
                 'nik' => $request->nik,
                 'jenis_peminjam' => $request->jenis_peminjam,
                 'nama_instansi' => $request->nama_instansi,
                 'kontak_penanggung_jawab' => $request->kontak_penanggung_jawab,
             ]);
+
+            return ['user' => $user, 'peminjam' => $peminjam];
         });
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Akun Anda sedang menunggu persetujuan Admin.');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Akun Anda sedang menunggu ACC Umum Kepegawaian');
     }
 
     public function logout(Request $request)

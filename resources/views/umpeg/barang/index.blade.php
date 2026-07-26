@@ -1,24 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white border border-slate-200 shadow-sm p-6 sm:p-8 rounded-2xl relative overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
- <div class="relative z-10">
- <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Data Master Barang</h3>
- <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
- Kelola data semua jenis barang inventaris yang tersedia di Kecamatan Cicalengka.
- </p>
- </div>
- <div class="relative z-10 shrink-0 flex gap-2">
- <a href="{{ route('umpeg.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors shadow-sm">
- Kembali
- </a>
- <a href="{{ route('umpeg.barang.create') }}" class="inline-flex items-center justify-center gap-2 bg-[#064e3b] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-[#152c6b] transition-colors shadow-lg">
- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
- Tambah Barang
- </a>
- </div>
-</div>
-
 @if(session('success'))
  <div class="bg-emerald-100 border border-emerald-300 text-emerald-800 px-4 py-3 rounded-xl mb-6 shadow-sm flex items-center gap-3">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -26,10 +8,56 @@
  </div>
 @endif
 
-<div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
- <div class="overflow-x-auto">
- <table class="w-full text-left text-sm text-slate-600">
- <thead class="bg-slate-50/50 text-xs uppercase text-slate-500 font-bold border-b border-slate-200">
+<div class="bg-white relative overflow-hidden flex flex-col min-h-full">
+    <!-- Header -->
+    <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="relative z-10 flex-1">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Data Master Barang</h3>
+            <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+                Kelola data semua jenis barang inventaris yang tersedia di Kecamatan Cicalengka.
+            </p>
+        </div>
+        <div class="relative z-10 shrink-0 flex gap-2 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
+            <a href="{{ route('umpeg.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors shadow-sm flex-1 sm:flex-none">
+                Kembali
+            </a>
+            <a href="{{ route('umpeg.barang.create') }}" class="inline-flex items-center justify-center gap-2 bg-[#064e3b] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-[#152c6b] transition-colors shadow-lg flex-1 sm:flex-none">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Tambah Barang
+            </a>
+        </div>
+    </div>
+
+    <!-- Filter / Search -->
+    <div class="p-4 sm:px-6 bg-slate-50/50 border-b border-slate-200">
+        <form action="{{ route('umpeg.barang.index') }}" method="GET" class="flex flex-col md:flex-row gap-4 w-full">
+            <div class="relative flex-1">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau kode barang..." class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm">
+                <div class="absolute left-4 top-3 text-slate-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+            </div>
+            
+            <select name="kategori" class="w-full md:w-1/4 px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm font-medium" onchange="this.form.submit()">
+                <option value="">Semua Kategori</option>
+                @foreach($kategoris as $k)
+                <option value="{{ $k->id }}" {{ request('kategori') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+                @endforeach
+            </select>
+
+            @if(request('search') || request('kategori'))
+            <a href="{{ route('umpeg.barang.index') }}" class="inline-flex items-center justify-center px-6 py-3 bg-rose-50 text-rose-600 border border-rose-200 rounded-xl text-sm font-bold hover:bg-rose-100 transition-colors w-full md:w-auto" title="Reset Filter">
+                <svg class="w-5 h-5 md:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="md:hidden lg:inline">Reset</span>
+            </a>
+            @endif
+        </form>
+    </div>
+
+    <!-- Table Container -->
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-600">
+ <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
  <tr>
  <th scope="col" class="px-6 py-4 text-center" width="10%">Foto</th>
  <th scope="col" class="px-6 py-4">Kode Barang</th>
@@ -57,8 +85,11 @@
  <td class="px-6 py-4 font-bold text-slate-900">
  {{ $item->kode_barang }}
  </td>
- <td class="px-6 py-4 font-medium text-slate-800">
- {{ $item->nama_barang }}
+ <td class="px-6 py-4 whitespace-normal min-w-[200px]">
+ <div class="font-bold text-slate-900 text-sm">{{ $item->nama_barang }}</div>
+ @if($item->deskripsi)
+     <div class="text-[10px] sm:text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2 md:line-clamp-none" title="{{ $item->deskripsi }}">{{ $item->deskripsi }}</div>
+ @endif
  </td>
  <td class="px-6 py-4 font-medium text-slate-800 whitespace-normal">
  {{ $item->kategori->nama_kategori ?? '-' }}
@@ -93,6 +124,12 @@
  @endforelse
  </tbody>
  </table>
- </div>
+    </div>
+ 
+    @if($barangs->hasPages())
+    <div class="p-4 sm:px-6 bg-slate-50 border-t border-slate-200">
+        {{ $barangs->links('vendor.pagination.custom') }}
+    </div>
+    @endif
 </div>
 @endsection

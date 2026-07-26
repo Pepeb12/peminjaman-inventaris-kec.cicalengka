@@ -1,27 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6 flex justify-between items-end">
- <div>
- <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Riwayat Peminjaman</h2>
- <p class="text-sm text-slate-500 mt-1">Daftar semua transaksi yang pernah Anda ajukan.</p>
- </div>
- <a href="{{ route('peminjam.pengajuan.create') }}" class="bg-[#064e3b] hover:bg-[#152c6b] text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-colors hidden sm:flex items-center gap-2">
- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
- Pengajuan Baru
- </a>
-</div>
-
-<div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
+    <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="relative z-10 flex-1">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Riwayat Peminjaman</h3>
+            <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+                Daftar semua transaksi yang pernah Anda ajukan.
+            </p>
+        </div>
+        <div class="relative z-10 shrink-0 flex gap-2 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
+            <a href="{{ route('peminjam.pengajuan.create') }}" class="inline-flex items-center justify-center gap-2 bg-[#064e3b] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-[#152c6b] transition-colors shadow-lg flex-1 sm:flex-none">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Pengajuan Baru
+            </a>
+        </div>
+    </div>
  <div class="overflow-x-auto">
  <table class="w-full text-left text-sm text-slate-600">
- <thead class="bg-slate-50/50 text-xs uppercase text-slate-500 font-bold border-b border-slate-200">
+ <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
  <tr>
  <th scope="col" class="px-6 py-4">ID Transaksi</th>
  <th scope="col" class="px-6 py-4">Tanggal Pinjam</th>
  <th scope="col" class="px-6 py-4">Tanggal Kembali</th>
  <th scope="col" class="px-6 py-4">Status</th>
  <th scope="col" class="px-6 py-4">Catatan Admin</th>
+ <th scope="col" class="px-6 py-4 w-48">Rincian Barang</th>
  <th scope="col" class="px-6 py-4 text-center">Aksi</th>
  </tr>
  </thead>
@@ -53,6 +57,15 @@
  <span class="text-slate-400 italic">-</span>
  @endif
  </td>
+ <td class="px-6 py-4">
+ <ul class="list-disc list-inside text-slate-600 text-xs space-y-1">
+ @foreach($trx->detailPeminjaman as $detail)
+ <li class="mb-1">
+     {{ $detail->barang->nama_barang ?? 'Barang Terhapus' }} <span class="font-bold text-slate-800">({{ $detail->jumlah }}x)</span>
+ </li>
+ @endforeach
+ </ul>
+ </td>
  <td class="px-6 py-4 text-center">
  <div class="flex justify-center items-center gap-2">
  <a href="{{ route('peminjam.riwayat.show', $trx->id) }}" class="text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">Lihat Detail</a>
@@ -64,7 +77,7 @@
  </tr>
  @empty
  <tr>
- <td colspan="6" class="px-6 py-8 text-center text-slate-500 font-medium">Anda belum memiliki riwayat peminjaman.</td>
+ <td colspan="7" class="px-6 py-8 text-center text-slate-500 font-medium">Anda belum memiliki riwayat peminjaman.</td>
  </tr>
  @endforelse
  </tbody>

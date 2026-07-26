@@ -59,11 +59,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/peminjaman/{id}/serahkan', [PeminjamanController::class, 'serahkanBarang'])->name('peminjaman.serahkan');
         Route::post('/peminjaman/{id}/terima', [PeminjamanController::class, 'terimaBarang'])->name('peminjaman.terima');
         Route::post('/peminjaman/{id}/tolak', [PeminjamanController::class, 'tolakPeminjaman'])->name('peminjaman.tolak');
+        Route::post('/peminjaman/send-email', [PeminjamanController::class, 'sendEmailPeminjam'])->name('peminjaman.sendEmail');
 
         // Manajemen Peminjam (Admin)
         Route::get('/peminjam', [UmpegPeminjamController::class, 'index'])->name('peminjam.index');
         Route::post('/peminjam/{id}/verify', [UmpegPeminjamController::class, 'verify'])->name('peminjam.verify');
         Route::post('/peminjam/{id}/tolak', [UmpegPeminjamController::class, 'tolak'])->name('peminjam.tolak');
+        Route::delete('/peminjam/{id}', [UmpegPeminjamController::class, 'destroy'])->name('peminjam.destroy');
 
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::post('/laporan/cetak', [LaporanController::class, 'cetak'])->name('laporan.cetak');
@@ -89,5 +91,4 @@ Route::middleware('auth')->group(function () {
         Route::post('/profil/password', [ProfilController::class, 'updatePassword'])->name('profil.password');
     });
 });
-
 

@@ -11,9 +11,9 @@
 
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 11px;
+            font-size: 15px;
             color: #333;
-            line-height: 1.4;
+            line-height: 1.6;
         }
 
         .header {
@@ -43,7 +43,7 @@
         }
 
         .header-text h2 {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: normal;
             margin: 0;
             color: #000;
@@ -51,7 +51,7 @@
         }
 
         .header-text h3 {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             margin: 0;
             color: #000;
@@ -60,13 +60,13 @@
 
         .header-text p {
             margin: 5px 0 0 0;
-            font-size: 11px;
+            font-size: 14px;
             color: #333;
         }
 
         .header-text p.email {
             margin: 2px 0 0 0;
-            font-size: 10px;
+            font-size: 13px;
         }
 
         .title-section {
@@ -76,7 +76,7 @@
 
         .title-section h3 {
             margin: 0 0 5px 0;
-            font-size: 16px;
+            font-size: 20px;
             text-decoration: underline;
         }
 
@@ -105,12 +105,12 @@
             color: #000;
             font-weight: bold;
             text-align: center;
-            font-size: 10px;
+            font-size: 14px;
             text-transform: uppercase;
         }
 
         .table td {
-            font-size: 10px;
+            font-size: 14px;
         }
 
         .table tbody tr:nth-child(even) {
@@ -219,9 +219,9 @@
                         {{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y H:i')) }}</td>
                     <td>
                         <strong>{{ $trx->peminjam->user->name ?? '-' }}</strong><br>
-                        <span style="font-size: 10px; color: #333;">Instansi:
+                        <span style="font-size: 12px; color: #333;">Instansi:
                             {{ $trx->peminjam->nama_instansi ?? $trx->peminjam->jenis_peminjam }}</span><br>
-                        <span style="font-size: 10px; color: #333;">Alamat:
+                        <span style="font-size: 12px; color: #333;">Alamat:
                             {{ $trx->peminjam->user->alamat ?? '-' }}</span>
                     </td>
                     <td>
@@ -230,6 +230,9 @@
                                 <li>
                                     <strong>{{ $detail->barang->nama_barang ?? 'Barang Dihapus' }}</strong>
                                     <span style="color:#333;">({{ $detail->jumlah }} unit)</span>
+                                    @if(isset($detail->barang->deskripsi))
+                                        <div style="font-size: 12px; color:#555; margin-top: 2px;">Info: {{ $detail->barang->deskripsi }}</div>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
@@ -246,21 +249,37 @@
 
     <table class="footer-ttd">
         <tr>
-            <td>
+            <td style="vertical-align: bottom;">
                 <div class="ttd-box">
-                    <br>
                     Mengetahui,<br>
-                    <strong> Umum Kepegawaian</strong>
+                    <strong>Umum Kepegawaian</strong>
                     <br><br><br><br><br>
-                    <span style="text-decoration: underline; font-weight: bold;">( Neni Runingdyah, S.kom )</span>
+                    <span style="text-decoration: underline; font-weight: bold; font-size: 14px;">NENI RUNINGDIYAH, S.KOM</span><br>
+                    <span style="font-size: 13px; visibility: hidden;">Spacer</span>
                 </div>
             </td>
-            <td>
+            <td style="vertical-align: bottom;">
                 <div class="ttd-box">
-                    Cicalengka, {{ strtolower(\Carbon\Carbon::now()->translatedFormat('l j F Y')) }}<br>
-                    <strong>Camat Cicalengka</strong><br>
-                    <br><br><br><br><br>
-                    <span style="text-decoration: underline; font-weight: bold;">( Cucu Hidayat, S.H., M.M )</span>
+                    Cicalengka, {{ strtolower(\Carbon\Carbon::now()->translatedFormat('j F Y')) }}<br>
+                    <strong>CAMAT CICALENGKA</strong><br>
+                    <div style="margin: 5px 0;">
+                        @php
+                            $qrPath = public_path('img/qr-camat.png');
+                            if(file_exists($qrPath)) {
+                                $qrData = base64_encode(file_get_contents($qrPath));
+                                $qrSrc = 'data:image/png;base64,' . $qrData;
+                            } else {
+                                $qrSrc = '';
+                            }
+                        @endphp
+                        @if($qrSrc)
+                            <img src="{{ $qrSrc }}" width="75" alt="QR TTD">
+                        @else
+                            <br><br><br><br>
+                        @endif
+                    </div>
+                    <span style="text-decoration: underline; font-weight: bold; font-size: 14px;">CUCU HIDAYAT, S.H., M.M.</span><br>
+                    <span style="font-size: 13px; color: #333;">NIP. 197107311998111001</span>
                 </div>
             </td>
         </tr>

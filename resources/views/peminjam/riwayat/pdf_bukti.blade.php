@@ -123,7 +123,7 @@
  <td class="colon">:</td>
  <td>{{ $peminjaman->peminjam->user->name ?? '-' }}</td>
  
- <td class="label">Rencana Kembali</td>
+ <td class="label">Tanggal Kembali</td>
  <td class="colon">:</td>
  <td>{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y') }}</td>
  </tr>
@@ -154,6 +154,9 @@
  <td>{{ $detail->kode_barang }}</td>
  <td>
  <strong>{{ $detail->barang->nama_barang ?? 'Barang Dihapus' }}</strong>
+ @if(isset($detail->barang->deskripsi))
+     <div style="font-size: 11px; color:#555; margin-top: 2px;">Info: {{ $detail->barang->deskripsi }}</div>
+ @endif
  </td>
  <td class="center"><strong>{{ $detail->jumlah }}</strong> Unit</td>
  </tr>

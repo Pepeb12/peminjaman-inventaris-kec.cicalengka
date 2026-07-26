@@ -1,17 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
- <div>
- <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Manajemen Peminjam</h2>
- <p class="text-sm text-slate-500 mt-1">Kelola akun dan instansi/organisasi yang terdaftar di sistem.</p>
- </div>
-</div>
-
-<div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<div class="bg-white relative overflow-hidden flex flex-col min-h-full">
+    <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="relative z-10 flex-1">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Manajemen Peminjam</h3>
+            <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+                Kelola akun dan instansi/organisasi yang terdaftar di sistem.
+            </p>
+        </div>
+    </div>
  <div class="overflow-x-auto flex-1">
  <table class="w-full text-left text-sm text-slate-600">
- <thead class="bg-slate-50/50 text-xs uppercase text-slate-500 font-bold border-b border-slate-200">
+ <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
  <tr>
  <th class="px-6 py-4">ID</th>
  <th class="px-6 py-4">Nama Instansi</th>
@@ -28,7 +29,15 @@
  @forelse($peminjams as $peminjam)
  <tr class="hover:bg-white transition-colors">
  <td class="px-6 py-4">
- <div class="text-xs text-slate-500 font-medium">{{ $peminjam->id }}</div>
+ <div class="flex flex-col gap-1">
+     <div class="text-xs text-slate-700 font-bold">#{{ $peminjam->id }}</div>
+     @if($peminjam->status_akun === 'Menunggu')
+         <span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 text-[9px] font-extrabold uppercase tracking-widest border border-rose-200 shadow-sm" title="Belum ditindak">
+             <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+             Baru
+         </span>
+     @endif
+ </div>
  </td>
  <td class="px-6 py-4">
  <div class="flex items-center gap-3">
@@ -89,6 +98,14 @@
  </form>
  </div>
  @endif
+ <form action="{{ route('umpeg.peminjam.destroy', $peminjam->id) }}" method="POST" class="mt-2 pt-2 border-t border-slate-100 w-full flex justify-center">
+     @csrf
+     @method('DELETE')
+     <button type="submit" onclick="confirmSubmit(event, 'Yakin ingin menghapus akun ini secara permanen? Akun beserta profil pengguna ini akan terhapus secara permanen.')" class="text-xs font-bold text-rose-500 hover:text-rose-700 hover:underline flex items-center gap-1 transition-colors">
+         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+         Hapus
+     </button>
+ </form>
  </div>
  </td>
  </tr>
@@ -103,7 +120,7 @@
  
  @if($peminjams->hasPages())
  <div class="p-4 border-t border-slate-200 bg-slate-50/50">
- {{ $peminjams->links() }}
+ {{ $peminjams->links('vendor.pagination.custom') }}
  </div>
  @endif
 </div>

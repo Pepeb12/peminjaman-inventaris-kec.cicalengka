@@ -54,17 +54,18 @@
  </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="mb-8">
  <!-- GRAFIK PEMINJAMAN -->
- <div class="lg:col-span-2 bg-white border border-slate-300 rounded-sm p-6 ">
+ <div class="bg-white border border-slate-300 rounded-sm p-6 mb-6">
  <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Tren Peminjaman (6 Bulan Terakhir)</h3>
  <div class="relative h-[300px] w-full">
  <canvas id="peminjamanChart"></canvas>
  </div>
  </div>
 
+ <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
  <!-- STATISTIK STATUS -->
- <div class="bg-white border border-slate-300 rounded-sm p-6 ">
+ <div class="bg-white border border-slate-300 rounded-sm p-6">
  <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Breakdown Status</h3>
  <div class="space-y-4">
  <div class="flex justify-between items-center">
@@ -96,17 +97,21 @@
  <span class="text-sm font-bold text-slate-900">{{ $statusBreakdown['Ditolak'] ?? 0 }}</span>
  </div>
  </div>
+ </div>
 
- <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4 mt-8">Barang Paling Sering Dipinjam</h3>
+ <!-- BARANG PALING SERING DIPINJAM -->
+ <div class="bg-white border border-slate-300 rounded-sm p-6">
+ <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Barang Paling Sering Dipinjam</h3>
  <div class="space-y-3">
  @forelse($topBarang as $tb)
- <div class="bg-slate-50 border border-slate-200 p-3 rounded-sm">
+ <div class="bg-slate-50 border border-slate-200 p-3 rounded-sm flex justify-between items-center">
  <p class="text-xs font-bold text-slate-900 line-clamp-1">{{ $tb->nama_barang }}</p>
- <p class="text-[10px] text-slate-600 mt-1">{{ $tb->total_dipinjam }} Unit Dipinjam</p>
+ <p class="text-[10px] text-slate-600 font-bold bg-white px-2 py-1 rounded border border-slate-200 shrink-0">{{ $tb->total_dipinjam }} Unit</p>
  </div>
  @empty
  <p class="text-xs text-slate-500 text-center py-4">Belum ada data barang dipinjam.</p>
  @endforelse
+ </div>
  </div>
  </div>
 </div>

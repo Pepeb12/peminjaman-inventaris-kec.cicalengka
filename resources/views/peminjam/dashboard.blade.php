@@ -104,7 +104,7 @@
  
  <div class="overflow-x-auto flex-1">
  <table class="w-full text-left text-sm text-slate-600">
- <thead class="bg-slate-50/50 text-xs uppercase text-slate-500 font-bold border-b border-slate-200">
+ <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
  <tr>
  <th scope="col" class="px-6 py-4">ID Transaksi</th>
  <th scope="col" class="px-6 py-4">Tgl Pinjam</th>

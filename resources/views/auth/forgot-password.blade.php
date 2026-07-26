@@ -29,7 +29,7 @@
                     Lupa Password
                 </h2>
                 <p class="mt-2 text-center text-sm text-slate-600 font-medium">
-                    Masukkan nomor whatsapp aktif sesuaikan dengan nomor whatsapp di profil.
+                    Masukkan alamat email yang terdaftar di akun Anda.
                 </p>
             </div>
 
@@ -48,9 +48,9 @@
                 @csrf
                 
                 <div>
-                    <label class="block text-slate-700 text-sm font-bold mb-2 text-center">Nomor WhatsApp (WA) Aktif</label>
-                    <input type="text" name="nomor_wa" value="{{ old('nomor_wa') }}" required class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors text-center" placeholder="Contoh: 081234567890">
-                    @error('nomor_wa') <span class="text-xs text-rose-500 mt-1 block text-center">{{ $message }}</span> @enderror
+                    <label class="block text-slate-700 text-sm font-bold mb-2 text-center">Alamat Email</label>
+                    <input type="email" name="email" value="{{ old('email') }}" required class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors text-center" placeholder="Contoh: user@gmail.com">
+                    @error('email') <span class="text-xs text-rose-500 mt-1 block text-center">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
