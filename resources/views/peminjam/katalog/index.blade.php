@@ -77,7 +77,7 @@
  </p>
  
  @if($barang->stok_tersedia > 0)
- <a href="{{ route('peminjam.pengajuan.create') }}" class="w-full bg-[#064e3b] hover:bg-blue-800 text-white text-center font-bold text-sm py-2.5 rounded-xl transition-colors mt-auto">
+ <a href="{{ route('peminjam.pengajuan.create', ['barang_id' => $barang->kode_barang, 'kategori_id' => $barang->kategori_id]) }}" class="w-full bg-[#064e3b] hover:bg-blue-800 text-white text-center font-bold text-sm py-2.5 rounded-xl transition-colors mt-auto">
  Ajukan Peminjaman
  </a>
  @else

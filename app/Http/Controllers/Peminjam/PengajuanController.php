@@ -43,7 +43,7 @@ class PengajuanController extends Controller
             'tgl_kembali_date' => 'required|date_format:d/m/Y',
             'tgl_kembali_time' => 'required|date_format:H:i',
             'tgl_pinjam' => 'required|date_format:d/m/Y H:i',
-            'tgl_kembali' => 'required|date_format:d/m/Y H:i|after_or_equal:tgl_pinjam',
+            'tgl_kembali' => 'required|date_format:d/m/Y H:i|after:tgl_pinjam',
             'kode_barang' => 'required|array',
             'kode_barang.*' => 'required|exists:barangs,kode_barang',
             'jumlah' => 'required|array',
@@ -51,7 +51,7 @@ class PengajuanController extends Controller
             'surat_resmi' => 'nullable|mimes:pdf|max:5120'
         ], [
             'required' => 'isi bagian ini',
-            'tgl_kembali.after_or_equal' => 'tanggal kembali harus lebih dari tanggal pinjam',
+            'tgl_kembali.after' => 'jam kembali harus lebih dari jam pinjam',
             'surat_resmi.required' => 'isi bagian ini',
             'surat_resmi.mimes' => 'Format file surat resmi harus PDF.',
             'surat_resmi.max' => 'Ukuran file surat resmi maksimal 5MB.'

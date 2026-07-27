@@ -242,7 +242,7 @@
  }, true); // true = Use capture phase
 
  document.addEventListener('input', function(e) {
-     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'tanggal kembali harus lebih dari tanggal pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
+     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
          e.target.setCustomValidity('');
      }
      checkDates();
@@ -250,7 +250,7 @@
  });
 
  document.addEventListener('change', function(e) {
-     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'tanggal kembali harus lebih dari tanggal pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
+     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
          e.target.setCustomValidity('');
      }
      checkDates();
@@ -304,10 +304,10 @@
          
          const pinjam = parseDate(tglPinjamDate.value + ' ' + tglPinjamTime.value);
          const kembali = parseDate(tglKembaliDate.value + ' ' + tglKembaliTime.value);
-         if (pinjam && kembali && kembali < pinjam) {
-             tglKembaliDate.setCustomValidity('tanggal kembali harus lebih dari tanggal pinjam');
+         if (pinjam && kembali && kembali.getTime() <= pinjam.getTime()) {
+             tglKembaliTime.setCustomValidity('jam kembali harus lebih dari jam pinjam');
          } else {
-             tglKembaliDate.setCustomValidity('');
+             tglKembaliTime.setCustomValidity('');
          }
      }
  }
@@ -365,6 +365,24 @@
              });
          }
      });
+
+     // Cek query parameters untuk auto-fill
+     const urlParams = new URLSearchParams(window.location.search);
+     const kategoriIdParam = urlParams.get('kategori_id');
+     const barangIdParam = urlParams.get('barang_id');
+
+     if (kategoriIdParam && barangIdParam) {
+         const firstKategori = document.querySelector('.item-row .kategori-select');
+         const firstBarang = document.querySelector('.item-row .barang-select');
+         if (firstKategori && firstBarang) {
+             firstKategori.value = kategoriIdParam;
+             const event = new Event('change', { bubbles: true });
+             firstKategori.dispatchEvent(event);
+             setTimeout(() => {
+                 firstBarang.value = barangIdParam;
+             }, 100);
+         }
+     }
 
      const form = document.querySelector('form');
      if(form) {
