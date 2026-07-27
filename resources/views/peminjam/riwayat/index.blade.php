@@ -85,7 +85,10 @@
  </div>
 </div>
 
-<div class="mt-6">
- {{ $riwayat->links() }}
+ @if($riwayat->hasPages())
+ <div class="p-4 border-t border-slate-200 bg-slate-50/50">
+ {{ $riwayat->links('vendor.pagination.custom') }}
+ </div>
+ @endif
 </div>
 @endsection
