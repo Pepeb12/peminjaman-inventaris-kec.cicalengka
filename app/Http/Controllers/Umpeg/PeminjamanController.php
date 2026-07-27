@@ -12,15 +12,32 @@ use App\Mail\PesanPeminjamMail;
 
 class PeminjamanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Load data peminjaman beserta relasi user dan detail barang
-        $peminjamans = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang'])
-                                 ->orderBy('created_at', 'desc')
-                                 ->paginate(10);
+        $search = $request->input('search');
+        $kategori = $request->input('kategori');
+
+        $query = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang']);
+
+        if ($search) {
+            $query->whereHas('peminjam', function($q) use ($search) {
+                $q->whereHas('user', function($uq) use ($search) {
+                    $uq->where('name', 'like', '%' . $search . '%');
+                })->orWhere('instansi', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($kategori) {
+            $query->whereHas('peminjam', function($q) use ($kategori) {
+                $q->where('jenis_peminjam', $kategori);
+            });
+        }
+
+        $peminjamans = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
+        
         $semuaPeminjam = Peminjam::with('user')->get();
                                  
-        return view('umpeg.peminjaman.index', compact('peminjamans', 'semuaPeminjam'));
+        return view('umpeg.peminjaman.index', compact('peminjamans', 'semuaPeminjam', 'search', 'kategori'));
     }
 
     // Penambahan tipe data 'string' pada parameter $id

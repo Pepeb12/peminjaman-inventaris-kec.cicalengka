@@ -49,6 +49,32 @@
             </div>
         </div>
 
+        <!-- Filter / Search -->
+        <div class="p-4 sm:px-6 bg-slate-50/50 border-b border-slate-200">
+            <form action="{{ route('umpeg.peminjaman.index') }}" method="GET" class="flex flex-col md:flex-row gap-4 w-full">
+                <div class="relative flex-1">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama peminjam atau instansi..." class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent transition-all shadow-sm">
+                    <div class="absolute left-4 top-3 text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                </div>
+                
+                <select name="kategori" class="w-full md:w-1/4 px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent transition-all shadow-sm font-medium" onchange="this.form.submit()">
+                    <option value="">Semua Kategori</option>
+                    <option value="Perangkat Desa" {{ request('kategori') == 'Perangkat Desa' ? 'selected' : '' }}>Perangkat Desa</option>
+                    <option value="Masyarakat" {{ request('kategori') == 'Masyarakat' ? 'selected' : '' }}>Masyarakat</option>
+                    <option value="Instansi Lain" {{ request('kategori') == 'Instansi Lain' ? 'selected' : '' }}>Instansi Lain</option>
+                </select>
+
+                @if(request('search') || request('kategori'))
+                <a href="{{ route('umpeg.peminjaman.index') }}" class="inline-flex items-center justify-center px-6 py-3 bg-rose-50 text-rose-600 border border-rose-200 rounded-xl text-sm font-bold hover:bg-rose-100 transition-colors w-full md:w-auto" title="Reset Filter">
+                    <svg class="w-5 h-5 md:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="md:hidden lg:inline">Reset</span>
+                </a>
+                @endif
+            </form>
+        </div>
+
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-slate-600">
                 <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
