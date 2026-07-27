@@ -107,7 +107,15 @@ class ForgotPasswordController extends Controller
         }
 
         $request->validate([
-            'password' => 'required|string|min:6|confirmed'
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
+            ]
+        ], [
+            'password.regex' => 'Password harus mengandung kombinasi huruf besar, huruf kecil, dan angka',
         ]);
 
         $user = User::find(session('reset_user_id'));

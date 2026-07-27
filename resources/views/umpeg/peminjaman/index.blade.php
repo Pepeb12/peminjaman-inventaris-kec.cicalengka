@@ -33,15 +33,7 @@
             </div>
             <div
                 class="relative z-10 shrink-0 flex items-center gap-3 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
-                <button onclick="openContactModal()"
-                    class="inline-flex items-center justify-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-xl font-bold text-sm hover:bg-blue-200 transition-colors shadow-sm">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
-                        </path>
-                    </svg>
-                    Hubungi Peminjam
-                </button>
+
                 <div id="realtime-clock"
                     class="text-base font-extrabold text-black bg-white border-2 border-slate-300 px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
                     <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +71,10 @@
                                 {{ $trx->id }}
                             </td>
                             <td class="px-6 py-4">
-                                <p class="font-medium text-slate-800">{{ $trx->peminjam->user->name ?? '-' }}</p>
+                                <button onclick="openContactModal('{{ $trx->peminjam->id }}')" class="font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
+                                    {{ $trx->peminjam->user->name ?? '-' }}
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                                </button>
                                 <p class="text-[11px] text-slate-500 font-bold tracking-wider mt-0.5">NIK:
                                     {{ $trx->peminjam->nik ?? '-' }}</p>
                             </td>
@@ -412,8 +407,11 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        function openContactModal() {
+        function openContactModal(peminjamId = null) {
             document.getElementById('contactModal').classList.remove('hidden');
+            if (peminjamId) {
+                document.getElementById('contactPeminjam').value = peminjamId;
+            }
         }
 
         function closeContactModal() {

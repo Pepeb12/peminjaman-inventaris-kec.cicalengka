@@ -108,6 +108,7 @@
  <tr>
  <th scope="col" class="px-6 py-4">ID Transaksi</th>
  <th scope="col" class="px-6 py-4">Tgl Pinjam</th>
+ <th scope="col" class="px-6 py-4">Tgl Kembali</th>
  <th scope="col" class="px-6 py-4">Status</th>
  <th scope="col" class="px-6 py-4">Catatan Admin</th>
  </tr>
@@ -120,6 +121,9 @@
  </td>
  <td class="px-6 py-4 font-medium">
  {{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y') }}
+ </td>
+ <td class="px-6 py-4 font-medium">
+ {{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y') }}
  </td>
  <td class="px-6 py-4">
  @if($trx->status == 'Menunggu Proses')
@@ -156,7 +160,7 @@
  </tr>
  @empty
  <tr>
- <td colspan="4" class="px-6 py-8 text-center text-slate-500 font-medium">
+ <td colspan="5" class="px-6 py-8 text-center text-slate-500 font-medium">
  Anda belum memiliki riwayat peminjaman.
  </td>
  </tr>

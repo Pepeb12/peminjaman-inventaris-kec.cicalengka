@@ -44,6 +44,20 @@ class PeminjamController extends Controller
             $peminjam = Peminjam::findOrFail($id);
             $user = $peminjam->user;
             
+            // Kembalikan stok untuk transaksi yang masih aktif (belum selesai/ditolak)
+            $activePeminjamans = $peminjam->peminjaman()
+                                          ->whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti', 'Dipinjam'])
+                                          ->with('detailPeminjaman.barang')
+                                          ->get();
+
+            foreach ($activePeminjamans as $peminjaman) {
+                foreach ($peminjaman->detailPeminjaman as $detail) {
+                    if ($detail->barang) {
+                        $detail->barang->increment('stok_tersedia', $detail->jumlah);
+                    }
+                }
+            }
+            
             $peminjam->delete();
             if ($user) {
                 $user->delete();

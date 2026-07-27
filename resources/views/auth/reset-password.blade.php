@@ -52,6 +52,8 @@
                     <label class="block text-slate-700 text-sm font-bold mb-2 text-center">Konfirmasi Password Baru</label>
                     <input type="password" name="password_confirmation" required class="block w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors">
                 </div>
+                
+                <p class="text-[11px] text-slate-500 text-center font-medium italic">* Password minimal 8 karakter, mengandung huruf besar, huruf kecil, dan angka.</p>
 
                 <div>
                     <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none transition-all">
