@@ -63,7 +63,7 @@
  <th scope="col" class="px-6 py-4">Kode Barang</th>
  <th scope="col" class="px-6 py-4">Nama Barang</th>
  <th scope="col" class="px-6 py-4">Kategori</th>
- <th scope="col" class="px-6 py-4">Stok (Sisa / Total)</th>
+ <th scope="col" class="px-6 py-4">Stok</th>
  <th scope="col" class="px-6 py-4 text-center" width="15%">Aksi</th>
  </tr>
  </thead>
@@ -94,11 +94,7 @@
  {{ $item->kategori->nama_kategori ?? '-' }}
  </td>
  <td class="px-6 py-4">
- <div class="flex items-center gap-2">
-     <span class="text-emerald-600 font-extrabold text-lg" title="Stok Tersedia">{{ $item->stok_tersedia }}</span>
-     <span class="text-slate-400 font-medium">/</span>
-     <span class="text-slate-500 font-bold" title="Stok Total Keseluruhan">{{ $item->stok_total }}</span>
- </div>
+ <span class="text-emerald-600 font-extrabold text-lg">{{ $item->stok_tersedia }}</span>
  </td>
  <td class="px-6 py-4">
  <div class="flex items-center justify-center gap-2">

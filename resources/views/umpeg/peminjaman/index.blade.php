@@ -61,7 +61,7 @@
                         <th scope="col" class="px-6 py-4">Surat Resmi</th>
                         <th scope="col" class="px-6 py-4">Status</th>
                         <th scope="col" class="px-6 py-4 w-48">Rincian Barang</th>
-                        <th scope="col" class="px-6 py-4 text-center">Aksi Validasi</th>
+                        <th scope="col" class="px-6 py-4 text-center">Validasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200">
