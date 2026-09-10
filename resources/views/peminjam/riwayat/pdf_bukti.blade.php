@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
  <meta charset="UTF-8">
- <title>Bukti Peminjaman - {{ $peminjaman->id }}</title>
+ <title>Bukti Peminjaman - {{ $peminjaman->id_peminjaman }}</title>
  <style>
  @page { margin: 40px; }
  body { 
@@ -105,7 +105,7 @@
 
  <div class="title">
  <h4>BUKTI PEMINJAMAN INVENTARIS</h4>
- <p>No. Resi: {{ $peminjaman->id }}</p>
+ <p>No. Resi: {{ $peminjaman->id_peminjaman }}</p>
  </div>
 
  <table class="info-table">

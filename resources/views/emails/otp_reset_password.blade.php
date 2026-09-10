@@ -16,17 +16,7 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-        .header {
-            background-color: #1e3a8a;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .header h1 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 1px;
-        }
+
         .content {
             padding: 40px 30px;
             color: #334155;
@@ -56,9 +46,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Inventaris Kecamatan Cicalengka</h1>
-        </div>
+
         <div class="content">
             <p>Halo,</p>
             <p>Kami menerima permintaan untuk mereset kata sandi akun Anda. Gunakan kode OTP berikut untuk melanjutkan proses reset kata sandi:</p>

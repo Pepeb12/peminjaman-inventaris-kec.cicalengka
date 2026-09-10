@@ -32,20 +32,20 @@
  <tbody class="divide-y divide-slate-200">
  @forelse($riwayat as $trx)
  <tr class="hover:bg-white transition-colors">
- <td class="px-6 py-4 font-bold text-slate-900">{{ $trx->id }}</td>
+ <td class="px-6 py-4 font-bold text-slate-900">{{ $trx->id_peminjaman }}</td>
  <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
  <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
  <td class="px-6 py-4">
  @if($trx->status == 'Menunggu Proses')
- <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 uppercase tracking-widest border border-amber-200">Menunggu ACC Umum Kepegawaian</span>
+ <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Menunggu ACC Umum Kepegawaian</span>
  @elseif($trx->status == 'Menunggu Cetak Bukti')
- <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 uppercase tracking-widest border border-sky-200">Serahkan Cetak Bukti</span>
+ <span class="text-[10px] font-bold text-sky-700 uppercase tracking-widest">Serahkan Cetak Bukti</span>
  @elseif($trx->status == 'Dipinjam')
- <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 uppercase tracking-widest border border-indigo-200">Dipinjam</span>
+ <span class="text-[10px] font-bold text-indigo-700 uppercase tracking-widest">Dipinjam</span>
  @elseif($trx->status == 'Selesai')
- <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 uppercase tracking-widest border border-emerald-200">Selesai</span>
+ <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Selesai</span>
  @else
- <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 uppercase tracking-widest border border-rose-200">Ditolak</span>
+ <span class="text-[10px] font-bold text-rose-700 uppercase tracking-widest">Ditolak</span>
  @endif
  </td>
  <td class="px-6 py-4 text-xs max-w-[200px]">
@@ -68,9 +68,9 @@
  </td>
  <td class="px-6 py-4 text-center">
  <div class="flex justify-center items-center gap-2">
- <a href="{{ route('peminjam.riwayat.show', $trx->id) }}" class="text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">Lihat Detail</a>
+ <a href="{{ route('peminjam.riwayat.show', $trx->id_peminjaman) }}" class="text-white bg-emerald-500 hover:bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">Lihat Detail</a>
  @if(in_array($trx->status, ['Menunggu Cetak Bukti', 'Dipinjam', 'Selesai']))
- <a href="{{ route('peminjam.riwayat.cetak', $trx->id) }}" target="_blank" class="text-slate-600 bg-slate-200 hover:bg-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors" title="Cetak Bukti">Cetak Bukti</a>
+ <a href="{{ route('peminjam.riwayat.cetak', $trx->id_peminjaman) }}" target="_blank" class="text-slate-600 bg-slate-200 hover:bg-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors" title="Cetak Bukti">Cetak Bukti</a>
  @endif
  </div>
  </td>

@@ -12,7 +12,7 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $peminjamId = Auth::user()->peminjam?->id;
+        $peminjamId = Auth::user()->peminjam?->id_peminjam;
         
         if (!$peminjamId) {
             return redirect()->route('peminjam.dashboard')->with('error', 'Data peminjam tidak ditemukan.');
@@ -27,10 +27,10 @@ class RiwayatController extends Controller
 
     public function show(string $id)
     {
-        $peminjamId = Auth::user()->peminjam?->id;
+        $peminjamId = Auth::user()->peminjam?->id_peminjam;
         
         $peminjaman = Peminjaman::with('detailPeminjaman.barang')
-                                ->where('id', $id)
+                                ->where('id_peminjaman', $id)
                                 ->where('peminjam_id', $peminjamId)
                                 ->firstOrFail();
                                 
@@ -39,10 +39,10 @@ class RiwayatController extends Controller
 
     public function cetakBukti(string $id)
     {
-        $peminjamId = Auth::user()->peminjam?->id;
+        $peminjamId = Auth::user()->peminjam?->id_peminjam;
         
         $peminjaman = Peminjaman::with('detailPeminjaman.barang', 'peminjam.user')
-                                ->where('id', $id)
+                                ->where('id_peminjaman', $id)
                                 ->where('peminjam_id', $peminjamId)
                                 ->firstOrFail();
 
@@ -52,6 +52,6 @@ class RiwayatController extends Controller
         }
 
         $pdf = Pdf::loadView('peminjam.riwayat.pdf_bukti', compact('peminjaman'));
-        return $pdf->stream('Bukti_Peminjaman_' . $peminjaman->id . '.pdf');
+        return $pdf->stream('Bukti_Peminjaman_' . $peminjaman->id_peminjaman . '.pdf');
     }
 }

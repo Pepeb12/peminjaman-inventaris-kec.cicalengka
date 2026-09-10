@@ -14,21 +14,21 @@ class Peminjaman extends Model
     // ------------------------------------------
 
     // Set Primary Key karena menggunakan string (Format TRX)
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_peminjaman';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id', 'peminjam_id', 'tgl_pinjam', 'tgl_kembali', 'status', 'surat_resmi', 'pesan_tolak', 'catatan_kembali'
+        'id_peminjaman', 'peminjam_id', 'tgl_pinjam', 'tgl_kembali', 'status', 'surat_resmi', 'pesan_tolak', 'catatan_kembali'
     ];
 
     public function peminjam()
     {
-        return $this->belongsTo(Peminjam::class);
+        return $this->belongsTo(Peminjam::class, 'peminjam_id', 'id_peminjam');
     }
 
     public function detailPeminjaman()
     {
-        return $this->hasMany(DetailPeminjaman::class, 'peminjaman_id', 'id');
+        return $this->hasMany(DetailPeminjaman::class, 'peminjaman_id', 'id_peminjaman');
     }
 }

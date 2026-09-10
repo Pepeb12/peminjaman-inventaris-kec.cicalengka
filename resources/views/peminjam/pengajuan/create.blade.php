@@ -115,7 +115,7 @@
  <select class="kategori-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
  <option value="">-- Semua Kategori --</option>
  @foreach($kategoris as $kat)
- <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
+ <option value="{{ $kat->id_kategori }}">{{ $kat->nama_kategori }}</option>
  @endforeach
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
@@ -176,7 +176,7 @@
  <select class="kategori-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
  <option value="">-- Semua Kategori --</option>
  @foreach($kategoris as $kat)
- <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
+ <option value="{{ $kat->id_kategori }}">{{ $kat->nama_kategori }}</option>
  @endforeach
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">

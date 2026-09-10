@@ -212,7 +212,7 @@
             @forelse($peminjamans as $index => $trx)
                 <tr>
                     <td class="text-center">{{ $index + 1 }}</td>
-                    <td class="text-center font-bold">{{ $trx->id }}</td>
+                    <td class="text-center font-bold">{{ $trx->id_peminjaman }}</td>
                     <td class="text-center">
                         {{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y H:i')) }}</td>
                     <td class="text-center">

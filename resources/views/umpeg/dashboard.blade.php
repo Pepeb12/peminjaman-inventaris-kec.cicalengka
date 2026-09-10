@@ -2,9 +2,9 @@
 
 @section('content')
 
-
+<div class="p-0 flex flex-col h-full">
 <!-- STATISTIK UTAMA -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-0 mb-0 shrink-0">
  <div class="bg-white border border-slate-300 p-5 rounded-sm transition-all relative overflow-hidden group">
  <div class="flex justify-between items-start relative z-10">
  <div>
@@ -54,16 +54,16 @@
  </div>
 </div>
 
-<div class="mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-0 mb-0 flex-1 min-h-0">
  <!-- GRAFIK PEMINJAMAN -->
- <div class="bg-white border border-slate-300 rounded-sm p-6 mb-6">
- <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Tren Peminjaman (6 Bulan Terakhir)</h3>
- <div class="relative h-[300px] w-full">
+ <div class="bg-white border border-slate-300 rounded-sm p-6 lg:col-span-2 flex flex-col h-full">
+ <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4 shrink-0">Tren Peminjaman (6 Bulan Terakhir)</h3>
+ <div class="relative flex-1 min-h-0 w-full">
  <canvas id="peminjamanChart"></canvas>
  </div>
  </div>
 
- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+ <div class="flex flex-col gap-0 h-full">
  <!-- STATISTIK STATUS -->
  <div class="bg-white border border-slate-300 rounded-sm p-6">
  <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Breakdown Status</h3>
@@ -100,12 +100,12 @@
  </div>
 
  <!-- BARANG PALING SERING DIPINJAM -->
- <div class="bg-white border border-slate-300 rounded-sm p-6">
- <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Barang Paling Sering Dipinjam</h3>
- <div class="space-y-3">
+ <div class="bg-white border border-slate-300 rounded-sm p-6 flex-1 flex flex-col min-h-0">
+ <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4 shrink-0">Barang Sering Dipinjam</h3>
+ <div class="space-y-3 flex-1 overflow-y-auto pr-1">
  @forelse($topBarang as $tb)
  <div class="bg-slate-50 border border-slate-200 p-3 rounded-sm flex justify-between items-center">
- <p class="text-xs font-bold text-slate-900 line-clamp-1">{{ $tb->nama_barang }}</p>
+ <p class="text-xs font-bold text-slate-900 line-clamp-1 mr-2">{{ $tb->nama_barang }}</p>
  <p class="text-[10px] text-slate-600 font-bold bg-white px-2 py-1 rounded border border-slate-200 shrink-0">{{ $tb->total_dipinjam }} Unit</p>
  </div>
  @empty
@@ -114,6 +114,7 @@
  </div>
  </div>
  </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

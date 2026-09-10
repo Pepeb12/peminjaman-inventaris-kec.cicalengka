@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
 class ResetPasswordOtpMail extends Mailable
@@ -30,7 +31,8 @@ class ResetPasswordOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Kode OTP Reset Password - Inventaris Cicalengka',
+            from: new Address(config('mail.from.address', 'onboarding@resend.dev'), 'Inventaris Barang Kecamatan Cicalengka'),
+            subject: 'Kode OTP Reset Password',
         );
     }
 

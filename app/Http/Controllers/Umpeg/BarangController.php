@@ -45,7 +45,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang' => 'required|string|max:255',
-            'kategori_id' => 'required|exists:kategoris,id',
+            'kategori_id' => 'required|exists:kategoris,id_kategori',
             'stok_total' => 'required|integer|min:1',
             'kondisi' => 'required|string',
             'foto_barang' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -120,7 +120,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang' => 'required|string|max:255',
-            'kategori_id' => 'required|exists:kategoris,id',
+            'kategori_id' => 'required|exists:kategoris,id_kategori',
             'stok_total' => 'required|integer|min:1',
             'kondisi' => 'required|string',
             'foto_barang' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',

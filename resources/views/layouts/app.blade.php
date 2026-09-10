@@ -82,7 +82,7 @@
                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                             </path>
                         </svg>
-                        Dashboard Utama
+                        Dashboard
                     </a>
 
                     <a href="{{ route('umpeg.barang.index') }}"
@@ -184,13 +184,23 @@
                     </a>
 
                     <a href="{{ route('peminjam.riwayat.index') }}"
-                        class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('peminjam.riwayat.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
-                        <svg class="w-5 h-5 {{ request()->routeIs('peminjam.riwayat.*') ? 'text-[#1e3a8a]' : 'opacity-80' }}"
+                        class="flex items-center justify-between px-4 py-3 {{ request()->routeIs('peminjam.riwayat.*') ? 'bg-white shadow-md font-bold text-[#1e3a8a] border border-slate-200' : 'text-blue-50 hover:bg-white hover:text-[#1e3a8a] font-medium' }} rounded-xl text-sm transition-all relative z-10">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 {{ request()->routeIs('peminjam.riwayat.*') ? 'text-[#1e3a8a]' : 'opacity-80' }}"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         Riwayat Peminjaman
+                        </div>
+                        @php
+                            $pendingPeminjaman = \App\Models\Peminjaman::where('peminjam_id', auth()->user()->peminjam->id_peminjam ?? 0)->whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti'])->count();
+                        @endphp
+                        @if($pendingPeminjaman > 0)
+                            <span class="bg-amber-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
+                                {{ $pendingPeminjaman }}
+                            </span>
+                        @endif
                     </a>
 
                     <a href="{{ route('peminjam.profil.index') }}"
@@ -289,7 +299,7 @@
             </header>
 
             @php
-                $isFullPage = request()->routeIs('umpeg.barang.index', 'umpeg.barang.create', 'umpeg.barang.edit', 'umpeg.peminjaman.index', 'umpeg.peminjam.index', 'umpeg.laporan.index', 'peminjam.dashboard', 'peminjam.katalog.*', 'peminjam.pengajuan.*', 'peminjam.riwayat.*', 'peminjam.profil.*');
+                $isFullPage = request()->routeIs('umpeg.dashboard', 'umpeg.barang.index', 'umpeg.barang.create', 'umpeg.barang.edit', 'umpeg.peminjaman.index', 'umpeg.peminjam.index', 'umpeg.laporan.index', 'peminjam.dashboard', 'peminjam.katalog.*', 'peminjam.pengajuan.*', 'peminjam.riwayat.*', 'peminjam.profil.*');
             @endphp
             <div class="flex-1 overflow-y-auto {{ $isFullPage ? '' : 'p-4 sm:p-6 lg:p-8 space-y-6' }}">
                 @yield('content')

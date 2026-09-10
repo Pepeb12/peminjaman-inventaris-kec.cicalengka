@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->string('kode_barang')->primary(); // PK bertipe String
             $table->string('nama_barang');
-            $table->foreignId('kategori_id')->constrained('kategoris')->cascadeOnDelete();
+            $table->foreignId('kategori_id')->references('id_kategori')->on('kategoris')->cascadeOnDelete();
             $table->integer('stok_total');
             $table->integer('stok_tersedia');
             $table->string('kondisi');

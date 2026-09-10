@@ -92,7 +92,7 @@ class LaporanController extends Controller
                 }
                 
                 $row = [
-                    $trx->id,
+                    $trx->id_peminjaman,
                     \Carbon\Carbon::parse($trx->tgl_pinjam)->format('Y-m-d H:i'),
                     \Carbon\Carbon::parse($trx->tgl_kembali)->format('Y-m-d H:i'),
                     $trx->peminjam->nama_instansi ?? $trx->peminjam->jenis_peminjam ?? '-',

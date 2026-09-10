@@ -67,12 +67,12 @@ class PengajuanController extends Controller
         $tanggal = date('Ymd');
         $prefix = "TRX-{$tanggal}-";
         
-        $lastPeminjaman = Peminjaman::where('id', 'LIKE', "{$prefix}%")
-                                    ->orderBy('id', 'desc')
+        $lastPeminjaman = Peminjaman::where('id_peminjaman', 'LIKE', "{$prefix}%")
+                                    ->orderBy('id_peminjaman', 'desc')
                                     ->first();
 
         if ($lastPeminjaman) {
-            $lastUrutan = (int) substr($lastPeminjaman->id, -3);
+            $lastUrutan = (int) substr($lastPeminjaman->id_peminjaman, -3);
             $newUrutan = str_pad($lastUrutan + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $newUrutan = '001';
@@ -81,13 +81,13 @@ class PengajuanController extends Controller
         $trxId = $prefix . $newUrutan;
 
         // Ambil data profil peminjam dari user yang sedang login
-        $peminjamId = Auth::user()->peminjam->id;
+        $peminjamId = Auth::user()->peminjam->id_peminjam;
 
         DB::beginTransaction();
         try {
             // 1. Insert ke tabel peminjamans (Status Default: Menunggu Proses)
             Peminjaman::create([
-                'id' => $trxId,
+                'id_peminjaman' => $trxId,
                 'peminjam_id' => $peminjamId,
                 'tgl_pinjam' => \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->tgl_pinjam)->format('Y-m-d H:i:s'),
                 'tgl_kembali' => \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->tgl_kembali)->format('Y-m-d H:i:s'),
@@ -116,7 +116,7 @@ class PengajuanController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success', "Pengajuan berhasil dikirim dengan ID: {$trxId}. Menunggu ACC Umum Kepegawaian.");
+            return redirect()->back()->with('success', "pengajuan berhasil dengan ID: {$trxId} tunggu verifikasi dari pihak kecamatan");
 
         } catch (\Exception $e) {
             DB::rollBack();

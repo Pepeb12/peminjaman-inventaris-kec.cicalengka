@@ -19,7 +19,7 @@
  <select name="kategori" class="w-full md:w-1/4 px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:border-transparent transition-all shadow-sm font-medium" onchange="this.form.submit()">
  <option value="">Semua Kategori</option>
  @foreach($kategoris as $k)
- <option value="{{ $k->id }}" {{ request('kategori') == $k->id ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
+ <option value="{{ $k->id_kategori }}" {{ request('kategori') == $k->id_kategori ? 'selected' : '' }}>{{ $k->nama_kategori }}</option>
  @endforeach
  </select>
 

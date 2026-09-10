@@ -26,9 +26,9 @@
                 <ul class="list-disc pl-5 space-y-1">
                     @foreach($peringatanPengembalian as $peringatan)
                     <li>
-                        Transaksi <strong>{{ $peringatan->id }}</strong> harus dikembalikan pada 
+                        Transaksi <strong>{{ $peringatan->id_peminjaman }}</strong> harus dikembalikan pada 
                         <strong>{{ \Carbon\Carbon::parse($peringatan->tgl_kembali)->translatedFormat('j F Y') }}</strong>.
-                        <a href="{{ route('peminjam.riwayat.show', $peringatan->id) }}" class="underline font-bold hover:text-rose-900 ml-1">Lihat Detail</a>
+                        <a href="{{ route('peminjam.riwayat.show', $peringatan->id_peminjaman) }}" class="underline font-bold hover:text-rose-900 ml-1">Lihat Detail</a>
                     </li>
                     @endforeach
                 </ul>
@@ -117,7 +117,7 @@
  @forelse($riwayat as $trx)
  <tr class="hover:bg-white transition-colors">
  <td class="px-6 py-4 font-bold text-slate-900">
- {{ $trx->id }}
+ {{ $trx->id_peminjaman }}
  </td>
  <td class="px-6 py-4 font-medium">
  {{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y') }}

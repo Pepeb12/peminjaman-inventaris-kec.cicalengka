@@ -20,7 +20,7 @@
  <th class="px-3 py-3">Jenis Peminjam</th>
  <th class="px-3 py-3">Kontak (WA)</th>
  <th class="px-3 py-3">Total Pinjam</th>
- <th class="px-3 py-3 text-center">Status & Aksi</th>
+ <th class="px-3 py-3 text-center">Aksi</th>
  </tr>
  </thead>
  <tbody class="divide-y divide-slate-200">
@@ -69,30 +69,30 @@
  <div class="flex flex-col gap-2 items-center">
  @if($peminjam->status_akun === 'Disetujui' || $peminjam->is_verified)
  <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-200 w-fit">Disetujui</span>
- <form action="{{ route('umpeg.peminjam.verify', $peminjam->id) }}" method="POST">
+ <form action="{{ route('umpeg.peminjam.verify', $peminjam->id_peminjam) }}" method="POST">
  @csrf
  <button type="submit" onclick="confirmSubmit(event, 'Batalkan persetujuan untuk akun ini? Mereka tidak akan bisa login.')" class="text-xs font-medium text-rose-500 hover:text-rose-700 hover:underline">Batalkan</button>
  </form>
  @elseif($peminjam->status_akun === 'Ditolak')
  <span class="px-3 py-1 bg-rose-100 text-rose-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-rose-200 w-fit">Ditolak</span>
- <form action="{{ route('umpeg.peminjam.verify', $peminjam->id) }}" method="POST">
+ <form action="{{ route('umpeg.peminjam.verify', $peminjam->id_peminjam) }}" method="POST">
  @csrf
  <button type="submit" onclick="confirmSubmit(event, 'Setujui akun ini? Mereka akan bisa login.')" class="mt-1 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors">Setujui</button>
  </form>
  @else
  <span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-amber-200 w-fit">Menunggu</span>
  <div class="flex gap-2 mt-1">
- <form action="{{ route('umpeg.peminjam.verify', $peminjam->id) }}" method="POST">
+ <form action="{{ route('umpeg.peminjam.verify', $peminjam->id_peminjam) }}" method="POST">
  @csrf
  <button type="submit" onclick="confirmSubmit(event, 'Setujui akun ini? Mereka akan bisa login.')" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors">Setujui</button>
  </form>
- <form action="{{ route('umpeg.peminjam.tolak', $peminjam->id) }}" method="POST">
+ <form action="{{ route('umpeg.peminjam.tolak', $peminjam->id_peminjam) }}" method="POST">
  @csrf
  <button type="submit" onclick="confirmSubmit(event, 'Tolak pendaftaran akun ini? Akun akan ditandai sebagai ditolak.')" class="px-4 py-1.5 bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold rounded-lg shadow-sm transition-colors">Tolak</button>
  </form>
  </div>
  @endif
- <form action="{{ route('umpeg.peminjam.destroy', $peminjam->id) }}" method="POST" class="mt-2 pt-2 border-t border-slate-100 w-full flex justify-center">
+ <form action="{{ route('umpeg.peminjam.destroy', $peminjam->id_peminjam) }}" method="POST" class="mt-2 pt-2 border-t border-slate-100 w-full flex justify-center">
      @csrf
      @method('DELETE')
      <button type="submit" onclick="confirmSubmit(event, 'Yakin ingin menghapus akun ini secara permanen? Akun beserta profil pengguna ini akan terhapus secara permanen.')" class="text-[10px] font-bold text-rose-500 hover:text-rose-700 hover:underline flex items-center gap-1 transition-colors">

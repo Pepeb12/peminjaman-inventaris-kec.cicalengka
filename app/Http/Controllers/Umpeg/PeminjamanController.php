@@ -56,7 +56,7 @@ class PeminjamanController extends Controller
             // Stok sudah dikurangi saat pengajuan, jadi tidak perlu kurangi lagi di sini.
 
             DB::commit();
-            return back()->with('success', "Peminjaman {$id} disetujui. Status berubah menjadi Menunggu Cetak Bukti.");
+            return back()->with('success', 'peminjaman telah disetujui menunggu cetak bukti');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
@@ -75,7 +75,7 @@ class PeminjamanController extends Controller
         try {
             $peminjaman->update(['status' => 'Dipinjam']);
             DB::commit();
-            return back()->with('success', "Barang untuk peminjaman {$id} telah diserahkan. Status berubah menjadi Dipinjam.");
+            return back()->with('success', 'barang telah diserahkan');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
@@ -105,7 +105,7 @@ class PeminjamanController extends Controller
             }
 
             DB::commit();
-            return back()->with('success', "Peminjaman {$id} selesai. Stok barang telah dikembalikan.");
+            return back()->with('success', 'barang telah dikembalikan');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Gagal memproses pengembalian barang.');

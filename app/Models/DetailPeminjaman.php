@@ -11,6 +11,7 @@ class DetailPeminjaman extends Model
 
     // MENYELESAIKAN ERROR: Mengunci nama tabel yang benar di database
     protected $table = 'detail_peminjamans';
+    protected $primaryKey = 'id_detail_peminjaman';
 
     protected $fillable = [
         'peminjaman_id', 
@@ -20,7 +21,7 @@ class DetailPeminjaman extends Model
 
     public function peminjaman()
     {
-        return $this->belongsTo(Peminjaman::class, 'peminjaman_id', 'id');
+        return $this->belongsTo(Peminjaman::class, 'peminjaman_id', 'id_peminjaman');
     }
 
     public function barang()

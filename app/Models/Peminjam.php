@@ -12,6 +12,7 @@ class Peminjam extends Model
     protected $fillable = [
         'user_id', 'kode_peminjam', 'nik', 'jenis_peminjam', 'nama_instansi', 'kontak_penanggung_jawab', 'is_verified', 'status_akun'
     ];
+    protected $primaryKey = 'id_peminjam';
 
     public function user()
     {
@@ -20,6 +21,6 @@ class Peminjam extends Model
 
     public function peminjaman()
     {
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasMany(Peminjaman::class, 'peminjam_id', 'id_peminjam');
     }
 }

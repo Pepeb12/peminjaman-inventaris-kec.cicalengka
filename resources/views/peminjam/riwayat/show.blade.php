@@ -5,7 +5,7 @@
  <div class="p-6 border-b border-slate-200 flex justify-between items-center">
  <div>
  <h2 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Detail Transaksi</h2>
- <p class="text-sm text-slate-500 mt-1">Nomor Resi: <span class="font-bold text-slate-700">{{ $peminjaman->id }}</span></p>
+ <p class="text-sm text-slate-500 mt-1">Nomor Resi: <span class="font-bold text-slate-700">{{ $peminjaman->id_peminjaman }}</span></p>
  </div>
  <a href="{{ route('peminjam.riwayat.index') }}" class="text-slate-500 hover:text-slate-800 font-bold text-sm flex items-center gap-2">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -58,7 +58,7 @@
  @endif
  @if(in_array($peminjaman->status, ['Menunggu Cetak Bukti', 'Dipinjam', 'Selesai']))
  <div class="mt-6 pt-6 border-t border-slate-200">
- <a href="{{ route('peminjam.riwayat.cetak', $peminjaman->id) }}" target="_blank" class="w-full bg-[#064e3b] hover:bg-blue-800 text-white flex justify-center items-center gap-2 font-bold text-sm py-2.5 rounded-xl transition-colors">
+ <a href="{{ route('peminjam.riwayat.cetak', $peminjaman->id_peminjaman) }}" target="_blank" class="w-full bg-[#064e3b] hover:bg-blue-800 text-white flex justify-center items-center gap-2 font-bold text-sm py-2.5 rounded-xl transition-colors">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
  Cetak Bukti (PDF)
  </a>

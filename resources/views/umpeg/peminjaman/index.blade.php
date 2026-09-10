@@ -94,10 +94,10 @@
                     @forelse($peminjamans as $trx)
                         <tr class="hover:bg-white transition-colors">
                             <td class="px-3 py-3 font-bold text-slate-900">
-                                {{ $trx->id }}
+                                {{ $trx->id_peminjaman }}
                             </td>
                             <td class="px-3 py-3">
-                                <button onclick="openContactModal('{{ $trx->peminjam->id }}')" class="font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
+                                <button onclick="openContactModal('{{ $trx->peminjam->id_peminjam }}')" class="font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
                                     {{ $trx->peminjam->user->name ?? '-' }}
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                                 </button>
@@ -163,16 +163,16 @@
                                 @endif
                             </td>
                             <td class="px-3 py-3">
-                                <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.remove('hidden')" class="text-[10px] text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg font-bold transition-colors w-full text-center shadow-sm">
+                                <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id_peminjaman}}').classList.remove('hidden')" class="text-[10px] text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg font-bold transition-colors w-full text-center shadow-sm">
                                     Lihat Detail
                                 </button>
 
                                 <!-- Modal Rincian -->
-                                <div id="modal-rincian-{{$trx->id}}" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+                                <div id="modal-rincian-{{$trx->id_peminjaman}}" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
                                     <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
                                         <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-                                            <h3 class="font-bold text-slate-800">Rincian Barang (TRX-{{$trx->id}})</h3>
-                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 p-1">
+                                            <h3 class="font-bold text-slate-800">Rincian Barang (TRX-{{$trx->id_peminjaman}})</h3>
+                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id_peminjaman}}').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 p-1">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                             </button>
                                         </div>
@@ -194,7 +194,7 @@
                                             </ul>
                                         </div>
                                         <div class="p-4 border-t border-slate-200 bg-slate-50 text-right">
-                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.add('hidden')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-colors">Tutup</button>
+                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id_peminjaman}}').classList.add('hidden')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-colors">Tutup</button>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                             <td class="px-3 py-3 text-center">
                                 <div class="flex justify-center gap-2">
                                     @if($trx->status == 'Menunggu Proses')
-                                        <form action="{{ route('umpeg.peminjaman.acc', $trx->id) }}" method="POST">
+                                        <form action="{{ route('umpeg.peminjaman.acc', $trx->id_peminjaman) }}" method="POST">
                                             @csrf
                                             <button type="submit" onclick="confirmSubmit(event, 'ACC pengajuan ini?')"
                                                 class="p-2 text-emerald-700 bg-emerald-100 border border-emerald-200 rounded-lg hover:bg-emerald-200 transition-colors shadow-sm"
@@ -213,11 +213,11 @@
                                                 </svg>
                                             </button>
                                         </form>
-                                        <form action="{{ route('umpeg.peminjaman.tolak', $trx->id) }}" method="POST"
-                                            id="form_tolak_{{ $trx->id }}">
+                                        <form action="{{ route('umpeg.peminjaman.tolak', $trx->id_peminjaman) }}" method="POST"
+                                            id="form_tolak_{{ $trx->id_peminjaman }}">
                                             @csrf
-                                            <input type="hidden" name="pesan_tolak" id="input_tolak_{{ $trx->id }}">
-                                            <button type="button" onclick="tolakDenganCatatan('{{ $trx->id }}')"
+                                            <input type="hidden" name="pesan_tolak" id="input_tolak_{{ $trx->id_peminjaman }}">
+                                            <button type="button" onclick="tolakDenganCatatan('{{ $trx->id_peminjaman }}')"
                                                 class="p-2 text-rose-700 bg-rose-100 border border-rose-200 rounded-lg hover:bg-rose-200 transition-colors shadow-sm"
                                                 title="Tolak">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,7 +227,7 @@
                                             </button>
                                         </form>
                                     @elseif($trx->status == 'Menunggu Cetak Bukti')
-                                        <form action="{{ route('umpeg.peminjaman.serahkan', $trx->id) }}" method="POST">
+                                        <form action="{{ route('umpeg.peminjaman.serahkan', $trx->id_peminjaman) }}" method="POST">
                                             @csrf
                                             <button type="submit"
                                                 onclick="confirmSubmit(event, 'Serahkan barang kepada peminjam? (Pastikan bukti sudah dicetak & diserahkan)')"
@@ -241,11 +241,11 @@
                                             </button>
                                         </form>
                                     @elseif($trx->status == 'Dipinjam')
-                                        <form action="{{ route('umpeg.peminjaman.terima', $trx->id) }}" method="POST"
-                                            id="form_terima_{{ $trx->id }}">
+                                        <form action="{{ route('umpeg.peminjaman.terima', $trx->id_peminjaman) }}" method="POST"
+                                            id="form_terima_{{ $trx->id_peminjaman }}">
                                             @csrf
-                                            <input type="hidden" name="catatan_kembali" id="input_terima_{{ $trx->id }}">
-                                            <button type="button" onclick="terimaDenganCatatan('{{ $trx->id }}')"
+                                            <input type="hidden" name="catatan_kembali" id="input_terima_{{ $trx->id_peminjaman }}">
+                                            <button type="button" onclick="terimaDenganCatatan('{{ $trx->id_peminjaman }}')"
                                                 class="flex items-center gap-1.5 px-3 py-1.5 text-indigo-700 bg-indigo-100 border border-indigo-200 rounded-lg hover:bg-indigo-200 transition-colors font-bold text-xs shadow-sm">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -314,7 +314,7 @@
                         class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-[#1e3a8a] focus:border-[#1e3a8a]">
                         <option value="" disabled selected>-- Pilih Peminjam --</option>
                         @foreach($semuaPeminjam as $p)
-                            <option value="{{ $p->id }}" data-wa="{{ $p->kontak_penanggung_jawab }}"
+                            <option value="{{ $p->id_peminjam }}" data-wa="{{ $p->kontak_penanggung_jawab }}"
                                 data-email="{{ $p->user->email ?? '' }}">
                                 {{ $p->user->name ?? 'Unknown' }} ({{ $p->nama_instansi ?? $p->jenis_peminjam }})
                             </option>

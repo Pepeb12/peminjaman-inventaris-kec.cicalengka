@@ -30,7 +30,15 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         
         if (!$user) {
-            return back()->withInput()->withErrors(['email' => 'gmail belum terdaftar']);
+            return back()->withInput()->withErrors(['email' => 'akun gmail belum terdaftar']);
+        }
+
+        // Cek status persetujuan jika pengguna adalah peminjam
+        if ($user->role === 'peminjam') {
+            $peminjam = Peminjam::where('user_id', $user->id)->first();
+            if ($peminjam && $peminjam->status_akun !== 'Disetujui') {
+                return back()->withInput()->withErrors(['email' => 'Akun Anda belum di-acc oleh admin.']);
+            }
         }
 
         // Cek apakah ada request OTP dalam 1 menit terakhir

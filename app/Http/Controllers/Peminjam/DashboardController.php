@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $peminjamId = $user->peminjam?->id;
+        $peminjamId = $user->peminjam?->id_peminjam;
 
         $totalPengajuan = 0;
         $menungguValidasi = 0;

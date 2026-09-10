@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_peminjamans', function (Blueprint $table) {
-        $table->id();
+        $table->id('id_detail_peminjaman');
         // Foreign key ke peminjamans (tipe string)
         $table->string('peminjaman_id');
-        $table->foreign('peminjaman_id')->references('id')->on('peminjamans')->cascadeOnDelete();
+        $table->foreign('peminjaman_id')->references('id_peminjaman')->on('peminjamans')->cascadeOnDelete();
         
         // Foreign key ke barangs (tipe string)
         $table->string('kode_barang');
