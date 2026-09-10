@@ -1,0 +1,151 @@
+<mxfile host="app.diagrams.net" modified="2026-09-04T08:18:00.000Z" agent="Antigravity" version="24.0.0" etag="class-diagram-peminjam" type="device">
+  <diagram id="class-diagram-peminjam" name="Class Diagram Peminjam">
+    <mxGraphModel dx="1800" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- =============================== -->
+        <!-- CLASS: Peminjam - PUSAT -->
+        <!-- =============================== -->
+        <mxCell id="peminjam_header" value="Peminjam" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjam_attrs" value="-id&#xa;-name&#xa;-email&#xa;-password&#xa;-foto_profil&#xa;-role&#xa;-alamat&#xa;-nik&#xa;-jenis_peminjam&#xa;-nama_instansi&#xa;-kontak_penanggung_jawab" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="peminjam_header">
+          <mxGeometry y="26" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjam_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=10;rotatable=0;labelPosition=left;points=[];portConstraint=eastwest;" vertex="1" parent="peminjam_header">
+          <mxGeometry y="206" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjam_methods" value="+login()&#xa;+logout()&#xa;+register()&#xa;+kelolaProfil()&#xa;+ubahPassword()&#xa;+pengajuanBarang()&#xa;+lihatRiwayat()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="peminjam_header">
+          <mxGeometry y="214" width="280" height="166" as="geometry" />
+        </mxCell>
+
+        <!-- =============================== -->
+        <!-- CLASS: Katalog Barang -->
+        <!-- =============================== -->
+        <mxCell id="katalog_header" value="Katalog Barang" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="250" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="katalog_attrs" value="-kode_barang&#xa;-nama_barang&#xa;-kategori_id&#xa;-stok_tersedia&#xa;-kondisi&#xa;-foto_barang&#xa;-deskripsi" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="katalog_header">
+          <mxGeometry y="26" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="katalog_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=10;rotatable=0;labelPosition=left;points=[];portConstraint=eastwest;" vertex="1" parent="katalog_header">
+          <mxGeometry y="146" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="katalog_methods" value="+lihatKatalog()&#xa;+cariBarang()&#xa;+filterKategori()&#xa;+lihatDetailBarang()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="katalog_header">
+          <mxGeometry y="154" width="250" height="126" as="geometry" />
+        </mxCell>
+
+        <!-- =============================== -->
+        <!-- CLASS: Pengajuan Peminjaman -->
+        <!-- =============================== -->
+        <mxCell id="pengajuan_header" value="Pengajuan Peminjaman" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="280" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="pengajuan_attrs" value="-id&#xa;-peminjam_id&#xa;-tgl_pinjam&#xa;-tgl_kembali&#xa;-kode_barang&#xa;-jumlah&#xa;-status&#xa;-surat_resmi&#xa;-tanggal_pengajuan" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="pengajuan_header">
+          <mxGeometry y="26" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pengajuan_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=10;rotatable=0;labelPosition=left;points=[];portConstraint=eastwest;" vertex="1" parent="pengajuan_header">
+          <mxGeometry y="176" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="pengajuan_methods" value="+buatPengajuan()&#xa;+uploadSuratResmi()&#xa;+pilihBarang()&#xa;+tentukanJumlah()&#xa;+lihatStatusPengajuan()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="pengajuan_header">
+          <mxGeometry y="184" width="280" height="146" as="geometry" />
+        </mxCell>
+
+        <!-- =============================== -->
+        <!-- CLASS: Riwayat Peminjaman -->
+        <!-- =============================== -->
+        <mxCell id="riwayat_header" value="Riwayat Peminjaman" style="swimlane;fontStyle=1;align=center;startSize=26;html=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="460" y="520" width="250" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="riwayat_attrs" value="-id&#xa;-peminjam_id&#xa;-tgl_pinjam&#xa;-tgl_kembali&#xa;-status&#xa;-pesan_tolak&#xa;-catatan_kembali" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="riwayat_header">
+          <mxGeometry y="26" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="riwayat_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=10;rotatable=0;labelPosition=left;points=[];portConstraint=eastwest;" vertex="1" parent="riwayat_header">
+          <mxGeometry y="146" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="riwayat_methods" value="+lihatRiwayat()&#xa;+lihatDetail()&#xa;+cetakBuktiPDF()&#xa;+lihatStatusPeminjaman()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;fontStyle=0;fontSize=11;" vertex="1" parent="riwayat_header">
+          <mxGeometry y="154" width="250" height="146" as="geometry" />
+        </mxCell>
+
+        <!-- ================================================================ -->
+        <!-- RELASI (Lines with multiplicity) -->
+        <!-- ================================================================ -->
+
+        <!-- Peminjam 1──N Katalog Barang -->
+        <mxCell id="rel_peminjam_katalog" value="" style="endArrow=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="peminjam_attrs" target="katalog_attrs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pk_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_peminjam_katalog">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_pk_n" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_peminjam_katalog">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Peminjam 1──N Pengajuan Peminjaman (vertikal ke bawah) -->
+        <mxCell id="rel_peminjam_pengajuan" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="peminjam_header" target="pengajuan_header">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pp_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_peminjam_pengajuan">
+          <mxGeometry x="-0.7" relative="1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_pp_n" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_peminjam_pengajuan">
+          <mxGeometry x="0.7" relative="1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Pengajuan 1──N Riwayat -->
+        <mxCell id="rel_pengajuan_riwayat" value="" style="endArrow=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="pengajuan_attrs" target="riwayat_attrs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pr_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_pengajuan_riwayat">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_pr_n" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_pengajuan_riwayat">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Katalog Barang ──▶ Pengajuan (via kode_barang) -->
+        <mxCell id="rel_katalog_pengajuan" value="" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="katalog_header" target="pengajuan_header">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="585" y="470" />
+              <mxPoint x="320" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_kp_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_katalog_pengajuan">
+          <mxGeometry x="-0.75" relative="1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_kp_n" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=0;fontColor=#000000;" vertex="1" connectable="0" parent="rel_katalog_pengajuan">
+          <mxGeometry x="0.75" relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ================================================================ -->
+        <!-- TITLE -->
+        <!-- ================================================================ -->
+        <mxCell id="title" value="Class Diagram Peminjam" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="230" y="900" width="180" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

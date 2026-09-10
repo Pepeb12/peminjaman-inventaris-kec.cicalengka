@@ -29,7 +29,7 @@
                     Lupa Password
                 </h2>
                 <p class="mt-2 text-center text-sm text-slate-600 font-medium">
-                    Masukkan alamat email yang terdaftar di akun Anda.
+                    masukkan alamat gmail yang terdaftar di akun anda
                 </p>
             </div>
 

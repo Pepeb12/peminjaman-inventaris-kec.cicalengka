@@ -14,7 +14,7 @@
         <div class="relative z-10 flex-1">
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Data Master Barang</h3>
             <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
-                Kelola data semua jenis barang inventaris yang tersedia di Kecamatan Cicalengka.
+                kelola data semua jenis barang inventaris yang tersedia di kecamatan cicalengka
             </p>
         </div>
         <div class="relative z-10 shrink-0 flex gap-2 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">

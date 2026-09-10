@@ -3,10 +3,10 @@
 @section('content')
 
 <!-- HEADER & WAKTU -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white border border-slate-300 p-5 rounded-sm shadow-sm mb-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white border-b border-slate-300 p-5">
     <div>
         <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Dashboard Peminjam</h2>
-        <p class="text-sm text-slate-500 mt-1">Kelola peminjaman barang dengan mudah.</p>
+        <p class="text-sm text-slate-500 mt-1">kelola peminjaman barang dengan mudah</p>
     </div>
     <div class="mt-4 md:mt-0 flex items-center gap-3 bg-slate-900 text-white px-5 py-3 rounded-lg shadow-inner">
         <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -39,31 +39,31 @@
 @endif
 
 <!-- STATISTIK RINGKASAN -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-6">
- <div class="bg-white border border-slate-300 p-5 rounded-sm relative overflow-hidden">
- <p class="text-blue-800 font-bold text-[10px] uppercase tracking-widest mb-1 relative z-10">Total Pengajuan</p>
- <h2 class="text-3xl font-extrabold text-slate-900 relative z-10">{{ $totalPengajuan ?? 0 }}</h2>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-0 border-b border-slate-300 bg-white">
+ <div class="p-5 border-r border-b sm:border-b-0 border-slate-200 relative overflow-hidden">
+ <p class="text-blue-800 font-bold text-sm uppercase tracking-widest mb-1 relative z-10">Total Pengajuan</p>
+ <h2 class="text-4xl font-extrabold text-slate-900 relative z-10">{{ $totalPengajuan ?? 0 }}</h2>
  </div>
  
- <div class="bg-white border border-slate-300 p-5 rounded-sm relative overflow-hidden">
- <p class="text-amber-700 font-bold text-[10px] uppercase tracking-widest mb-1 relative z-10">Menunggu Validasi</p>
- <h2 class="text-3xl font-extrabold text-slate-900 relative z-10">{{ $menungguValidasi ?? 0 }}</h2>
+ <div class="p-5 border-r sm:border-b-0 border-b border-slate-200 relative overflow-hidden">
+ <p class="text-amber-700 font-bold text-sm uppercase tracking-widest mb-1 relative z-10">Menunggu Validasi</p>
+ <h2 class="text-4xl font-extrabold text-slate-900 relative z-10">{{ $menungguValidasi ?? 0 }}</h2>
  </div>
 
- <div class="bg-white border border-slate-300 p-5 rounded-sm relative overflow-hidden">
- <p class="text-indigo-700 font-bold text-[10px] uppercase tracking-widest mb-1 relative z-10">Sedang Dipinjam</p>
- <h2 class="text-3xl font-extrabold text-slate-900 relative z-10">{{ $sedangDipinjam ?? 0 }}</h2>
+ <div class="p-5 border-r border-slate-200 relative overflow-hidden">
+ <p class="text-indigo-700 font-bold text-sm uppercase tracking-widest mb-1 relative z-10">Sedang Dipinjam</p>
+ <h2 class="text-4xl font-extrabold text-slate-900 relative z-10">{{ $sedangDipinjam ?? 0 }}</h2>
  </div>
 
- <div class="bg-white border border-slate-300 p-5 rounded-sm relative overflow-hidden">
- <p class="text-emerald-700 font-bold text-[10px] uppercase tracking-widest mb-1 relative z-10">Selesai Dikembalikan</p>
- <h2 class="text-3xl font-extrabold text-slate-900 relative z-10">{{ $selesai ?? 0 }}</h2>
+ <div class="p-5 relative overflow-hidden">
+ <p class="text-emerald-700 font-bold text-sm uppercase tracking-widest mb-1 relative z-10">Selesai Dikembalikan</p>
+ <h2 class="text-4xl font-extrabold text-slate-900 relative z-10">{{ $selesai ?? 0 }}</h2>
  </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-0 mt-6 shadow-sm border-t border-slate-200">
  <!-- ATURAN PEMINJAMAN -->
- <div class="lg:col-span-1 bg-slate-900 rounded-sm p-6 text-white relative overflow-hidden border border-slate-800">
+ <div class="lg:col-span-1 bg-slate-900 p-6 text-white relative overflow-hidden">
  <h4 class="text-lg font-bold mb-4 flex items-center gap-2 relative z-10">
  <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
  Prosedur Peminjaman
@@ -93,7 +93,7 @@
  </div>
 
  <!-- TRANSAKSI TERBARU -->
- <div class="lg:col-span-2 bg-white border border-slate-300 rounded-sm overflow-hidden flex flex-col">
+ <div class="lg:col-span-2 bg-white overflow-hidden flex flex-col">
  <div class="p-6 border-b border-slate-200 flex justify-between items-center bg-white">
  <div>
  <h4 class="text-lg font-bold text-slate-900">Riwayat Pengajuan Terakhir</h4>

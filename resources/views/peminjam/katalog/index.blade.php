@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
+<div class="bg-white min-h-full relative overflow-hidden flex flex-col">
  <div class="p-6 sm:p-8 border-b border-slate-200">
  <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Katalog Barang</h2>
  <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">Lihat ketersediaan barang yang dapat Anda pinjam.</p>

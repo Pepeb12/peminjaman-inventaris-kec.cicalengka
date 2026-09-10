@@ -111,6 +111,23 @@ class AuthController extends Controller
         $data = DB::transaction(function () use ($request, $fotoPath) {
             $formattedName = ucwords(strtolower($request->name));
 
+            // Generate Kode Peminjam: PMJ-[TH]-[NNN]
+            $tahun = date('y');
+            $prefix = "PMJ-{$tahun}-";
+            
+            $lastPeminjam = Peminjam::where('kode_peminjam', 'LIKE', "{$prefix}%")
+                ->lockForUpdate() // Mencegah race condition
+                ->orderBy('kode_peminjam', 'desc')
+                ->first();
+                
+            if ($lastPeminjam && $lastPeminjam->kode_peminjam) {
+                $lastUrutan = (int) substr($lastPeminjam->kode_peminjam, -3);
+                $newUrutan = str_pad($lastUrutan + 1, 3, '0', STR_PAD_LEFT);
+            } else {
+                $newUrutan = '001';
+            }
+            $kodePeminjam = $prefix . $newUrutan;
+
             $user = User::create([
                 'name' => $formattedName,
                 'email' => $request->email,
@@ -122,6 +139,7 @@ class AuthController extends Controller
 
             $peminjam = Peminjam::create([
                 'user_id' => $user->id,
+                'kode_peminjam' => $kodePeminjam,
                 'nik' => $request->nik,
                 'jenis_peminjam' => $request->jenis_peminjam,
                 'nama_instansi' => $request->nama_instansi,
@@ -131,7 +149,7 @@ class AuthController extends Controller
             return ['user' => $user, 'peminjam' => $peminjam];
         });
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Akun Anda sedang menunggu ACC Umum Kepegawaian');
+        return redirect()->route('login')->with('success', 'Akun anda sudah di daftarkan dan menunggu persetujuan pihak kecamatan');
     }
 
     public function logout(Request $request)

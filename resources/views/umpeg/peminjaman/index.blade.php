@@ -27,8 +27,8 @@
             <div class="relative z-10 flex-1">
                 <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Kelola Data
                     Peminjaman</h3>
-                <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
-                    Pantau, validasi, dan kelola sirkulasi inventaris secara real-time.
+                <p class="text-slate-600 font-medium text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+                    Pantau, validasi, dan kelola sirkulasi inventaris secara real-time
                 </p>
             </div>
             <div
@@ -76,49 +76,50 @@
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-slate-600">
-                <thead class="bg-[#1e3a8a] text-sm uppercase text-white font-extrabold border-b-2 border-slate-300">
+            <table class="w-full text-left text-xs text-slate-600">
+                <thead class="bg-[#1e3a8a] text-xs uppercase text-white font-extrabold border-b-2 border-slate-300">
                     <tr>
-                        <th scope="col" class="px-6 py-4">ID Transaksi</th>
-                        <th scope="col" class="px-6 py-4">Nama Peminjam</th>
-                        <th scope="col" class="px-6 py-4">Instansi</th>
-                        <th scope="col" class="px-6 py-4">Tanggal Pinjam</th>
-                        <th scope="col" class="px-6 py-4">Tanggal Kembali</th>
-                        <th scope="col" class="px-6 py-4">Surat Resmi</th>
-                        <th scope="col" class="px-6 py-4">Status</th>
-                        <th scope="col" class="px-6 py-4 w-48">Rincian Barang</th>
-                        <th scope="col" class="px-6 py-4 text-center">Validasi</th>
+                        <th scope="col" class="px-3 py-3">ID Transaksi</th>
+                        <th scope="col" class="px-3 py-3">Nama Peminjam</th>
+                        <th scope="col" class="px-3 py-3">Instansi</th>
+                        <th scope="col" class="px-3 py-3">Tanggal Pinjam</th>
+                        <th scope="col" class="px-3 py-3">Tanggal Kembali</th>
+                        <th scope="col" class="px-3 py-3">Surat Resmi</th>
+                        <th scope="col" class="px-3 py-3">Status</th>
+                        <th scope="col" class="px-3 py-3 w-40">Rincian Barang</th>
+                        <th scope="col" class="px-3 py-3 text-center">Validasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200">
                     @forelse($peminjamans as $trx)
                         <tr class="hover:bg-white transition-colors">
-                            <td class="px-6 py-4 font-bold text-slate-900">
+                            <td class="px-3 py-3 font-bold text-slate-900">
                                 {{ $trx->id }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 <button onclick="openContactModal('{{ $trx->peminjam->id }}')" class="font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
                                     {{ $trx->peminjam->user->name ?? '-' }}
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                                 </button>
-                                <p class="text-[11px] text-slate-500 font-bold tracking-wider mt-0.5">NIK:
+                                <p class="text-[11px] text-slate-500 font-bold tracking-wider mt-0.5">KODE: {{ $trx->peminjam->kode_peminjam ?? '-' }}</p>
+                                <p class="text-[11px] text-slate-500 font-bold tracking-wider">NIK:
                                     {{ $trx->peminjam->nik ?? '-' }}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 <p class="text-[11px] text-[#064e3b] font-bold uppercase tracking-wider mt-0.5">
                                     {{ $trx->peminjam?->nama_instansi ?? $trx->peminjam?->jenis_peminjam }}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 <p class="text-slate-800 font-medium">
                                     {{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y H:i')) }}
                                 </p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 <p class="text-slate-800 font-medium">
                                     {{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y H:i')) }}
                                 </p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 @if($trx->surat_resmi)
                                     <a href="{{ asset('storage/' . $trx->surat_resmi) }}" target="_blank"
                                         class="text-emerald-600 hover:text-emerald-800 hover:underline font-bold text-xs flex items-center gap-1">
@@ -133,7 +134,7 @@
                                     <span class="text-slate-400 text-xs italic">Tidak ada surat</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-3 py-3">
                                 @if($trx->status == 'Menunggu Proses')
                                     <span
                                         class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 uppercase tracking-widest border border-amber-200 shadow-sm">
@@ -161,21 +162,44 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">
-                                <ul class="list-disc list-inside text-slate-600 text-xs space-y-1">
-                                    @foreach($trx->detailPeminjaman as $detail)
-                                        <li class="mb-1">
-                                            {{ $detail->barang->nama_barang ?? 'Barang Terhapus' }} <span
-                                                class="font-bold text-slate-800">({{ $detail->jumlah }}x)</span>
-                                            @if(isset($detail->barang->deskripsi) && !empty($detail->barang->deskripsi))
-                                                <p class="text-[10px] text-slate-400 mt-0.5 ml-4 italic leading-tight">
-                                                    {{ $detail->barang->deskripsi }}</p>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
+                            <td class="px-3 py-3">
+                                <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.remove('hidden')" class="text-[10px] text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg font-bold transition-colors w-full text-center shadow-sm">
+                                    Lihat Detail
+                                </button>
+
+                                <!-- Modal Rincian -->
+                                <div id="modal-rincian-{{$trx->id}}" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+                                    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
+                                        <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                                            <h3 class="font-bold text-slate-800">Rincian Barang (TRX-{{$trx->id}})</h3>
+                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 p-1">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            </button>
+                                        </div>
+                                        <div class="p-6 overflow-y-auto">
+                                            <ul class="space-y-4">
+                                                @foreach($trx->detailPeminjaman as $detail)
+                                                    <li class="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                                                        <div class="flex items-start justify-between gap-4">
+                                                            <div>
+                                                                <h4 class="font-bold text-slate-800 text-sm">{{ $detail->barang->nama_barang ?? 'Barang Terhapus' }}</h4>
+                                                                @if(isset($detail->barang->deskripsi) && !empty($detail->barang->deskripsi))
+                                                                    <p class="text-xs text-slate-500 mt-1 italic">{{ $detail->barang->deskripsi }}</p>
+                                                                @endif
+                                                            </div>
+                                                            <span class="font-extrabold text-slate-700 bg-slate-100 px-2 py-1 rounded text-xs">{{ $detail->jumlah }}x</span>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="p-4 border-t border-slate-200 bg-slate-50 text-right">
+                                            <button type="button" onclick="document.getElementById('modal-rincian-{{$trx->id}}').classList.add('hidden')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-sm font-bold rounded-xl transition-colors">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
-                            <td class="px-6 py-4 text-center">
+                            <td class="px-3 py-3 text-center">
                                 <div class="flex justify-center gap-2">
                                     @if($trx->status == 'Menunggu Proses')
                                         <form action="{{ route('umpeg.peminjaman.acc', $trx->id) }}" method="POST">
@@ -284,7 +308,7 @@
             </h3>
 
             <div class="space-y-4">
-                <div>
+                <div class="hidden">
                     <label class="block text-sm font-bold text-slate-700 mb-1">Pilih Peminjam</label>
                     <select id="contactPeminjam"
                         class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-[#1e3a8a] focus:border-[#1e3a8a]">

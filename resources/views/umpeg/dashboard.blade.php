@@ -167,7 +167,7 @@
  ticks: {
  stepSize: 1,
  font: { family: 'Inter', size: 11 },
- color: '#64748b'
+ color: '#000000'
  },
  grid: {
  color: 'rgba(226, 232, 240, 0.5)',
@@ -177,7 +177,7 @@
  x: {
  ticks: {
  font: { family: 'Inter', size: 11 },
- color: '#64748b'
+ color: '#000000'
  },
  grid: {
  display: false,

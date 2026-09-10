@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6 flex justify-between items-center">
+<div class="bg-white min-h-full flex flex-col">
+ <div class="p-6 border-b border-slate-200 flex justify-between items-center">
  <div>
- <h2 class="text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Detail Transaksi</h2>
+ <h2 class="text-xl sm:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">Detail Transaksi</h2>
  <p class="text-sm text-slate-500 mt-1">Nomor Resi: <span class="font-bold text-slate-700">{{ $peminjaman->id }}</span></p>
  </div>
  <a href="{{ route('peminjam.riwayat.index') }}" class="text-slate-500 hover:text-slate-800 font-bold text-sm flex items-center gap-2">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
  Kembali
  </a>
-</div>
+ </div>
 
-<div class="flex flex-col md:flex-row gap-6">
- <div class="w-full md:w-1/3 space-y-6">
- <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+ <div class="flex flex-col md:flex-row flex-1">
+ <div class="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-slate-200 p-6 space-y-6">
+ <div>
  <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Informasi Transaksi</h3>
  
  <div class="space-y-4">
@@ -35,12 +36,12 @@
 
  <div>
  <p class="text-xs text-slate-500 font-medium">Tanggal Peminjaman</p>
- <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_pinjam)->translatedFormat('j F Y H:i') }}</p>
+ <p class="font-bold text-black">{{ \Carbon\Carbon::parse($peminjaman->tgl_pinjam)->translatedFormat('j F Y H:i') }}</p>
  </div>
  
  <div>
  <p class="text-xs text-slate-500 font-medium">Tanggal Pengembalian</p>
- <p class="font-bold text-slate-800">{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y H:i') }}</p>
+ <p class="font-bold text-black">{{ \Carbon\Carbon::parse($peminjaman->tgl_kembali)->translatedFormat('j F Y H:i') }}</p>
  </div>
  </div>
 
@@ -55,8 +56,6 @@
  </div>
  </div>
  @endif
- </div>
-
  @if(in_array($peminjaman->status, ['Menunggu Cetak Bukti', 'Dipinjam', 'Selesai']))
  <div class="mt-6 pt-6 border-t border-slate-200">
  <a href="{{ route('peminjam.riwayat.cetak', $peminjaman->id) }}" target="_blank" class="w-full bg-[#064e3b] hover:bg-blue-800 text-white flex justify-center items-center gap-2 font-bold text-sm py-2.5 rounded-xl transition-colors">
@@ -91,12 +90,11 @@
  @endif
  </div>
 
- <div class="w-full md:w-2/3">
- <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden h-full flex flex-col">
- <div class="p-6 border-b border-slate-200 bg-white">
- <h3 class="font-bold text-slate-800">Rincian Barang yang Dipinjam</h3>
+ <div class="w-full md:w-2/3 p-6 flex flex-col">
+ <div>
+ <h3 class="font-bold text-slate-800 mb-4">Rincian Barang yang Dipinjam</h3>
  </div>
- <div class="p-6 flex-1">
+ <div class="flex-1">
  <div class="space-y-4">
  @foreach($peminjaman->detailPeminjaman as $detail)
  <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 bg-white hover:border-[#064e3b]/20 transition-colors">
@@ -119,8 +117,6 @@
  </div>
  </div>
  @endforeach
- </div>
- </div>
  </div>
  </div>
  </div>

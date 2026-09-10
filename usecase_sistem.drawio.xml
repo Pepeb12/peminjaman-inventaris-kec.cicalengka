@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="usecase-sistem" name="Use Case Diagram Sistem">
+    <mxGraphModel dx="1200" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+
+        <!-- ===== SYSTEM BOUNDARY ===== -->
+
+        <mxCell id="boundary" value="Sistem Informasi Peminjaman Inventaris&lt;br&gt;Kecamatan Cicalengka" style="rounded=1;whiteSpace=wrap;html=1;dashed=0;fillColor=none;strokeColor=#000000;verticalAlign=top;align=center;fontSize=14;fontStyle=1;spacingTop=5;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="500" height="950" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== ACTORS ===== -->
+
+        <!-- Actor: Admin UMPEG (Left) -->
+        <mxCell id="actor_admin" value="Admin UMPEG" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="480" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Actor: Peminjam (Right) -->
+        <mxCell id="actor_peminjam" value="Peminjam" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="370" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Actor: Camat (Left Bottom) -->
+        <mxCell id="actor_camat" value="Camat" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="890" width="40" height="60" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== USE CASES ===== -->
+
+        <!-- UC 1: Login -->
+        <mxCell id="uc_login" value="Login" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="50" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 2: Lupa Password -->
+        <mxCell id="uc_lupa_password" value="Lupa&lt;br&gt;Password" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="120" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 3: Register -->
+        <mxCell id="uc_register" value="Register" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="190" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 4: Kelola Data Barang -->
+        <mxCell id="uc_kelola_barang" value="Kelola Data&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="260" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 5: Lihat Katalog Barang -->
+        <mxCell id="uc_katalog" value="Lihat Katalog&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="330" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 6: Pengajuan Peminjaman -->
+        <mxCell id="uc_pengajuan" value="Pengajuan&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="400" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 7: Kelola Peminjaman -->
+        <mxCell id="uc_kelola_peminjaman" value="Kelola&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="470" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 8: Kelola Akun Peminjam -->
+        <mxCell id="uc_kelola_akun" value="Kelola Akun&lt;br&gt;Peminjam" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="540" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 9: Lihat Riwayat Peminjaman -->
+        <mxCell id="uc_riwayat" value="Lihat Riwayat&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="610" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 10: Cetak Bukti Peminjaman -->
+        <mxCell id="uc_cetak_bukti" value="Cetak Bukti&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="680" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 11: Kelola Profil -->
+        <mxCell id="uc_profil" value="Kelola&lt;br&gt;Profil" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="750" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 12: Cetak Laporan -->
+        <mxCell id="uc_cetak_laporan" value="Cetak&lt;br&gt;Laporan" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="820" width="180" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- UC 13: Menerima Laporan -->
+        <mxCell id="uc_menerima_laporan" value="Menerima&lt;br&gt;Laporan" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="890" width="180" height="55" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== ASSOCIATION EDGES: Admin UMPEG (solid line, no arrow) ===== -->
+
+        <!-- Admin ── Login -->
+        <mxCell id="edge_admin_login" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin ── Kelola Data Barang -->
+        <mxCell id="edge_admin_barang" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_kelola_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin ── Kelola Peminjaman -->
+        <mxCell id="edge_admin_peminjaman" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_kelola_peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin ── Kelola Akun Peminjam -->
+        <mxCell id="edge_admin_akun" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_kelola_akun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin ── Cetak Laporan -->
+        <mxCell id="edge_admin_laporan" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_cetak_laporan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin ── Kelola Profil -->
+        <mxCell id="edge_admin_profil" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_profil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== ASSOCIATION EDGES: Peminjam (solid line, no arrow) ===== -->
+
+        <!-- Peminjam ── Login -->
+        <mxCell id="edge_peminjam_login" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam ── Register -->
+        <mxCell id="edge_peminjam_register" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_register">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam ── Lihat Katalog Barang -->
+        <mxCell id="edge_peminjam_katalog" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_katalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam ── Pengajuan Peminjaman -->
+        <mxCell id="edge_peminjam_pengajuan" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_pengajuan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam ── Lihat Riwayat Peminjaman -->
+        <mxCell id="edge_peminjam_riwayat" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_riwayat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam ── Kelola Profil -->
+        <mxCell id="edge_peminjam_profil" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_profil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== ASSOCIATION EDGE: Camat (solid line, no arrow) ===== -->
+
+        <!-- Camat ── Menerima Laporan -->
+        <mxCell id="edge_camat_laporan" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="actor_camat" target="uc_menerima_laporan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ===== INCLUDE / EXTEND RELATIONSHIPS (dashed arrow) ===== -->
+
+        <!-- «extend»: Lupa Password ──▷ Login -->
+        <!-- Arrow from extending UC to base UC (UML standard) -->
+        <mxCell id="rel_extend_login" value="«extend»" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;rounded=1;strokeColor=#000000;fontSize=10;" edge="1" parent="1" source="uc_lupa_password" target="uc_login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="148" />
+              <mxPoint x="640" y="78" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- «include»: Pengajuan Peminjaman ──▷ Lihat Katalog Barang -->
+        <!-- Arrow from base UC to included UC (UML standard) -->
+        <mxCell id="rel_include_katalog" value="«include»" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;rounded=1;strokeColor=#000000;fontSize=10;" edge="1" parent="1" source="uc_pengajuan" target="uc_katalog">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="428" />
+              <mxPoint x="640" y="358" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- «extend»: Cetak Bukti Peminjaman ──▷ Lihat Riwayat Peminjaman -->
+        <!-- Arrow from extending UC to base UC (UML standard) -->
+        <mxCell id="rel_extend_riwayat" value="«extend»" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;rounded=1;strokeColor=#000000;fontSize=10;" edge="1" parent="1" source="uc_cetak_bukti" target="uc_riwayat">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="708" />
+              <mxPoint x="640" y="638" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- «include»: Cetak Laporan ──▷ Menerima Laporan -->
+        <!-- Arrow from base UC to included UC (UML standard) -->
+        <mxCell id="rel_include_laporan" value="«include»" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;rounded=1;strokeColor=#000000;fontSize=10;" edge="1" parent="1" source="uc_cetak_laporan" target="uc_menerima_laporan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="848" />
+              <mxPoint x="640" y="918" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+
+        <!-- ===== TITLE LABEL ===== -->
+        <mxCell id="label_title" value="Use Case Diagram Sistem Informasi&lt;br&gt;Peminjaman Inventaris Kecamatan Cicalengka" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="990" width="440" height="50" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

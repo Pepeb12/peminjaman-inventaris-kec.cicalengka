@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         
         if (!$user) {
-            return back()->with('error', 'Alamat email tidak terdaftar dalam sistem kami.');
+            return back()->withInput()->withErrors(['email' => 'gmail belum terdaftar']);
         }
 
         // Cek apakah ada request OTP dalam 1 menit terakhir
@@ -52,7 +52,7 @@ class ForgotPasswordController extends Controller
 
             // Simpan id user ke session untuk tahap selanjutnya
             session(['reset_user_id' => $user->id]);
-            return redirect()->route('password.verify')->with('success', 'Kode OTP telah dikirim ke email Anda.');
+            return redirect()->route('password.verify')->with('success', 'kode otp telah dikirim ke gmail anda');
         } catch (\Exception $e) {
             return back()->with('error', 'Terjadi kesalahan sistem saat mengirim OTP: ' . $e->getMessage());
         }
@@ -130,6 +130,6 @@ class ForgotPasswordController extends Controller
         // Hapus session
         session()->forget(['reset_user_id', 'otp_verified']);
 
-        return redirect()->route('login')->with('success', 'Password berhasil diubah. Silakan login menggunakan password baru.');
+        return redirect()->route('login')->with('success', 'password berhasil diubah silakan login menggunakan password baru');
     }
 }

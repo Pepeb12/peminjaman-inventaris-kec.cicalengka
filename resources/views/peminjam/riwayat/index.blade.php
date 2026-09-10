@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
+<div class="bg-white min-h-full relative overflow-hidden flex flex-col">
     <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="relative z-10 flex-1">
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Riwayat Peminjaman</h3>
@@ -33,8 +33,8 @@
  @forelse($riwayat as $trx)
  <tr class="hover:bg-white transition-colors">
  <td class="px-6 py-4 font-bold text-slate-900">{{ $trx->id }}</td>
- <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
- <td class="px-6 py-4 font-medium">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
+ <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
+ <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
  <td class="px-6 py-4">
  @if($trx->status == 'Menunggu Proses')
  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 uppercase tracking-widest border border-amber-200">Menunggu ACC Umum Kepegawaian</span>

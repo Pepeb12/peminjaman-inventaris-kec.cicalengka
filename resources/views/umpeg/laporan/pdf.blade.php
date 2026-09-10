@@ -263,20 +263,7 @@
                     Cicalengka, {{ strtolower(\Carbon\Carbon::now()->translatedFormat('j F Y')) }}<br>
                     <strong>CAMAT CICALENGKA</strong><br>
                     <div style="margin: 5px 0;">
-                        @php
-                            $qrPath = public_path('img/qr-camat.png');
-                            if(file_exists($qrPath)) {
-                                $qrData = base64_encode(file_get_contents($qrPath));
-                                $qrSrc = 'data:image/png;base64,' . $qrData;
-                            } else {
-                                $qrSrc = '';
-                            }
-                        @endphp
-                        @if($qrSrc)
-                            <img src="{{ $qrSrc }}" width="75" alt="QR TTD">
-                        @else
-                            <br><br><br><br>
-                        @endif
+                        <br><br><br><br>
                     </div>
                     <span style="text-decoration: underline; font-weight: bold; font-size: 14px;">CUCU HIDAYAT, S.H., M.M.</span><br>
                     <span style="font-size: 13px; color: #333;">NIP. 197107311998111001</span>

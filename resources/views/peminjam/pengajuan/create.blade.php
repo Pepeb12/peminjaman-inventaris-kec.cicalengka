@@ -29,90 +29,90 @@
  </div>
 @endif
 
-<div class="bg-white border border-slate-200 shadow-sm rounded-2xl relative overflow-hidden flex flex-col mb-8">
-    <div class="p-6 sm:p-8 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="bg-white min-h-full relative overflow-hidden flex flex-col">
+    <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="relative z-10 flex-1">
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">Formulir Pengajuan Peminjaman</h3>
-            <p class="text-slate-700 font-medium text-sm mt-1 max-w-2xl leading-relaxed">
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 uppercase tracking-tight">Formulir Pengajuan Peminjaman</h3>
+            <p class="text-slate-600 font-medium text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
                 Silakan isi detail peminjaman dan pilih barang yang ingin dipinjam.
             </p>
         </div>
         <div class="relative z-10 shrink-0 flex gap-2 w-full sm:w-auto justify-start sm:justify-end mt-4 sm:mt-0">
-            <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors shadow-sm flex-1 sm:flex-none">
+            <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 px-4 py-2 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors shadow-sm flex-1 sm:flex-none">
                 Kembali
             </a>
         </div>
     </div>
 
- <div class="p-6 sm:p-8">
+ <div class="p-5 sm:p-6">
  <form action="{{ route('peminjam.pengajuan.store') }}" method="POST" enctype="multipart/form-data">
  @csrf
  
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
  
  <!-- Pinjam -->
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
  <div>
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Tanggal Pinjam</label>
+ <label class="block text-slate-800 text-sm font-bold mb-1.5 tracking-wide">Tanggal Pinjam</label>
  <div class="relative">
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_pinjam_date" id="tgl_pinjam_date" value="{{ old('tgl_pinjam_date') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_pinjam_date" id="tgl_pinjam_date" value="{{ old('tgl_pinjam_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
  </div>
  </div>
  <div>
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Jam Pinjam</label>
+ <label class="block text-slate-800 text-sm font-bold mb-1.5 tracking-wide">Jam Pinjam</label>
  <div class="relative">
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
  </div>
- <input type="text" name="tgl_pinjam_time" id="tgl_pinjam_time" value="{{ old('tgl_pinjam_time') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
+ <input type="text" name="tgl_pinjam_time" id="tgl_pinjam_time" value="{{ old('tgl_pinjam_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
  </div>
  </div>
  </div>
 
  <!-- Kembali -->
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
  <div>
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Tanggal Kembali</label>
+ <label class="block text-slate-800 text-sm font-bold mb-1.5 tracking-wide">Tanggal Kembali</label>
  <div class="relative">
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_kembali_date" id="tgl_kembali_date" value="{{ old('tgl_kembali_date') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_kembali_date" id="tgl_kembali_date" value="{{ old('tgl_kembali_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
  </div>
  </div>
  <div>
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Jam Kembali</label>
+ <label class="block text-slate-800 text-sm font-bold mb-1.5 tracking-wide">Jam Kembali</label>
  <div class="relative">
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
  </div>
- <input type="text" name="tgl_kembali_time" id="tgl_kembali_time" value="{{ old('tgl_kembali_time') }}" class="block w-full pl-11 pr-3 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
+ <input type="text" name="tgl_kembali_time" id="tgl_kembali_time" value="{{ old('tgl_kembali_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
  </div>
  </div>
  </div>
  </div>
 
- <div class="mb-8">
- <label class="block text-slate-800 text-sm font-bold mb-2 tracking-wide">Upload Surat Resmi Peminjaman (PDF) - <span class="font-normal italic text-slate-500">Opsional</span></label>
+ <div class="mb-5">
+ <label class="block text-slate-800 text-sm font-bold mb-1.5 tracking-wide">Upload Surat Resmi Peminjaman (PDF) - <span class="font-normal italic text-slate-500">Opsional</span></label>
  <div class="relative">
- <input type="file" name="surat_resmi" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 border border-emerald-200 rounded-xl bg-white shadow-sm">
+ <input type="file" name="surat_resmi" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 border border-emerald-200 rounded-xl bg-white shadow-sm">
  </div>
  </div>
 
- <div class="relative flex items-center py-2 mb-6">
+ <div class="relative flex items-center py-2 mb-4">
  <div class="flex-grow border-t border-emerald-200"></div>
  <span class="flex-shrink-0 mx-4 text-[#064e3b] text-xs font-extrabold uppercase tracking-widest">Daftar Barang</span>
  <div class="flex-grow border-t border-emerald-200"></div>
  </div>
  
- <div id="dynamic-item-container" class="space-y-4 mb-4">
- <div class="flex flex-col sm:flex-row gap-4 item-row">
+ <div id="dynamic-item-container" class="space-y-3 mb-3">
+ <div class="flex flex-col sm:flex-row gap-3 item-row">
  <div class="w-full sm:w-1/3">
  <div class="relative">
- <select class="kategori-select block w-full pl-4 pr-10 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
+ <select class="kategori-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
  <option value="">-- Semua Kategori --</option>
  @foreach($kategoris as $kat)
  <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
@@ -125,7 +125,7 @@
  </div>
  <div class="flex-1">
  <div class="relative">
- <select name="kode_barang[]" class="barang-select block w-full pl-4 pr-10 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none" required>
+ <select name="kode_barang[]" class="barang-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none" required>
  <option value="">-- Pilih Barang --</option>
  @foreach($barangs as $brg)
  <option value="{{ $brg->kode_barang }}" data-kategori="{{ $brg->kategori_id }}" data-stok="{{ $brg->stok_tersedia }}" style="display: none;" disabled>
@@ -139,24 +139,24 @@
  </div>
  </div>
  <div class="w-full sm:w-32">
- <input type="number" name="jumlah[]" class="block w-full px-4 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="Jumlah" min="1" required>
+ <input type="number" name="jumlah[]" class="block w-full px-4 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="Jumlah" min="1" required>
  </div>
  <div class="w-full sm:w-auto">
- <button type="button" class="w-full sm:w-12 h-full py-3 sm:py-0 flex items-center justify-center bg-rose-100 text-rose-600 rounded-xl hover:bg-rose-200 transition-colors shadow-sm disabled:opacity-50" onclick="hapusBarang(this)" disabled>
+ <button type="button" class="w-full sm:w-12 h-full py-2 sm:py-0 flex items-center justify-center bg-rose-100 text-rose-600 rounded-xl hover:bg-rose-200 transition-colors shadow-sm disabled:opacity-50" onclick="hapusBarang(this)" disabled>
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
  </button>
  </div>
  </div>
  </div>
 
- <button type="button" class="inline-flex items-center justify-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2.5 rounded-xl font-bold text-sm hover:bg-emerald-200 transition-colors mb-8 border border-emerald-200 shadow-sm" onclick="tambahBarang()">
+ <button type="button" class="inline-flex items-center justify-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-emerald-200 transition-colors mb-5 border border-emerald-200 shadow-sm" onclick="tambahBarang()">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
  Tambah Barang Lain
  </button>
 
- <div class="pt-6 border-t border-slate-200">
- <button type="submit" class="w-full sm:w-auto bg-[#064e3b] hover:bg-[#152c6b] text-white font-bold py-3.5 px-8 rounded-xl transition-colors tracking-wider shadow-lg flex items-center justify-center gap-2">
- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+ <div class="pt-4 border-t border-slate-200">
+ <button type="submit" class="w-full sm:w-auto bg-[#064e3b] hover:bg-[#152c6b] text-white font-bold py-2.5 px-6 rounded-xl transition-colors tracking-wider shadow-md flex items-center justify-center gap-2 text-sm">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
  KIRIM PENGAJUAN
  </button>
     </div>
@@ -164,16 +164,16 @@
  </div>
 </div>
 
-<script>
+ <script>
  function tambahBarang() {
  const container = document.getElementById('dynamic-item-container');
  const row = document.createElement('div');
- row.className = 'flex flex-col sm:flex-row gap-4 item-row mt-4';
+ row.className = 'flex flex-col sm:flex-row gap-3 item-row mt-3';
  
  row.innerHTML = `
  <div class="w-full sm:w-1/3">
  <div class="relative">
- <select class="kategori-select block w-full pl-4 pr-10 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
+ <select class="kategori-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none">
  <option value="">-- Semua Kategori --</option>
  @foreach($kategoris as $kat)
  <option value="{{ $kat->id }}">{{ $kat->nama_kategori }}</option>
@@ -186,7 +186,7 @@
  </div>
  <div class="flex-1">
  <div class="relative">
- <select name="kode_barang[]" class="barang-select block w-full pl-4 pr-10 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none" required>
+ <select name="kode_barang[]" class="barang-select block w-full pl-4 pr-10 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm appearance-none" required>
  <option value="">-- Pilih Barang --</option>
  @foreach($barangs as $brg)
  <option value="{{ $brg->kode_barang }}" data-kategori="{{ $brg->kategori_id }}" data-stok="{{ $brg->stok_tersedia }}" style="display: none;" disabled>
@@ -200,10 +200,10 @@
  </div>
  </div>
  <div class="w-full sm:w-32">
- <input type="number" name="jumlah[]" class="block w-full px-4 py-3 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="Jumlah" min="1" required>
+ <input type="number" name="jumlah[]" class="block w-full px-4 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="Jumlah" min="1" required>
  </div>
  <div class="w-full sm:w-auto">
- <button type="button" class="w-full sm:w-12 h-full py-3 sm:py-0 flex items-center justify-center bg-rose-100 text-rose-600 rounded-xl hover:bg-rose-200 transition-colors shadow-sm" onclick="hapusBarang(this)">
+ <button type="button" class="w-full sm:w-12 h-full py-2 sm:py-0 flex items-center justify-center bg-rose-100 text-rose-600 rounded-xl hover:bg-rose-200 transition-colors shadow-sm" onclick="hapusBarang(this)">
  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
  </button>
  </div>

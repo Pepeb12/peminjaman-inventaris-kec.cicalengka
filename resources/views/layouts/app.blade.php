@@ -289,7 +289,7 @@
             </header>
 
             @php
-                $isFullPage = request()->routeIs('umpeg.barang.index', 'umpeg.peminjaman.index', 'umpeg.peminjam.index', 'umpeg.laporan.index');
+                $isFullPage = request()->routeIs('umpeg.barang.index', 'umpeg.barang.create', 'umpeg.barang.edit', 'umpeg.peminjaman.index', 'umpeg.peminjam.index', 'umpeg.laporan.index', 'peminjam.dashboard', 'peminjam.katalog.*', 'peminjam.pengajuan.*', 'peminjam.riwayat.*', 'peminjam.profil.*');
             @endphp
             <div class="flex-1 overflow-y-auto {{ $isFullPage ? '' : 'p-4 sm:p-6 lg:p-8 space-y-6' }}">
                 @yield('content')

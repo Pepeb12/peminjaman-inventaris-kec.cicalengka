@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="usecase-referensi" name="Use Case Referensi Buku">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Actors -->
+        <!-- Admin UMPEG (Top Left) -->
+        <mxCell id="actor_admin" value="Admin UMPEG" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="100" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Camat (Bottom Left) -->
+        <mxCell id="actor_camat" value="Camat" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="400" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam (Middle Right) -->
+        <mxCell id="actor_peminjam" value="Peminjam" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="580" y="250" width="40" height="60" as="geometry" />
+        </mxCell>
+
+
+        <!-- Use Cases -->
+        <!-- Pengajuan Peminjaman -->
+        <mxCell id="uc_pengajuan" value="Pengajuan&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="340" y="100" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Data Barang -->
+        <mxCell id="uc_barang" value="Data&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="340" y="200" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Laporan Peminjaman -->
+        <mxCell id="uc_lap_pinjam" value="Laporan&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="340" y="300" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Laporan Data Barang -->
+        <mxCell id="uc_lap_barang" value="Laporan&lt;br&gt;Data Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="340" y="400" width="140" height="60" as="geometry" />
+        </mxCell>
+
+
+        <!-- Lines / Edges -->
+        <!-- Admin to Use Cases -->
+        <mxCell id="edge_admin_1" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_pengajuan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_admin_2" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_admin_3" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_lap_pinjam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_admin_4" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_admin" target="uc_lap_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Camat to Use Cases -->
+        <mxCell id="edge_camat_1" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_camat" target="uc_lap_pinjam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_camat_2" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_camat" target="uc_lap_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam to Use Cases -->
+        <mxCell id="edge_peminjam_1" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_pengajuan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_peminjam_2" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="actor_peminjam" target="uc_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

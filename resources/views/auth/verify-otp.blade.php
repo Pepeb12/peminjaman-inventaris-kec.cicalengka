@@ -27,7 +27,7 @@
                     Verifikasi OTP
                 </h2>
                 <p class="mt-2 text-center text-sm text-slate-600 font-medium">
-                    Masukkan 6 digit kode OTP yang telah kami kirimkan ke <strong>Email</strong> Anda.
+                    masukkan 6 digit kode otp yang telah kami kirimkan ke <strong>gmail</strong> anda
                 </p>
             </div>
 
