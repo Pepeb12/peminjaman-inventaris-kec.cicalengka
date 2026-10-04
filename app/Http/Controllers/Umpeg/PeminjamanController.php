@@ -23,7 +23,7 @@ class PeminjamanController extends Controller
             $query->whereHas('peminjam', function($q) use ($search) {
                 $q->whereHas('user', function($uq) use ($search) {
                     $uq->where('name', 'like', '%' . $search . '%');
-                })->orWhere('instansi', 'like', '%' . $search . '%');
+                })->orWhere('nama_instansi', 'like', '%' . $search . '%');
             });
         }
 

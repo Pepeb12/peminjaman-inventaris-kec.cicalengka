@@ -77,10 +77,10 @@ class AuthController extends Controller
             'password.confirmed' => 'Password tidak sesuai',
             'password.regex' => 'Password harus mengandung kombinasi huruf besar, huruf kecil, dan angka',
             'email.unique' => 'Email telah digunakan',
-            'foto_profil.required' => 'Upload pas foto anda',
-            'foto_profil.image' => 'File harus berupa gambar',
-            'foto_profil.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif',
-            'foto_profil.max' => 'Ukuran gambar maksimal 2MB'
+            'foto_profil.required' => 'Upload KTP anda',
+            'foto_profil.image' => 'File KTP harus berupa gambar',
+            'foto_profil.mimes' => 'Format gambar KTP harus jpeg, png, jpg, atau gif',
+            'foto_profil.max' => 'Ukuran gambar KTP maksimal 2MB'
         ];
 
         $request->validate([

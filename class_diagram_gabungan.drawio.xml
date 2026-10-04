@@ -1,0 +1,225 @@
+<mxfile host="Electron" modified="2023-10-27T10:00:00.000Z" agent="Mozilla/5.0" version="22.0.8" type="device">
+  <diagram id="class_diagram" name="Class Diagram">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- User Class -->
+        <mxCell id="class_user" value="User (Admin / Peminjam)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="302" as="geometry" />
+        </mxCell>
+        <mxCell id="class_user_attr" value="- id&#xa;- name&#xa;- email&#xa;- password&#xa;- role&#xa;- foto_profil&#xa;- nip&#xa;- alamat" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_user">
+          <mxGeometry y="26" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="class_user_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_user">
+          <mxGeometry y="146" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_user_methods" value="+ login()&#xa;+ logout()&#xa;+ register()&#xa;+ kelolaProfil()&#xa;+ ubahPassword()&#xa;+ kelolaBarang()&#xa;+ verifikasiPengajuan()&#xa;+ verifikasiAkunPeminjam()&#xa;+ cetakLaporan()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_user">
+          <mxGeometry y="154" width="220" height="148" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam Class -->
+        <mxCell id="class_peminjam" value="Peminjam" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="220" height="258" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjam_attr" value="- id_peminjam&#xa;- user_id&#xa;- kode_peminjam&#xa;- nik&#xa;- jenis_peminjam&#xa;- nama_instansi&#xa;- kontak_penanggung_jawab&#xa;- is_verified&#xa;- status_akun" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_peminjam">
+          <mxGeometry y="26" width="220" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjam_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_peminjam">
+          <mxGeometry y="162" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjam_methods" value="+ lihatDataPeminjam()&#xa;+ pengajuanBarang()&#xa;+ lihatRiwayat()&#xa;+ verifikasiAkun()&#xa;+ hapusAkun()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_peminjam">
+          <mxGeometry y="170" width="220" height="88" as="geometry" />
+        </mxCell>
+
+        <!-- Barang Class -->
+        <mxCell id="class_barang" value="Barang (Katalog)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="620" y="40" width="180" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="class_barang_attr" value="- kode_barang&#xa;- nama_barang&#xa;- kategori_id&#xa;- stok_total&#xa;- stok_tersedia&#xa;- kondisi&#xa;- foto_barang&#xa;- deskripsi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_barang">
+          <mxGeometry y="26" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="class_barang_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_barang">
+          <mxGeometry y="146" width="180" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_barang_methods" value="+ tambahBarang()&#xa;+ ubahBarang()&#xa;+ hapusBarang()&#xa;+ lihatBarang()&#xa;+ cariBarang()&#xa;+ filterKategori()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_barang">
+          <mxGeometry y="154" width="180" height="94" as="geometry" />
+        </mxCell>
+
+        <!-- Kategori Class -->
+        <mxCell id="class_kategori" value="Kategori" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="920" y="40" width="160" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="class_kategori_attr" value="- id_kategori&#xa;- nama_kategori" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_kategori">
+          <mxGeometry y="26" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="class_kategori_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_kategori">
+          <mxGeometry y="66" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_kategori_methods" value="+ lihatKategori()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_kategori">
+          <mxGeometry y="74" width="160" height="22" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjaman Class -->
+        <mxCell id="class_peminjaman" value="Peminjaman (Pengajuan / Riwayat)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="420" width="220" height="332" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjaman_attr" value="- id_peminjaman&#xa;- peminjam_id&#xa;- tgl_pinjam&#xa;- tgl_kembali&#xa;- status&#xa;- surat_resmi&#xa;- pesan_tolak&#xa;- catatan_kembali" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_peminjaman">
+          <mxGeometry y="26" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjaman_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_peminjaman">
+          <mxGeometry y="146" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_peminjaman_methods" value="+ buatPengajuan()&#xa;+ uploadSuratResmi()&#xa;+ accPeminjaman()&#xa;+ tolakPeminjaman()&#xa;+ serahkanBarang()&#xa;+ terimaKembali()&#xa;+ ubahStatusPeminjaman()&#xa;+ kirimEmailPeminjam()&#xa;+ lihatRiwayat()&#xa;+ cetakBuktiPDF()&#xa;+ lihatStatusPengajuan()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_peminjaman">
+          <mxGeometry y="154" width="220" height="178" as="geometry" />
+        </mxCell>
+
+        <!-- DetailPeminjaman Class -->
+        <mxCell id="class_detail_peminjaman" value="Detail Peminjaman" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="640" y="420" width="180" height="162" as="geometry" />
+        </mxCell>
+        <mxCell id="class_detail_peminjaman_attr" value="- id_detail_peminjaman&#xa;- peminjaman_id&#xa;- kode_barang&#xa;- jumlah" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_detail_peminjaman">
+          <mxGeometry y="26" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="class_detail_peminjaman_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_detail_peminjaman">
+          <mxGeometry y="86" width="180" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_detail_peminjaman_methods" value="+ pilihBarang()&#xa;+ tentukanJumlah()&#xa;+ lihatDetail()&#xa;+ lihatBarangDipinjam()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_detail_peminjaman">
+          <mxGeometry y="94" width="180" height="68" as="geometry" />
+        </mxCell>
+
+        <!-- Laporan Class -->
+        <mxCell id="class_laporan" value="Laporan" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="900" y="420" width="160" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="class_laporan_attr" value="- bulan&#xa;- tahun&#xa;- waktu_cetak&#xa;- data_peminjaman" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_laporan">
+          <mxGeometry y="26" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="class_laporan_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="class_laporan">
+          <mxGeometry y="86" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class_laporan_methods" value="+ cetakLaporanPDF()&#xa;+ exportCSV()&#xa;+ filterBulanTahun()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class_laporan">
+          <mxGeometry y="94" width="160" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Relationships -->
+        
+        <!-- User to Peminjam (1 to 1) -->
+        <mxCell id="rel_user_peminjam" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="class_user" target="class_peminjam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_user_peminjam_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_user_peminjam">
+          <mxGeometry x="-0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_user_peminjam_2" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_user_peminjam">
+          <mxGeometry x="0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- User to Peminjaman (1 to N) -->
+        <mxCell id="rel_user_peminjaman" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="class_user" target="class_peminjaman">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+                <mxPoint x="450" y="191" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_user_peminjaman_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_user_peminjaman">
+          <mxGeometry x="-0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_user_peminjaman_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_user_peminjaman">
+          <mxGeometry x="0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Peminjam to Peminjaman (1 to N) -->
+        <mxCell id="rel_peminjam_peminjaman" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="class_peminjam" target="class_peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_peminjam_peminjaman_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjam_peminjaman">
+          <mxGeometry x="-0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_peminjam_peminjaman_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjam_peminjaman">
+          <mxGeometry x="0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="-10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Peminjaman to DetailPeminjaman (1 to N) -->
+        <mxCell id="rel_peminjaman_detail" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="class_peminjaman" target="class_detail_peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_peminjaman_detail_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjaman_detail">
+          <mxGeometry x="-0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_peminjaman_detail_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjaman_detail">
+          <mxGeometry x="0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="-10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Barang to DetailPeminjaman (1 to N) -->
+        <mxCell id="rel_barang_detail" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="class_barang" target="class_detail_peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_barang_detail_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_barang_detail">
+          <mxGeometry x="-0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_barang_detail_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_barang_detail">
+          <mxGeometry x="0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Kategori to Barang (1 to N) -->
+        <mxCell id="rel_kategori_barang" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="class_kategori" target="class_barang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_kategori_barang_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_kategori_barang">
+          <mxGeometry x="-0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="-10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_kategori_barang_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_kategori_barang">
+          <mxGeometry x="0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Peminjaman to Laporan (N to 1) -->
+        <mxCell id="rel_peminjaman_laporan" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endFill=0;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" parent="1" source="class_peminjaman" target="class_laporan">
+          <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="840" y="669" />
+                <mxPoint x="840" y="491" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_peminjaman_laporan_N" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjaman_laporan">
+          <mxGeometry x="-0.8" y="-2" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_peminjaman_laporan_1" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel_peminjaman_laporan">
+          <mxGeometry x="0.8" y="2" relative="1" as="geometry">
+            <mxPoint x="-10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

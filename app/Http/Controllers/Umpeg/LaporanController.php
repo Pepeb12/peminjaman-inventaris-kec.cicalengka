@@ -23,12 +23,12 @@ class LaporanController extends Controller
         ]);
 
         $query = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang'])
-                           ->where('status', 'Selesai'); // Biasanya laporan difokuskan pada yang sudah selesai
+            ->where('status', 'Selesai'); // Biasanya laporan difokuskan pada yang sudah selesai
 
         if ($request->bulan) {
             $query->whereMonth('tgl_pinjam', $request->bulan);
         }
-        
+
         if ($request->tahun) {
             $query->whereYear('tgl_pinjam', $request->tahun);
         }
@@ -44,7 +44,7 @@ class LaporanController extends Controller
 
         // Load view PDF dan atur ukuran kertas ke F4 / Folio (Legal)
         $pdf = Pdf::loadView('umpeg.laporan.pdf', $data)->setPaper('legal', 'landscape');
-        
+
         // Gunakan stream() agar PDF terbuka di browser (tidak langsung download)
         return $pdf->stream('Laporan_Inventaris_Cicalengka.pdf');
     }
@@ -57,12 +57,12 @@ class LaporanController extends Controller
         ]);
 
         $query = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang'])
-                           ->where('status', 'Selesai');
+            ->where('status', 'Selesai');
 
         if ($request->bulan) {
             $query->whereMonth('tgl_pinjam', $request->bulan);
         }
-        
+
         if ($request->tahun) {
             $query->whereYear('tgl_pinjam', $request->tahun);
         }
@@ -71,18 +71,18 @@ class LaporanController extends Controller
 
         $filename = "laporan_inventaris_" . date('Ymd_His') . ".csv";
         $headers = [
-            "Content-type"        => "text/csv",
+            "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$filename",
-            "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0"
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
         ];
 
         $columns = ['ID Transaksi', 'Tgl Pinjam', 'Tgl Kembali', 'Instansi Peminjam', 'Penanggung Jawab', 'Kontak', 'Alamat', 'Detail Barang Dipinjam'];
 
-        $callback = function() use($peminjamans, $columns) {
+        $callback = function () use ($peminjamans, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns, ';'); 
+            fputcsv($file, $columns, ';');
 
             foreach ($peminjamans as $trx) {
                 $barangList = [];
@@ -90,7 +90,7 @@ class LaporanController extends Controller
                     $namaBarang = $detail->barang->nama_barang ?? 'Dihapus';
                     $barangList[] = "{$namaBarang} ({$detail->jumlah} unit)";
                 }
-                
+
                 $row = [
                     $trx->id_peminjaman,
                     \Carbon\Carbon::parse($trx->tgl_pinjam)->format('Y-m-d H:i'),

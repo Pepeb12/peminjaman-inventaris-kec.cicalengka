@@ -154,12 +154,11 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-slate-700 text-sm font-bold mb-1.5 tracking-wide">Upload Pas Foto <span
-                            class="font-normal italic text-slate-500">(Ini akan menjadi foto profil
-                            peminjam)</span></label>
+                    <label class="block text-slate-700 text-sm font-bold mb-1.5 tracking-wide">Upload KTP <span
+                            class="font-normal italic text-slate-500">(Wajib upload scan/foto KTP asli)</span></label>
                     <div class="relative">
                         <input type="file" name="foto_profil" accept="image/*" required
-                            oninvalid="this.setCustomValidity('Upload pas foto anda')"
+                            oninvalid="this.setCustomValidity('Upload KTP anda')"
                             oninput="this.setCustomValidity('')"
                             class="block w-full text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-[#1e3a8a] hover:file:bg-blue-100 bg-white border border-blue-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition-colors cursor-pointer shadow-sm text-sm p-1.5">
                     </div>

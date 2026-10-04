@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="proses-bisnis" name="Proses Bisnis Peminjaman Inventaris Barang">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ============================================================ -->
+        <!-- ===== ROW 1 (TOP): left → right ===== -->
+        <!-- Alur: Peminjam → Registrasi → Admin → Verifikasi Akun →     -->
+        <!--        Peminjam → Pengajuan → Admin → Verifikasi Peminjaman  -->
+        <!-- ============================================================ -->
+
+        <!-- 1. Peminjam (actor, start) -->
+        <mxCell id="p1" value="Peminjam" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Registrasi Akun (ellipse) -->
+        <mxCell id="uc1" value="Registrasi&lt;br&gt;Akun" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="135" y="82" width="110" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- 3. Admin UMPEG (actor) -->
+        <mxCell id="a1" value="Admin UMPEG" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 4. Verifikasi Akun Peminjam (ellipse) -->
+        <mxCell id="uc2" value="Verifikasi&lt;br&gt;Akun&lt;br&gt;Peminjam" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="395" y="77" width="140" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 5. Peminjam (actor) -->
+        <mxCell id="p2" value="Peminjam" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="80" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 6. Pengajuan Peminjaman Barang (ellipse) -->
+        <mxCell id="uc3" value="Pengajuan&lt;br&gt;Peminjaman&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="685" y="77" width="150" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 7. Admin UMPEG (actor) -->
+        <mxCell id="a2" value="Admin UMPEG" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="890" y="80" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 8. Verifikasi Peminjaman (ellipse) -->
+        <mxCell id="uc4" value="Verifikasi&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="985" y="82" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================================ -->
+        <!-- ===== ROW 1 ARROWS (left → right) ===== -->
+        <!-- ============================================================ -->
+
+        <!-- Peminjam → Registrasi Akun -->
+        <mxCell id="e1" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="p1" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Registrasi Akun → Admin UMPEG -->
+        <mxCell id="e2" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc1" target="a1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin UMPEG → Verifikasi Akun Peminjam -->
+        <mxCell id="e3" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="a1" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Verifikasi Akun Peminjam → Peminjam -->
+        <mxCell id="e4" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc2" target="p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam → Pengajuan Peminjaman Barang -->
+        <mxCell id="e5" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="p2" target="uc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Pengajuan Peminjaman → Admin UMPEG -->
+        <mxCell id="e6" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc3" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin UMPEG → Verifikasi Peminjaman -->
+        <mxCell id="e7" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="a2" target="uc4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ============================================================ -->
+        <!-- ===== ROW 2 (BOTTOM): right → left ===== -->
+        <!-- Alur: Peminjam → Cetak Bukti → Admin → Penyerahan →         -->
+        <!--        Pengembalian → Membuat Laporan                        -->
+        <!-- ============================================================ -->
+
+        <!-- 9. Peminjam (actor, right side - connector from row 1) -->
+        <mxCell id="p3" value="Peminjam" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="290" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 10. Cetak Bukti Peminjaman (ellipse) -->
+        <mxCell id="uc5" value="Cetak Bukti&lt;br&gt;Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="815" y="295" width="135" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- 11. Admin UMPEG (actor) -->
+        <mxCell id="a3" value="Admin UMPEG" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="290" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 12. Penyerahan Barang (ellipse) -->
+        <mxCell id="uc6" value="Penyerahan&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="295" width="130" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- 13. Pengembalian Barang (ellipse) -->
+        <mxCell id="uc7" value="Pengembalian&lt;br&gt;Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="325" y="295" width="150" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- 14. Membuat Laporan (ellipse) -->
+        <mxCell id="uc8" value="Membuat&lt;br&gt;Laporan" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="130" y="295" width="130" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ============================================================ -->
+        <!-- ===== ROW 2 ARROWS (right → left) ===== -->
+        <!-- ============================================================ -->
+
+        <!-- Verifikasi Peminjaman → Peminjam (connector going down) -->
+        <mxCell id="e8" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc4" target="p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Peminjam → Cetak Bukti Peminjaman -->
+        <mxCell id="e9" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="p3" target="uc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Cetak Bukti Peminjaman → Admin UMPEG -->
+        <mxCell id="e10" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc5" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Admin UMPEG → Penyerahan Barang -->
+        <mxCell id="e11" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="a3" target="uc6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Penyerahan Barang → Pengembalian Barang -->
+        <mxCell id="e12" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc6" target="uc7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Pengembalian Barang → Membuat Laporan -->
+        <mxCell id="e13" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc7" target="uc8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ============================================================ -->
+        <!-- ===== ENDING SECTION (bottom-left) ===== -->
+        <!-- ============================================================ -->
+
+        <!-- 15. Menerima Laporan (ellipse) -->
+        <mxCell id="uc9" value="Menerima&lt;br&gt;Laporan" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="140" y="430" width="130" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- 16. Camat (actor, end) -->
+        <mxCell id="c1" value="Camat" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="510" width="40" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Membuat Laporan → Menerima Laporan -->
+        <mxCell id="e14" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc8" target="uc9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Menerima Laporan → Camat -->
+        <mxCell id="e15" style="rounded=0;orthogonalLoop=1;html=1;endArrow=block;endFill=1;strokeColor=#000000;" edge="1" parent="1" source="uc9" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ============================================================ -->
+        <!-- ===== TITLE LABEL (bottom center) ===== -->
+        <!-- ============================================================ -->
+        <mxCell id="title" value="Gambar 4.1 Proses Bisnis Peminjaman Inventaris Barang di Kecamatan Cicalengka" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="625" width="550" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
