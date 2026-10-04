@@ -92,30 +92,35 @@
                 </thead>
                 <tbody class="divide-y divide-slate-200">
                     @forelse($peminjamans as $trx)
-                        <tr class="hover:bg-white transition-colors">
-                            <td class="px-3 py-3 font-bold text-slate-900">
+                        @php
+                            $isLate = ($trx->status == 'Dipinjam' && \Carbon\Carbon::parse($trx->tgl_kembali)->isPast());
+                            $textClass = $isLate ? '!text-red-600 font-bold' : '';
+                            $bgClass = $isLate ? 'bg-red-50' : 'hover:bg-white';
+                        @endphp
+                        <tr class="{{ $bgClass }} transition-colors">
+                            <td class="px-3 py-3 font-bold {{ $isLate ? 'text-red-600' : 'text-slate-900' }}">
                                 {{ $trx->id_peminjaman }}
                             </td>
                             <td class="px-3 py-3">
-                                <button onclick="openContactModal('{{ $trx->peminjam->id_peminjam }}')" class="font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
+                                <button onclick="openContactModal('{{ $trx->peminjam->id_peminjam }}')" class="font-medium {{ $isLate ? '!text-red-600' : 'text-blue-600 hover:text-blue-800' }} hover:underline flex items-center gap-1.5 transition-colors text-left" title="Hubungi Peminjam">
                                     {{ $trx->peminjam->user->name ?? '-' }}
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                                 </button>
-                                <p class="text-[11px] text-slate-500 font-bold tracking-wider mt-0.5">KODE: {{ $trx->peminjam->kode_peminjam ?? '-' }}</p>
-                                <p class="text-[11px] text-slate-500 font-bold tracking-wider">NIK:
+                                <p class="text-[11px] {{ $isLate ? '!text-red-600' : 'text-slate-500' }} font-bold tracking-wider mt-0.5">KODE: {{ $trx->peminjam->kode_peminjam ?? '-' }}</p>
+                                <p class="text-[11px] {{ $isLate ? '!text-red-600' : 'text-slate-500' }} font-bold tracking-wider">NIK:
                                     {{ $trx->peminjam->nik ?? '-' }}</p>
                             </td>
                             <td class="px-3 py-3">
-                                <p class="text-[11px] text-[#064e3b] font-bold uppercase tracking-wider mt-0.5">
+                                <p class="text-[11px] {{ $isLate ? '!text-red-600' : 'text-[#064e3b]' }} font-bold uppercase tracking-wider mt-0.5">
                                     {{ $trx->peminjam?->nama_instansi ?? $trx->peminjam?->jenis_peminjam }}</p>
                             </td>
                             <td class="px-3 py-3">
-                                <p class="text-slate-800 font-medium">
+                                <p class="{{ $isLate ? '!text-red-600 font-bold' : 'text-slate-800 font-medium' }}">
                                     {{ strtolower(\Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('l j F Y H:i')) }}
                                 </p>
                             </td>
                             <td class="px-3 py-3">
-                                <p class="text-slate-800 font-medium">
+                                <p class="{{ $isLate ? '!text-red-600 font-bold' : 'text-slate-800 font-medium' }}">
                                     {{ strtolower(\Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('l j F Y H:i')) }}
                                 </p>
                             </td>

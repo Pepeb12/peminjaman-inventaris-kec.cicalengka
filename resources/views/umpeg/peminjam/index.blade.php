@@ -38,6 +38,10 @@
  <div>
  <div class="font-medium text-slate-800">{{ $peminjam->user->name ?? '-' }}</div>
  <div class="text-[10px] text-black font-bold tracking-widest mt-0.5">NIK: {{ $peminjam->nik ?? '-' }}</div>
+ @php $ktpUrl = $peminjam->foto_ktp ? asset('storage/' . $peminjam->foto_ktp) : (isset($peminjam->user->foto_profil) ? asset('storage/' . $peminjam->user->foto_profil) : null); @endphp
+ @if($ktpUrl)
+ <div class="mt-1"><button type="button" onclick="openImageModal('{{ $ktpUrl }}', 'KTP {{ $peminjam->user->name ?? 'Pengguna' }}')" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 hover:underline">Lihat KTP</button></div>
+ @endif
  </div>
  </div>
  </td>
@@ -69,9 +73,22 @@
  <div class="flex flex-col gap-2 items-center">
  @if($peminjam->status_akun === 'Disetujui' || $peminjam->is_verified)
  <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-200 w-fit">Disetujui</span>
+ <div class="flex gap-3 mt-1 items-center justify-center">
+     <form action="{{ route('umpeg.peminjam.verify', $peminjam->id_peminjam) }}" method="POST">
+         @csrf
+         <button type="submit" onclick="confirmSubmit(event, 'Batalkan persetujuan untuk akun ini? Mereka tidak akan bisa login.')" class="text-[11px] font-medium text-amber-500 hover:text-amber-700 hover:underline">Batalkan</button>
+     </form>
+     <span class="text-slate-300 text-xs">|</span>
+     <form action="{{ route('umpeg.peminjam.nonaktif', $peminjam->id_peminjam) }}" method="POST">
+         @csrf
+         <button type="submit" onclick="confirmSubmit(event, 'Nonaktifkan akun ini? Mereka tidak akan bisa login.')" class="text-[11px] font-medium text-slate-500 hover:text-slate-700 hover:underline">Nonaktifkan</button>
+     </form>
+ </div>
+ @elseif($peminjam->status_akun === 'Nonaktif')
+ <span class="px-3 py-1 bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-slate-300 w-fit">Nonaktif</span>
  <form action="{{ route('umpeg.peminjam.verify', $peminjam->id_peminjam) }}" method="POST">
  @csrf
- <button type="submit" onclick="confirmSubmit(event, 'Batalkan persetujuan untuk akun ini? Mereka tidak akan bisa login.')" class="text-xs font-medium text-rose-500 hover:text-rose-700 hover:underline">Batalkan</button>
+ <button type="submit" onclick="confirmSubmit(event, 'Aktifkan kembali akun ini? Mereka akan bisa login.')" class="mt-1 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors">Aktifkan</button>
  </form>
  @elseif($peminjam->status_akun === 'Ditolak')
  <span class="px-3 py-1 bg-rose-100 text-rose-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-rose-200 w-fit">Ditolak</span>

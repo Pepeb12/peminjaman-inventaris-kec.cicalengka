@@ -109,12 +109,20 @@
                         </div>
                         @php
                             $pendingCount = \App\Models\Peminjaman::whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti'])->count();
+                            $lateCount = \App\Models\Peminjaman::where('status', 'Dipinjam')->where('tgl_kembali', '<', \Carbon\Carbon::now())->count();
                          @endphp
-                        @if($pendingCount > 0)
-                            <span class="bg-rose-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
-                                {{ $pendingCount }}
-                            </span>
-                        @endif
+                        <div class="flex gap-1">
+                            @if($lateCount > 0)
+                                <span class="bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm animate-pulse" title="{{ $lateCount }} Telat">
+                                    {{ $lateCount }} Telat
+                                </span>
+                            @endif
+                            @if($pendingCount > 0)
+                                <span class="bg-rose-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
+                                    {{ $pendingCount }}
+                                </span>
+                            @endif
+                        </div>
                     </a>
 
                     <a href="{{ route('umpeg.peminjam.index') }}"
@@ -195,12 +203,20 @@
                         </div>
                         @php
                             $pendingPeminjaman = \App\Models\Peminjaman::where('peminjam_id', auth()->user()->peminjam->id_peminjam ?? 0)->whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti'])->count();
+                            $latePeminjaman = \App\Models\Peminjaman::where('peminjam_id', auth()->user()->peminjam->id_peminjam ?? 0)->where('status', 'Dipinjam')->where('tgl_kembali', '<', \Carbon\Carbon::now())->count();
                         @endphp
-                        @if($pendingPeminjaman > 0)
-                            <span class="bg-amber-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
-                                {{ $pendingPeminjaman }}
-                            </span>
-                        @endif
+                        <div class="flex gap-1">
+                            @if($latePeminjaman > 0)
+                                <span class="bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm animate-pulse" title="{{ $latePeminjaman }} Telat">
+                                    {{ $latePeminjaman }} Telat
+                                </span>
+                            @endif
+                            @if($pendingPeminjaman > 0)
+                                <span class="bg-amber-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">
+                                    {{ $pendingPeminjaman }}
+                                </span>
+                            @endif
+                        </div>
                     </a>
 
                     <a href="{{ route('peminjam.profil.index') }}"

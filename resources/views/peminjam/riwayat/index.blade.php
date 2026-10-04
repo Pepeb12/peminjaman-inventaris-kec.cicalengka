@@ -31,17 +31,22 @@
  </thead>
  <tbody class="divide-y divide-slate-200">
  @forelse($riwayat as $trx)
- <tr class="hover:bg-white transition-colors">
- <td class="px-6 py-4 font-bold text-slate-900">{{ $trx->id_peminjaman }}</td>
- <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
- <td class="px-6 py-4 font-medium text-black">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
+ @php
+     $isLate = ($trx->status == 'Dipinjam' && \Carbon\Carbon::parse($trx->tgl_kembali)->isPast());
+     $textClass = $isLate ? '!text-red-600 font-bold' : '';
+     $bgClass = $isLate ? 'bg-red-50' : 'hover:bg-white';
+ @endphp
+ <tr class="{{ $bgClass }} transition-colors">
+ <td class="px-6 py-4 font-bold {{ $isLate ? 'text-red-600' : 'text-slate-900' }}">{{ $trx->id_peminjaman }}</td>
+ <td class="px-6 py-4 font-medium {{ $isLate ? 'text-red-600' : 'text-black' }}">{{ \Carbon\Carbon::parse($trx->tgl_pinjam)->translatedFormat('j F Y H:i') }}</td>
+ <td class="px-6 py-4 font-medium {{ $isLate ? 'text-red-600' : 'text-black' }}">{{ \Carbon\Carbon::parse($trx->tgl_kembali)->translatedFormat('j F Y H:i') }}</td>
  <td class="px-6 py-4">
  @if($trx->status == 'Menunggu Proses')
  <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Menunggu ACC Umum Kepegawaian</span>
  @elseif($trx->status == 'Menunggu Cetak Bukti')
  <span class="text-[10px] font-bold text-sky-700 uppercase tracking-widest">Serahkan Cetak Bukti</span>
  @elseif($trx->status == 'Dipinjam')
- <span class="text-[10px] font-bold text-indigo-700 uppercase tracking-widest">Dipinjam</span>
+ <span class="text-[10px] font-bold {{ $isLate ? 'text-red-600' : 'text-indigo-700' }} uppercase tracking-widest">Dipinjam</span>
  @elseif($trx->status == 'Selesai')
  <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Selesai</span>
  @else
@@ -58,10 +63,10 @@
  @endif
  </td>
  <td class="px-6 py-4">
- <ul class="list-disc list-inside text-slate-600 text-xs space-y-1">
+ <ul class="list-disc list-inside {{ $isLate ? 'text-red-600' : 'text-slate-600' }} text-xs space-y-1">
  @foreach($trx->detailPeminjaman as $detail)
  <li class="mb-1">
-     {{ $detail->barang->nama_barang ?? 'Barang Terhapus' }} <span class="font-bold text-slate-800">({{ $detail->jumlah }}x)</span>
+     {{ $detail->barang->nama_barang ?? 'Barang Terhapus' }} <span class="font-bold {{ $isLate ? 'text-red-600' : 'text-slate-800' }}">({{ $detail->jumlah }}x)</span>
  </li>
  @endforeach
  </ul>

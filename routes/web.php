@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/peminjam', [UmpegPeminjamController::class, 'index'])->name('peminjam.index');
         Route::post('/peminjam/{id}/verify', [UmpegPeminjamController::class, 'verify'])->name('peminjam.verify');
         Route::post('/peminjam/{id}/tolak', [UmpegPeminjamController::class, 'tolak'])->name('peminjam.tolak');
+        Route::post('/peminjam/{id}/nonaktif', [UmpegPeminjamController::class, 'nonaktif'])->name('peminjam.nonaktif');
         Route::delete('/peminjam/{id}', [UmpegPeminjamController::class, 'destroy'])->name('peminjam.destroy');
 
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');

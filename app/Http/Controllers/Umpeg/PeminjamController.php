@@ -18,7 +18,7 @@ class PeminjamController extends Controller
     public function verify(string $id)
     {
         $peminjam = Peminjam::findOrFail($id);
-        
+
         $peminjam->is_verified = !$peminjam->is_verified;
         $peminjam->status_akun = $peminjam->is_verified ? 'Disetujui' : 'Menunggu';
         $peminjam->save();
@@ -30,7 +30,7 @@ class PeminjamController extends Controller
     public function tolak(string $id)
     {
         $peminjam = Peminjam::findOrFail($id);
-        
+
         $peminjam->status_akun = 'Ditolak';
         $peminjam->is_verified = false;
         $peminjam->save();
@@ -38,17 +38,28 @@ class PeminjamController extends Controller
         return back()->with('success', "Pendaftaran peminjam {$peminjam->user->name} berhasil ditolak.");
     }
 
+    public function nonaktif(string $id)
+    {
+        $peminjam = Peminjam::findOrFail($id);
+
+        $peminjam->status_akun = 'Nonaktif';
+        $peminjam->is_verified = false;
+        $peminjam->save();
+
+        return back()->with('success', "Akun peminjam {$peminjam->user->name} berhasil dinonaktifkan.");
+    }
+
     public function destroy(string $id)
     {
         try {
             $peminjam = Peminjam::findOrFail($id);
             $user = $peminjam->user;
-            
+
             // Kembalikan stok untuk transaksi yang masih aktif (belum selesai/ditolak)
             $activePeminjamans = $peminjam->peminjaman()
-                                          ->whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti', 'Dipinjam'])
-                                          ->with('detailPeminjaman.barang')
-                                          ->get();
+                ->whereIn('status', ['Menunggu Proses', 'Menunggu Cetak Bukti', 'Dipinjam'])
+                ->with('detailPeminjaman.barang')
+                ->get();
 
             foreach ($activePeminjamans as $peminjaman) {
                 foreach ($peminjaman->detailPeminjaman as $detail) {
@@ -57,7 +68,7 @@ class PeminjamController extends Controller
                     }
                 }
             }
-            
+
             $peminjam->delete();
             if ($user) {
                 $user->delete();

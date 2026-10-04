@@ -10,7 +10,7 @@ class Peminjam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'kode_peminjam', 'nik', 'jenis_peminjam', 'nama_instansi', 'kontak_penanggung_jawab', 'is_verified', 'status_akun'
+        'user_id', 'kode_peminjam', 'nik', 'jenis_peminjam', 'nama_instansi', 'kontak_penanggung_jawab', 'is_verified', 'status_akun', 'foto_ktp'
     ];
     protected $primaryKey = 'id_peminjam';
 

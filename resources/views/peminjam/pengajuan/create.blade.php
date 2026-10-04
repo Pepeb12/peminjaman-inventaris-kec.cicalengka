@@ -58,7 +58,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_pinjam_date" id="tgl_pinjam_date" value="{{ old('tgl_pinjam_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_pinjam_date" id="tgl_pinjam_date" value="{{ old('tgl_pinjam_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" autocomplete="off" required>
  </div>
  </div>
  <div>
@@ -67,7 +67,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
  </div>
- <input type="text" name="tgl_pinjam_time" id="tgl_pinjam_time" value="{{ old('tgl_pinjam_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
+ <input type="text" name="tgl_pinjam_time" id="tgl_pinjam_time" value="{{ old('tgl_pinjam_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" autocomplete="off" required>
  </div>
  </div>
  </div>
@@ -80,7 +80,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
  </div>
- <input type="text" name="tgl_kembali_date" id="tgl_kembali_date" value="{{ old('tgl_kembali_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" required>
+ <input type="text" name="tgl_kembali_date" id="tgl_kembali_date" value="{{ old('tgl_kembali_date') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="dd/mm/yyyy" autocomplete="off" required>
  </div>
  </div>
  <div>
@@ -89,7 +89,7 @@
  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
  <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
  </div>
- <input type="text" name="tgl_kembali_time" id="tgl_kembali_time" value="{{ old('tgl_kembali_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" required>
+ <input type="text" name="tgl_kembali_time" id="tgl_kembali_time" value="{{ old('tgl_kembali_time') }}" class="block w-full pl-11 pr-3 py-2 bg-white border border-emerald-200 rounded-xl text-slate-900 focus:outline-none focus:bg-white focus:border-[#064e3b] focus:ring-1 focus:ring-[#064e3b] transition-colors text-sm shadow-sm" placeholder="HH:mm" autocomplete="off" required>
  </div>
  </div>
  </div>
@@ -242,7 +242,7 @@
  }, true); // true = Use capture phase
 
  document.addEventListener('input', function(e) {
-     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
+     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang' || e.target.validationMessage === 'perbaiki tanggal, tidak boleh kurang dari hari ini')) {
          e.target.setCustomValidity('');
      }
      checkDates();
@@ -250,7 +250,7 @@
  });
 
  document.addEventListener('change', function(e) {
-     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang')) {
+     if (e.target.validity.customError && (e.target.validationMessage === 'isi bagian ini' || e.target.validationMessage === 'jam kembali harus lebih dari jam pinjam' || e.target.validationMessage === 'stok tersedia kurang' || e.target.validationMessage === 'perbaiki tanggal, tidak boleh kurang dari hari ini')) {
          e.target.setCustomValidity('');
      }
      checkDates();
@@ -304,6 +304,22 @@
          
          const pinjam = parseDate(tglPinjamDate.value + ' ' + tglPinjamTime.value);
          const kembali = parseDate(tglKembaliDate.value + ' ' + tglKembaliTime.value);
+         
+         const today = new Date();
+         today.setHours(0, 0, 0, 0);
+         
+         if (pinjam && pinjam.getTime() < today.getTime()) {
+             tglPinjamDate.setCustomValidity('perbaiki tanggal, tidak boleh kurang dari hari ini');
+         } else {
+             tglPinjamDate.setCustomValidity('');
+         }
+
+         if (kembali && kembali.getTime() < today.getTime()) {
+             tglKembaliDate.setCustomValidity('perbaiki tanggal, tidak boleh kurang dari hari ini');
+         } else {
+             tglKembaliDate.setCustomValidity('');
+         }
+
          if (pinjam && kembali && kembali.getTime() <= pinjam.getTime()) {
              tglKembaliTime.setCustomValidity('jam kembali harus lebih dari jam pinjam');
          } else {
@@ -316,7 +332,15 @@
      flatpickr("#tgl_pinjam_date", {
          dateFormat: "d/m/Y",
          locale: "id",
-         allowInput: true
+         allowInput: true,
+         minDate: "today"
+     });
+     
+     flatpickr("#tgl_kembali_date", {
+         dateFormat: "d/m/Y",
+         locale: "id",
+         allowInput: true,
+         minDate: "today"
      });
      
      flatpickr("#tgl_pinjam_time", {
@@ -324,12 +348,6 @@
          noCalendar: true,
          time_24hr: true,
          dateFormat: "H:i",
-         allowInput: true
-     });
-     
-     flatpickr("#tgl_kembali_date", {
-         dateFormat: "d/m/Y",
-         locale: "id",
          allowInput: true
      });
      

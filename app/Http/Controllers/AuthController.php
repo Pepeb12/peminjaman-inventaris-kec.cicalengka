@@ -37,6 +37,10 @@ class AuthController extends Controller
                     return back()->withErrors(['email' => 'Akun Anda telah ditolak oleh admin'])->onlyInput('email');
                 }
                 
+                if ($status === 'Nonaktif') {
+                    return back()->withErrors(['email' => 'Akun Anda dinonaktifkan'])->onlyInput('email');
+                }
+                
                 return back()->withErrors(['email' => 'Akun Anda belum disetujui oleh Umum Kepegawaian, harap tunggu proses verifikasi'])->onlyInput('email');
             }
 
@@ -104,7 +108,7 @@ class AuthController extends Controller
         // Handle file upload
         $fotoPath = null;
         if ($request->hasFile('foto_profil')) {
-            $fotoPath = $request->file('foto_profil')->store('profil', 'public');
+            $fotoPath = $request->file('foto_profil')->store('ktp', 'public');
         }
 
         // Insert ke 2 tabel menggunakan Database Transaction
@@ -134,7 +138,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => 'peminjam', // Paksa set role peminjam saat register publik
                 'alamat' => $request->alamat,
-                'foto_profil' => $fotoPath,
+                'foto_profil' => null,
             ]);
 
             $peminjam = Peminjam::create([
@@ -144,6 +148,7 @@ class AuthController extends Controller
                 'jenis_peminjam' => $request->jenis_peminjam,
                 'nama_instansi' => $request->nama_instansi,
                 'kontak_penanggung_jawab' => $request->kontak_penanggung_jawab,
+                'foto_ktp' => $fotoPath,
             ]);
 
             return ['user' => $user, 'peminjam' => $peminjam];

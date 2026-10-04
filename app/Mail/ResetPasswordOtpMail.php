@@ -31,7 +31,7 @@ class ResetPasswordOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('mail.from.address', 'onboarding@resend.dev'), 'Inventaris Barang Kecamatan Cicalengka'),
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
             subject: 'Kode OTP Reset Password',
         );
     }
