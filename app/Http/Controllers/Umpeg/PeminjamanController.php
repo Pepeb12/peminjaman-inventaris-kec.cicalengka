@@ -20,23 +20,23 @@ class PeminjamanController extends Controller
         $query = Peminjaman::with(['peminjam.user', 'detailPeminjaman.barang']);
 
         if ($search) {
-            $query->whereHas('peminjam', function($q) use ($search) {
-                $q->whereHas('user', function($uq) use ($search) {
+            $query->whereHas('peminjam', function ($q) use ($search) {
+                $q->whereHas('user', function ($uq) use ($search) {
                     $uq->where('name', 'like', '%' . $search . '%');
                 })->orWhere('nama_instansi', 'like', '%' . $search . '%');
             });
         }
 
         if ($kategori) {
-            $query->whereHas('peminjam', function($q) use ($kategori) {
+            $query->whereHas('peminjam', function ($q) use ($kategori) {
                 $q->where('jenis_peminjam', $kategori);
             });
         }
 
         $peminjamans = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
-        
+
         $semuaPeminjam = Peminjam::with('user')->get();
-                                 
+
         return view('umpeg.peminjaman.index', compact('peminjamans', 'semuaPeminjam', 'search', 'kategori'));
     }
 
@@ -44,7 +44,7 @@ class PeminjamanController extends Controller
     public function accPeminjaman(string $id)
     {
         $peminjaman = Peminjaman::with('detailPeminjaman.barang')->findOrFail($id);
-        
+
         if ($peminjaman->status !== 'Menunggu Proses') {
             return back()->with('error', 'Status tidak valid untuk di-ACC.');
         }
@@ -66,7 +66,7 @@ class PeminjamanController extends Controller
     public function serahkanBarang(string $id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        
+
         if ($peminjaman->status !== 'Menunggu Cetak Bukti') {
             return back()->with('error', 'Status tidak valid untuk penyerahan barang.');
         }
@@ -85,7 +85,7 @@ class PeminjamanController extends Controller
     public function terimaBarang(Request $request, string $id)
     {
         $peminjaman = Peminjaman::with('detailPeminjaman.barang')->findOrFail($id);
-        
+
         if ($peminjaman->status !== 'Dipinjam') {
             return back()->with('error', 'Barang belum berstatus dipinjam.');
         }
@@ -111,25 +111,25 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Gagal memproses pengembalian barang.');
         }
     }
-    
+
     public function tolakPeminjaman(Request $request, string $id)
     {
         $peminjaman = Peminjaman::with('detailPeminjaman.barang')->findOrFail($id);
-        
+
         DB::beginTransaction();
         try {
             $peminjaman->update([
                 'status' => 'Ditolak',
                 'pesan_tolak' => $request->input('pesan_tolak')
             ]);
-            
+
             // Kembalikan stok karena pengajuan ditolak
             foreach ($peminjaman->detailPeminjaman as $detail) {
                 if ($detail->barang) {
                     $detail->barang->increment('stok_tersedia', $detail->jumlah);
                 }
             }
-            
+
             DB::commit();
             return back()->with('success', "Peminjaman {$id} telah ditolak dan stok dikembalikan.");
         } catch (\Exception $e) {
