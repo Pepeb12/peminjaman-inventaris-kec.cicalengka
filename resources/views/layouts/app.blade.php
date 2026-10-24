@@ -37,6 +37,11 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(30, 58, 138, 0.5);
         }
+        .placeholder-black::placeholder,
+        .placeholder-black::-webkit-input-placeholder {
+            color: #000000 !important;
+            opacity: 1 !important;
+        }
     </style>
 </head>
 
