@@ -28,19 +28,25 @@
  <tr class="hover:bg-white transition-colors">
  <td class="px-3 py-3">
  <div class="flex items-center gap-3">
- <div class="w-10 h-10 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center overflow-hidden shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageModal(this.querySelector('img') ? this.querySelector('img').src : '', 'Foto {{ $peminjam->user->name ?? 'Pengguna' }}')">
- @if(isset($peminjam->user->foto_profil) && $peminjam->user->foto_profil)
- <img src="{{ asset('storage/' . $peminjam->user->foto_profil) }}" class="w-full h-full object-cover">
- @else
- <span class="text-xs font-bold text-slate-500">{{ substr($peminjam->user->name ?? 'U', 0, 1) }}</span>
- @endif
+ @php
+     $hasFoto = !empty($peminjam->user->foto_profil);
+     $fotoUrl = $hasFoto ? asset('storage/' . $peminjam->user->foto_profil) : asset('img/default-avatar.svg');
+ @endphp
+ <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center overflow-hidden shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity" 
+     onclick="openImageModal('{{ $fotoUrl }}', '{{ asset('img/default-avatar.svg') }}')"
+     title="{{ $hasFoto ? 'Klik untuk memperbesar foto' : 'Foto kosong (belum diunggah)' }}">
+     @if($hasFoto)
+         <img src="{{ $fotoUrl }}" class="w-full h-full object-cover" onerror="this.src='{{ asset('img/default-avatar.svg') }}'">
+     @else
+         <img src="{{ asset('img/default-avatar.svg') }}" class="w-full h-full object-cover p-1 bg-slate-100" alt="Foto Kosong">
+     @endif
  </div>
  <div>
  <div class="font-medium text-slate-800">{{ $peminjam->user->name ?? '-' }}</div>
  <div class="text-[10px] text-black font-bold tracking-widest mt-0.5">NIK: {{ $peminjam->nik ?? '-' }}</div>
- @php $ktpUrl = $peminjam->foto_ktp ? asset('storage/' . $peminjam->foto_ktp) : (isset($peminjam->user->foto_profil) ? asset('storage/' . $peminjam->user->foto_profil) : null); @endphp
+ @php $ktpUrl = $peminjam->foto_ktp ? asset('storage/' . $peminjam->foto_ktp) : ($hasFoto ? asset('storage/' . $peminjam->user->foto_profil) : null); @endphp
  @if($ktpUrl)
- <div class="mt-1"><button type="button" onclick="openImageModal('{{ $ktpUrl }}', 'KTP {{ $peminjam->user->name ?? 'Pengguna' }}')" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 hover:underline">Lihat KTP</button></div>
+ <div class="mt-1"><button type="button" onclick="openImageModal('{{ $ktpUrl }}', '{{ asset('img/default-avatar.svg') }}')" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 hover:underline">Lihat KTP</button></div>
  @endif
  </div>
  </div>

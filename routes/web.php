@@ -7,7 +7,6 @@ use App\Http\Controllers\Umpeg\PeminjamanController;
 use App\Http\Controllers\Umpeg\LaporanController;
 use App\Http\Controllers\Umpeg\DashboardController as UmpegDashboardController;
 use App\Http\Controllers\Umpeg\PeminjamController as UmpegPeminjamController;
-use App\Http\Controllers\Umpeg\ProfilController as UmpegProfilController;
 
 use App\Http\Controllers\Peminjam\DashboardController as PeminjamDashboardController;
 use App\Http\Controllers\Peminjam\PengajuanController;

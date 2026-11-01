@@ -72,7 +72,7 @@
  Kode: <span class="font-bold text-slate-700">{{ $barang->kode_barang }}</span>
  </p>
  
- <p class="text-sm text-slate-600 line-clamp-2 mb-4 flex-1">
+ <p class="text-sm text-black line-clamp-2 mb-4 flex-1">
  {{ $barang->deskripsi ?? 'Tidak ada deskripsi.' }}
  </p>
  

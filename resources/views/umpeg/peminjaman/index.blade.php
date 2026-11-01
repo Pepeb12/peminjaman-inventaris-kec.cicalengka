@@ -189,7 +189,7 @@
                                                             <div>
                                                                 <h4 class="font-bold text-slate-800 text-sm">{{ $detail->barang->nama_barang ?? 'Barang Terhapus' }}</h4>
                                                                 @if(isset($detail->barang->deskripsi) && !empty($detail->barang->deskripsi))
-                                                                    <p class="text-xs text-slate-500 mt-1 italic">{{ $detail->barang->deskripsi }}</p>
+                                                                    <p class="text-xs text-black mt-1 italic">{{ $detail->barang->deskripsi }}</p>
                                                                 @endif
                                                             </div>
                                                             <span class="font-extrabold text-slate-700 bg-slate-100 px-2 py-1 rounded text-xs">{{ $detail->jumlah }}x</span>

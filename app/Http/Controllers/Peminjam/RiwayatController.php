@@ -46,9 +46,12 @@ class RiwayatController extends Controller
                                 ->where('peminjam_id', $peminjamId)
                                 ->firstOrFail();
 
-        // Bisa dicetak jika statusnya Menunggu Cetak Bukti, Dipinjam, atau Selesai
-        if (!in_array($peminjaman->status, ['Menunggu Cetak Bukti', 'Dipinjam', 'Selesai'])) {
-            return back()->with('error', 'Bukti hanya bisa dicetak untuk pengajuan yang telah disetujui.');
+        if ($peminjaman->status === 'Menunggu Proses') {
+            return back()->with('error', 'Menunggu persetujuan umum kepegawaian.');
+        }
+
+        if ($peminjaman->status === 'Ditolak') {
+            return back()->with('error', 'Bukti tidak dapat dicetak untuk pengajuan yang ditolak.');
         }
 
         $pdf = Pdf::loadView('peminjam.riwayat.pdf_bukti', compact('peminjaman'));

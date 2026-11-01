@@ -87,7 +87,7 @@
  <td class="px-6 py-4 whitespace-normal min-w-[200px]">
  <div class="font-bold text-slate-900 text-sm">{{ $item->nama_barang }}</div>
  @if($item->deskripsi)
-     <div class="text-[10px] sm:text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2 md:line-clamp-none" title="{{ $item->deskripsi }}">{{ $item->deskripsi }}</div>
+     <div class="text-[10px] sm:text-xs text-black mt-1 leading-relaxed line-clamp-2 md:line-clamp-none" title="{{ $item->deskripsi }}">{{ $item->deskripsi }}</div>
  @endif
  </td>
  <td class="px-6 py-4 font-medium text-slate-800 whitespace-normal">
