@@ -29,7 +29,7 @@
  <div class="flex items-center gap-4">
  <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-slate-100 shadow-md flex-shrink-0 bg-slate-200 flex items-center justify-center">
  @if($user->foto_profil)
- <img src="{{ asset('storage/' . $user->foto_profil) }}" class="w-full h-full object-cover">
+ <img src="{{ asset('storage/' . $user->foto_profil) }}" class="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity" onclick="openImageModal(this.src)" title="Klik untuk memperbesar">
  @else
  <span class="text-2xl font-bold text-slate-400">{{ substr($user->name, 0, 1) }}</span>
  @endif

@@ -284,11 +284,17 @@
                         </p>
                     </div>
                     @if(auth()->user()->role === 'umpeg')
+                        @php
+                            $adminPhoto = auth()->user()->foto_profil ? asset('storage/' . auth()->user()->foto_profil) : asset('img/admin.jpg');
+                        @endphp
                         <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-200 flex items-center justify-center text-white font-bold shadow-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-                            data-role="umpeg" data-name="NENI RUNINGDIYAH, S. KOM" data-jabatan="Umum Kepegawaian"
-                            data-nip="NIP. 19810924 201004 2 001"
-                            onclick="handleProfileClick(this, '{{ asset('img/admin.jpg') }}')">
-                            <img src="{{ asset('img/admin.jpg') }}" class="w-full h-full object-cover"
+                            data-role="umpeg" 
+                            data-name="{{ auth()->user()->name ?: 'NENI RUNINGDIYAH, S. KOM' }}" 
+                            data-jabatan="Umum Kepegawaian"
+                            data-nip="{{ auth()->user()->nip ? 'NIP. ' . auth()->user()->nip : 'NIP. 19810924 201004 2 001' }}"
+                            data-url="{{ route('umpeg.profil.index') }}"
+                            onclick="handleProfileClick(this, '{{ $adminPhoto }}')">
+                            <img src="{{ $adminPhoto }}" class="w-full h-full object-cover"
                                 onerror="this.src='{{ asset('img/logo rapih.jpg') }}'">
                         </div>
                     @else
@@ -338,7 +344,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        <img id="globalImageModalSrc" src="" alt="Enlarged Photo"
+        <img id="globalImageModalSrc" src="" alt="Enlarged Photo" onerror="this.src='{{ asset('img/logo rapih.jpg') }}'"
             class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300"
             onclick="event.stopPropagation()">
     </div>
@@ -388,7 +394,10 @@
                 swalContainer.style.pointerEvents = 'none';
             }
 
-            img.src = src;
+            img.onerror = function() {
+                this.src = '{{ asset('img/logo rapih.jpg') }}';
+            };
+            img.src = (src && src.trim() !== '') ? src : '{{ asset('img/logo rapih.jpg') }}';
             modal.classList.remove('hidden');
             void modal.offsetWidth; // trigger reflow
             modal.classList.remove('opacity-0');
@@ -418,10 +427,13 @@
             let role = el.dataset.role;
             let name = el.dataset.name;
             let url = el.dataset.url;
-            let finalPhotoUrl = photoUrl ? photoUrl : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=1e3a8a&color=fff&size=128';
+            let defaultAvatar = role === 'umpeg' 
+                ? '{{ asset('img/logo rapih.jpg') }}' 
+                : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=1e3a8a&color=fff&size=128';
+            let finalPhotoUrl = (photoUrl && photoUrl.trim() !== '') ? photoUrl : defaultAvatar;
 
-            let confirmBtn = role === 'peminjam' ? 'Profil Lengkap' : 'Tutup';
-            let showCancel = role === 'peminjam';
+            let confirmBtn = role === 'peminjam' ? 'Profil Lengkap' : (url ? 'Edit Profil' : 'Tutup');
+            let showCancel = !!url;
 
             let htmlContent = '';
             if (role === 'umpeg') {
@@ -471,8 +483,11 @@
                 didOpen: () => {
                     const img = Swal.getImage();
                     if (img) {
+                        img.onerror = () => {
+                            img.src = '{{ asset('img/logo rapih.jpg') }}';
+                        };
                         img.onclick = () => {
-                            openImageModal(finalPhotoUrl);
+                            openImageModal(img.src || finalPhotoUrl);
                         };
                     }
                 }
