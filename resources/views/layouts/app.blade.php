@@ -482,6 +482,54 @@
                 }
             });
         }
+
+        // Auto-logout dan notifikasi saat sesi berakhir / idle
+        (function() {
+            const sessionLifetimeMinutes = {{ (int) config('session.lifetime', 120) }};
+            const timeoutMs = sessionLifetimeMinutes * 60 * 1000;
+            let idleTimer;
+
+            function triggerSessionExpired() {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Sesi Telah Berakhir',
+                        text: 'Sesi Anda telah kedaluwarsa karena tidak ada aktivitas. Silakan login kembali.',
+                        icon: 'warning',
+                        confirmButtonText: 'Login Kembali',
+                        confirmButtonColor: '#1e3a8a',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    }).then(() => {
+                        window.location.href = "{{ route('logout') }}";
+                    });
+                } else {
+                    window.location.href = "{{ route('logout') }}";
+                }
+            }
+
+            function resetIdleTimer() {
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(triggerSessionExpired, timeoutMs);
+            }
+
+            ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach(function(evt) {
+                window.addEventListener(evt, resetIdleTimer, { passive: true });
+            });
+
+            resetIdleTimer();
+
+            // Intercept fetch untuk error 419 (Page Expired)
+            if (window.fetch) {
+                const originalFetch = window.fetch;
+                window.fetch = async function(...args) {
+                    const response = await originalFetch.apply(this, args);
+                    if (response.status === 419) {
+                        window.location.href = "{{ route('logout') }}";
+                    }
+                    return response;
+                };
+            }
+        })();
     </script>
 </body>
 

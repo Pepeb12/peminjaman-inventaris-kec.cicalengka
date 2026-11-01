@@ -15,12 +15,14 @@ class ResetPasswordOtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $otp;
+    public string $otp;
 
     /**
      * Create a new message instance.
+     *
+     * @param string $otp
      */
-    public function __construct($otp)
+    public function __construct(string $otp)
     {
         $this->otp = $otp;
     }

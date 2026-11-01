@@ -14,13 +14,16 @@ class PesanPeminjamMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $pesan;
-    public $subjectString;
+    public string $pesan;
+    public string $subjectString;
 
     /**
      * Create a new message instance.
+     *
+     * @param string $pesan
+     * @param string $subjectString
      */
-    public function __construct($pesan, $subjectString = 'Pemberitahuan Resmi Inventaris Kecamatan Cicalengka')
+    public function __construct(string $pesan, string $subjectString = 'Pemberitahuan Resmi Inventaris Kecamatan Cicalengka')
     {
         $this->pesan = $pesan;
         $this->subjectString = $subjectString;

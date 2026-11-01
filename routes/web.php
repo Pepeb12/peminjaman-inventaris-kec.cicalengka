@@ -44,8 +44,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/reset-password', [\App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 });
 
+Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Grup Rute Umpeg (Admin)
     Route::middleware(\App\Http\Middleware\CheckRole::class . ':umpeg')->prefix('umpeg')->name('umpeg.')->group(function () {

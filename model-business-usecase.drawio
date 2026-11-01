@@ -1,0 +1,112 @@
+<mxfile host="app.diagrams.net" modified="2026-10-29T01:35:00.000Z" agent="Antigravity" version="24.0.0" type="device">
+  <!-- ====================================================================== -->
+  <!-- TAB 1: MODEL BUSINESS USE CASE (SESUAI RUP / UI OCW LENGKAP)          -->
+  <!-- Menampilkan Business Worker (Internal) dan Business Actor (Eksternal)  -->
+  <!-- ====================================================================== -->
+  <diagram id="tab_buc_lengkap" name="Model Business Use Case">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ========================================== -->
+        <!-- BATAS LINGKUP BISNIS (BUSINESS BOUNDARY)   -->
+        <!-- ========================================== -->
+        <mxCell id="box_bisnis" value="Kecamatan Cicalengka&#xa;(Lingkup Bisnis / Organisasi)" style="shape=rect;html=1;whiteSpace=wrap;align=center;verticalAlign=top;fontStyle=1;fontSize=14;fillColor=none;strokeColor=#000000;strokeWidth=2;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="550" height="580" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- BUSINESS WORKER (INTERNAL ORGANISASI)      -->
+        <!-- Sesuai UI OCW: Pekerja di dalam bisnis     -->
+        <!-- ========================================== -->
+        <mxCell id="worker_admin" value="&amp;laquo;business worker&amp;raquo;&#xa;&lt;b&gt;Admin (Umpeg)&lt;/b&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;strokeColor=#000000;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="70" y="270" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- BUSINESS ACTORS (EKSTERNAL ORGANISASI)     -->
+        <!-- Sesuai UI OCW: Pihak luar penerima value   -->
+        <!-- ========================================== -->
+        <!-- 1. Peminjam (Masyarakat / Perangkat Desa) -->
+        <mxCell id="actor_peminjam" value="&amp;laquo;business actor&amp;raquo;&#xa;&lt;b&gt;Peminjam&lt;/b&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;strokeColor=#000000;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="880" y="170" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Camat (Pimpinan / Pengesah Laporan) -->
+        <mxCell id="actor_camat" value="&amp;laquo;business actor&amp;raquo;&#xa;&lt;b&gt;Camat (Pimpinan)&lt;/b&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;strokeColor=#000000;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="880" y="460" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- BUSINESS USE CASES (BERFOKUS PADA VALUE)   -->
+        <!-- Sesuai UI OCW: Menghasilkan nilai bisnis   -->
+        <!-- ========================================== -->
+        <!-- 1. Pendaftaran Peminjam -->
+        <mxCell id="buc_1" value="&amp;laquo;business use-case&amp;raquo;&#xa;&lt;b&gt;Pendaftaran &amp;amp; Verifikasi Peminjam&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="270" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Pengecekan Ketersediaan Barang -->
+        <mxCell id="buc_2" value="&amp;laquo;business use-case&amp;raquo;&#xa;&lt;b&gt;Pengecekan Ketersediaan Barang&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="180" width="270" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 3. Pelaksanaan Peminjaman Barang -->
+        <mxCell id="buc_3" value="&amp;laquo;business use-case&amp;raquo;&#xa;&lt;b&gt;Pelaksanaan Peminjaman Barang&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="280" width="270" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 4. Pengembalian Barang Inventaris -->
+        <mxCell id="buc_4" value="&amp;laquo;business use-case&amp;raquo;&#xa;&lt;b&gt;Pengembalian Barang Inventaris&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="380" width="270" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- 5. Penyerahan Laporan Pertanggungjawaban -->
+        <mxCell id="buc_5" value="&amp;laquo;business use-case&amp;raquo;&#xa;&lt;b&gt;Penyerahan Laporan Peminjaman&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="480" width="270" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- ASOSIASI BISNIS (GARIS POLOS TANPA PANAH) -->
+        <!-- ========================================== -->
+        <!-- Asosiasi Business Worker: Admin (Umpeg) -->
+        <mxCell id="rel_w_1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="worker_admin" target="buc_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_w_2" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="worker_admin" target="buc_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_w_3" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="worker_admin" target="buc_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_w_4" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="worker_admin" target="buc_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_w_5" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="worker_admin" target="buc_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Asosiasi Business Actor: Peminjam -->
+        <mxCell id="rel_a_1" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="actor_peminjam" target="buc_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_a_2" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="actor_peminjam" target="buc_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_a_3" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="actor_peminjam" target="buc_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_a_4" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="actor_peminjam" target="buc_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Asosiasi Business Actor: Camat -->
+        <mxCell id="rel_c_5" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.3;" edge="1" parent="1" source="actor_camat" target="buc_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

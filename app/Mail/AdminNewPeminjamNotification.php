@@ -15,11 +15,14 @@ class AdminNewPeminjamNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $peminjam;
+    public User $user;
+    public Peminjam $peminjam;
 
     /**
      * Create a new message instance.
+     *
+     * @param User $user
+     * @param Peminjam $peminjam
      */
     public function __construct(User $user, Peminjam $peminjam)
     {

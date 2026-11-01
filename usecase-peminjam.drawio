@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" modified="2026-10-28T13:50:00.000Z" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="diag_peminjam_rekomendasi" name="Use Case Peminjam (Rekomendasi)">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Batas Sistem (System Boundary) -->
+        <mxCell id="box_sistem" value="sistem" style="shape=rect;html=1;whiteSpace=wrap;align=center;verticalAlign=top;fontStyle=1;fontSize=15;fillColor=none;strokeColor=#000000;strokeWidth=2;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="690" height="520" as="geometry" />
+        </mxCell>
+
+        <!-- Aktor: PEMINJAM -->
+        <mxCell id="act_peminjam" value="PEMINJAM" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=1;fontSize=13;strokeColor=#000000;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="70" y="245" width="60" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 5 Use Case Rekomendasi di Sisi Kiri -->
+        <!-- 1. Registrasi Akun (Menggantikan Dashboard, esensial untuk peminjam baru) -->
+        <mxCell id="uc_registrasi" value="Registrasi Akun" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="90" width="190" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Lihat Katalog Barang -->
+        <mxCell id="uc_katalog" value="Lihat Katalog Barang" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="175" width="190" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 3. Ajukan Peminjaman -->
+        <mxCell id="uc_pengajuan" value="Ajukan Peminjaman" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="260" width="190" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 4. Lihat Riwayat & Cetak Bukti (Perbaikan typo Peminajaman & penambahan Cetak Bukti) -->
+        <mxCell id="uc_riwayat" value="Lihat Riwayat &amp;amp; Cetak Bukti" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="345" width="190" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 5. Kelola Profil -->
+        <mxCell id="uc_profil" value="Kelola Profil" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="430" width="190" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Sisi Kanan: Login -->
+        <mxCell id="uc_login" value="Login" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="280" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Garis Asosiasi (PEMINJAM ke 5 Use Case) -->
+        <mxCell id="edge_reg" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.2;" edge="1" parent="1" source="act_peminjam" target="uc_registrasi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_kat" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.2;" edge="1" parent="1" source="act_peminjam" target="uc_katalog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_aju" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.2;" edge="1" parent="1" source="act_peminjam" target="uc_pengajuan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_riw" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.2;" edge="1" parent="1" source="act_peminjam" target="uc_riwayat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_prf" style="endArrow=none;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.2;" edge="1" parent="1" source="act_peminjam" target="uc_profil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Relasi <<include>> ke Login (Registrasi TIDAK include Login karena dilakukan sebelum punya akun) -->
+        <mxCell id="inc_kat_login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endSize=8;dashed=1;rounded=0;strokeColor=#000000;fontSize=11;" edge="1" parent="1" source="uc_katalog" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_aju_login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endSize=8;dashed=1;rounded=0;strokeColor=#000000;fontSize=11;" edge="1" parent="1" source="uc_pengajuan" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_riw_login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endSize=8;dashed=1;rounded=0;strokeColor=#000000;fontSize=11;" edge="1" parent="1" source="uc_riwayat" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_prf_login" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endSize=8;dashed=1;rounded=0;strokeColor=#000000;fontSize=11;" edge="1" parent="1" source="uc_profil" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
